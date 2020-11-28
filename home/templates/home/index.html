@@ -18,19 +18,39 @@
         <div class="best-seller">
             <h2 class="center-align">Featured Best Seller</h2>
             <div class="row">
-                <div class="col s12 m8 offset-m2">
+                <div class="col s12 hide-on-med-and-up">
                     <div class="card center-align">
                         <div class="card-image">
                         <img src="images/sample-1.jpg">
                         </div>
-                        <h3 class="card-title">{{ best_seller.name }}</h3>
                         <div class="card-content">
+                            <h3 class="card-title">{{ best_seller.name }}</h3>
                             <p>€{{ best_seller.price }}</p>
                             <p>{{ best_seller.rating }}</p>
                             <div class="card-action">
-                            <a href="#">More Details</a>
-                            <a href="#">Add to Cart</a>
-                            <a href="#">Add to Wishlist</a>
+                                <a href="#">More Details</a>
+                                <a href="#">Add to Cart</a>
+                                <a href="#">Add to Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Shop All Boardgames</p>
+                </div>
+                <div class="col m8 offset-2 hide-on-small-only">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h3 class="card-title">{{ best_seller.name }}</h3>
+                                <p>€{{ best_seller.price }}</p>
+                                <p>{{ best_seller.rating }}</p>
+                                <div class="card-action">
+                                    <a href="#">More Details</a>
+                                    <a href="#">Add to Cart</a>
+                                    <a href="#">Add to Wishlist</a>
+                                </div>
                             </div>
                         </div>
                     </div>
