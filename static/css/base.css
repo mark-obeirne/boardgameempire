@@ -13,6 +13,15 @@ body {
   margin: 0;
 }
 
+/* Display Settings */
+.sticky {
+    position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 12rem;
+  z-index: 2;
+}
+
 /* Nav Menu */
 .navbar-fixed {
     height: 12rem;
@@ -38,6 +47,9 @@ body {
 .white-text {
     color: #d5d5d5;
 }
+
+/* Products Page */
+
 
 /* Footer */
 .social-media-icon {
