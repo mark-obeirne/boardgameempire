@@ -22,8 +22,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="sticky">
-            <div class="col hide-on-small-only m2 filter-panel">
+        <div class="fixed filter-panel col hide-on-small-only m2">
                 <h2>Filters</h2>
                 <h3>Min Players</h3>
                 <h3>Max Players</h3>
@@ -31,28 +30,30 @@
                 <h3>Typical Playtime</h3>
                 <h3>User Rating</h3>
                 <h3>Price</h3>
-            </div>
         </div>
-        <p>Showing x-x of ___ results</p>
-        {% for product in products %}
-        <div class="col s12 m8 push-l2 l5">
-            <div class="card center-align">
-                <div class="card-image">
-                <img src="images/sample-1.jpg">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">{{ product.name }}</h3>
-                    <p>€{{ product.price }}</p>
-                    <p>{{ product.rating }}</p>
-                    <div class="card-action">
-                        <a href="#" class="waves-effect waves-light btn">More Details</a>
-                        <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
-                        <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+        <div class="products-panel">
+            <div class="col s12 m8 push-m2">
+                <p>Showing x-x of ___ results</p>
+            </div>
+            {% for product in products %}
+            <div class="col s12 m8 push-m2 l5 push-l2">
+                <div class="card center-align">
+                    <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">{{ product.name }}</h3>
+                        <p>€{{ product.price }}</p>
+                        <p>{{ product.rating }}</p>
+                        <div class="card-action">
+                            <a href="#" class="waves-effect waves-light btn">More Details</a>
+                            <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                            <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-
 {% endblock %}
