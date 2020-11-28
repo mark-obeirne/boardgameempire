@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+    <!--Carousel-->
     <div class="carousel">
         <div class="carousel-panel">
             <p>Background Image with faded overlay</p>
@@ -12,19 +13,68 @@
         </div>
     </div> 
 
-    Featured Best Seller
-        - Card
-        - Game Image
-        - Price
-        - Reviews
-        - More Details Button 
-        - Add to Cart Button 
-        - Add to Wishlist Button 
-        - Shop All Boardgames (small text)
-
-    Why Us?
-        - Free Shipping Card
-        - Loyalty Points Card
-        - Contact Us Card
+    <div class="container">
+        <!--Featured Best Seller-->
+        <div class="best-seller">
+            <h2 class="center-align">Featured Best Seller</h2>
+            <div class="row">
+                <div class="col s12 m8 offset-m2">
+                    <div class="card center-align">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <h3 class="card-title">Game Title</h3>
+                        <div class="card-content">
+                            Price
+                            Reviews
+                            <div class="card-action">
+                            <a href="#">More Details</a>
+                            <a href="#">Add to Cart</a>
+                            <a href="#">Add to Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Shop All Boardgames</p>
+                </div>
+            </div>
+            <!--Why Us?-->
+            <h2 class="center-align">Why Boardgame Empire?</h2>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Free Delivery Over €50</span>
+                            <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket, but if you're anything like us it'll be used for more boardgames!</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="#">Browse All Boardgames</a>
+                        </div>
+                    </div>
+                </div>            
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Earn Loyalty Points</span>
+                            <p>Sign in to (or sign up for) your Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="#">Find Out More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Can't See A Game Listed?</span>
+                            <p>If we don't currently stock a boardgame that you're interested in, please contact us and we'll see if we can get our hands on it for you.</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="#">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
