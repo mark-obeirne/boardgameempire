@@ -13,12 +13,16 @@
         {% endblock %}
         
         {% block corecss %}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" type="text/css" />
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
         {% endblock %}
         
         {% block extracss %}
         {% endblock %}
         
         {% block corejs %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         {% endblock %}
         
         {% block extrajs %}
@@ -27,6 +31,98 @@
         <title>Boardgame Empire | {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="top-nav">
+                        <div class="row top-nav-row bg-brown">    
+                            <ul class="right">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="center-align">
+                                            <i class="fas fa-dice"></i> 
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="center-align">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="center-align">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="center-align">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bottom-nav">
+                        <div class="row bottom-nav-row bg-brown">
+                            <a href="/" class="brand-logo">
+                                <span class="brand-logo">Site</span>
+                            </a>
+                            <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                            <ul class="right hide-on-med-and-down">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">All Boardgames</a></li>
+                                <li><a href="#" class="dropdown-trigger" data-target="theme-dropdown">Boardgames by Theme</a></li>
+                                <ul id="theme-dropdown" class="dropdown-content">
+                                    <li><a href="#!">one</a></li>
+                                    <li><a href="#!">two</a></li>
+                                    <li><a href="#!">three</a></li>
+                                </ul>
+                                <li><a href="#" class="dropdown-trigger" data-target="mechanic-dropdown">Boardgames by Mechanic</a></li>
+                                <ul id="mechanic-dropdown" class="dropdown-content">
+                                    <li><a href="#!">one</a></li>
+                                    <li><a href="#!">two</a></li>
+                                    <li><a href="#!">three</a></li>
+                                </ul>
+                                <li><a href="#">Deals</a></li>
+                                <li><a href="#">Game of the Month</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <ul class="sidenav" id="sidenav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">All Boardgames</a></li>
+            <li><a href="#" class="dropdown-trigger" data-target="mobile-theme-dropdown">Boardgames by Theme</a></li>
+                <ul id="mobile-theme-dropdown" class="dropdown-content">
+                    <li><a href="#!">one</a></li>
+                    <li><a href="#!">two</a></li>
+                    <li><a href="#!">three</a></li>
+                </ul>
+            <li><a href="#" class="dropdown-trigger" data-target="mobile-mechanic-dropdown">Boardgames by Mechanic</a></li>
+                <ul id="mobile-mechanic-dropdown" class="dropdown-content">
+                    <li><a href="#!">one</a></li>
+                    <li><a href="#!">two</a></li>
+                    <li><a href="#!">three</a></li>
+                </ul>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">Game of the Month</a></li>
+        </ul>
+        
         {% if messages %}
         {% endif %}
 
@@ -34,6 +130,22 @@
         {% endblock %}
 
         {% block postloadjs %}
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    const elems = document.querySelectorAll('.sidenav');
+                    const instances = M.Sidenav.init(elems, {
+                        edge: "right"
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.dropdown-trigger');
+                    var instances = M.Dropdown.init(elems, {
+                        coverTrigger: "false"
+                    });
+                });
+            </script>
         {% endblock %}    
     </body>
 </html>
