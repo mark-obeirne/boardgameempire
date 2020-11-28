@@ -47,6 +47,7 @@ class Product(models.Model):
     mechanic = models.ManyToManyField('Mechanic', blank=True, through='MechanicOfProduct')
     price = models.DecimalField(max_digits=6, decimal_places=2)
     inventory = models.IntegerField()
+    quantity_sold = models.IntegerField(default=0)
     on_sale = models.BooleanField(default=False, null=True, blank=True)
     sale_price = models.DecimalField(max_digits=6, decimal_places=2)
     game_of_the_month = models.BooleanField(default=False, null=True, blank=True)
