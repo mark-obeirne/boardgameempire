@@ -1,0 +1,40 @@
+/* General Site Styles */
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+/* Nav Menu */
+.navbar-fixed {
+    height: 12rem;
+}
+
+.top-nav-row {
+    margin-bottom: 0;
+}
+
+nav .bottom-nav-row ul a {
+    font-size: 1.6rem;
+}
+
+/* Colours */
+body {
+    background-color: #cde6d0;
+}
+
+.bg-brown {
+    background-color: #392417;
+}
+
+.white-text {
+    color: #d5d5d5;
+}
