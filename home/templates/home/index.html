@@ -3,5 +3,102 @@
 {% load static %}
 
 {% block content %}
-    
+    <!--Carousel-->
+    <div class="carousel">
+        <div class="carousel-panel">
+            <p>Background Image with faded overlay</p>
+            <h1>Publisher Spotlight</h1>
+            <p>From games about spies and treachery to founding a fledgling civilization, 999 Games has something for everyone.</p>
+            <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Shop the range</a>
+        </div>
+    </div> 
+
+    <div class="container">
+        <!--Featured Best Seller-->
+        <div class="best-seller">
+            <h2 class="center-align">Featured Best Seller</h2>
+            <div class="row">
+                <div class="col s12 hide-on-med-and-up">
+                    <div class="card center-align">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">{{ best_seller.name }}</h3>
+                            <p>€{{ best_seller.price }}</p>
+                            <p>{{ best_seller.rating }}</p>
+                            <div class="card-action">
+                                <a href="#" class="waves-effect waves-light btn">More Details</a>
+                                <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Shop All Boardgames</p>
+                </div>
+                <div class="col m8 offset-2 hide-on-small-only">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h3 class="card-title">{{ best_seller.name }}</h3>
+                                <p>€{{ best_seller.price }}</p>
+                                <p>{{ best_seller.rating }}</p>
+                                <div class="card-action center-align">
+                                    <a href="#" class="waves-effect waves-light btn">More Details</a>
+                                    {% if best_seller.inventory > 0 %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                    {% else %}
+                                    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                    {% endif %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Shop All Boardgames</p>
+                </div>
+            </div>
+            <!--Why Us?-->
+            <h2 class="center-align">Why Boardgame Empire?</h2>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Free Delivery Over €50</span>
+                            <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket, but if you're anything like us it'll be used for more boardgames!</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="#">Browse All Boardgames</a>
+                        </div>
+                    </div>
+                </div>            
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Earn Loyalty Points</span>
+                            <p>Sign in to (or sign up for) your Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="#">Find Out More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Can't See A Game Listed?</span>
+                            <p>If we don't currently stock a boardgame that you're interested in, please contact us and we'll see if we can get our hands on it for you.</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="#">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
