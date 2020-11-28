@@ -38,3 +38,10 @@ body {
 .white-text {
     color: #d5d5d5;
 }
+
+/* Footer */
+.social-media-icon {
+    display: inline-block;
+    font-size: 2rem;
+    padding: .5rem;
+}
