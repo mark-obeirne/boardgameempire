@@ -8,12 +8,37 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s6 hide-on-med-and-up">
-        Filter button
+    <div class="row hide-on-med-and-up">
+        <!--Button to display available filters on mobile-->
+        <div class="col s4">
+            <a href="#" class="waves-effect waves-light btn">Filters</a>
         </div>
-        <div class="col s6">
-        Sorting: Sort Dropdown
+        <div class="input-field col s8">
+            <!--Filter selection dropdown-->
+            <select id="mobile-sort-select-dropdown" name="mobile-sort-select-dropdown" class="sort-select-dropdown">
+                <option value="reset" disabled selected>Sort By</option>
+                <optgroup label="Alphabetically">
+                    <option value="name_asc">Name (A-Z)</option>
+                    <option value="name_desc">Name (Z-A)</option>
+                </optgroup>
+                <optgroup label="By Price">
+                    <option value="price_asc">Price (Low to High)</option>
+                    <option value="price_desc">Price (High to Low)</option>
+                </optgroup>
+                <optgroup label="Min Players">
+                    <option value="min_players_asc">Min Players (Low to High)</option>
+                    <option value="min_players_desc">Min Players (High to Low)</option>
+                </optgroup>
+                <optgroup label="Max Players">
+                    <option value="max_players_desc">Max Players (High to Low)</option>
+                    <option value="max_players_asc">Max Players (Low to High)</option>
+                </optgroup>
+                <optgroup label="Playtime">
+                    <option value="playtime_asc">Playtime (Shortest to Longest)</option>
+                    <option value="playtime_desc">Playtime (Longest to Shortest)</option>
+                </optgroup>
+            </select>
+            <label for="mobile-sort-select-dropdown">Product Sorting</label>
         </div>
     </div>
     <div class="row">
@@ -22,6 +47,7 @@
         </div>
     </div>
     <div class="row">
+        <!--Filters panel-->
         <div class="fixed filter-panel col hide-on-small-only m2">
                 <h2>Filters</h2>
                 <h3>Min Players</h3>
@@ -31,10 +57,38 @@
                 <h3>User Rating</h3>
                 <h3>Price</h3>
         </div>
-        <div class="products-panel">
-            <div class="col s12 m8 push-m2">
+        <div class="col s12 m4 push-m2">
                 <p>Showing x-x of ___ results</p>
             </div>
+        <div class="input-field col hide-on-small-only m6 push-m2">
+            <!--Filter selection dropdown-->
+            <select id="sort-select-dropdown" name="sort-select-dropdown" class="sort-select-dropdown">
+                <option value="reset" disabled selected>Sort By</option>
+                <optgroup label="Alphabetically">
+                    <option value="name_asc">Name (A-Z)</option>
+                    <option value="name_desc">Name (Z-A)</option>
+                </optgroup>
+                <optgroup label="By Price">
+                    <option value="price_asc">Price (Low to High)</option>
+                    <option value="price_desc">Price (High to Low)</option>
+                </optgroup>
+                <optgroup label="Min Players">
+                    <option value="min_players_asc">Min Players (Low to High)</option>
+                    <option value="min_players_desc">Min Players (High to Low)</option>
+                </optgroup>
+                <optgroup label="Max Players">
+                    <option value="max_players_desc">Max Players (High to Low)</option>
+                    <option value="max_players_asc">Max Players (Low to High)</option>
+                </optgroup>
+                <optgroup label="Playtime">
+                    <option value="playtime_asc">Playtime (Shortest to Longest)</option>
+                    <option value="playtime_desc">Playtime (Longest to Shortest)</option>
+                </optgroup>
+            </select>
+            <label for="sort-select-dropdown">Product Sorting</label>
+        </div>
+        <div class="products-panel">
+            <!--Products-->
             {% for product in products %}
             <div class="col s12 m8 push-m2 l5 push-l2">
                 <div class="card center-align">
@@ -56,4 +110,14 @@
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const elems = document.querySelectorAll('select');
+            const instances = M.FormSelect.init(elems, {});
+        });
+    </script>
 {% endblock %}
