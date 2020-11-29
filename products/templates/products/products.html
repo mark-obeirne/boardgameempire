@@ -26,12 +26,12 @@
                     <option value="price_desc">Price (High to Low)</option>
                 </optgroup>
                 <optgroup label="Min Players">
-                    <option value="min_players_asc">Min Players (Low to High)</option>
-                    <option value="min_players_desc">Min Players (High to Low)</option>
+                    <option value="min-players_asc">Min Players (Low to High)</option>
+                    <option value="min-players_desc">Min Players (High to Low)</option>
                 </optgroup>
                 <optgroup label="Max Players">
-                    <option value="max_players_desc">Max Players (High to Low)</option>
-                    <option value="max_players_asc">Max Players (Low to High)</option>
+                    <option value="max-players_desc">Max Players (High to Low)</option>
+                    <option value="max-players_asc">Max Players (Low to High)</option>
                 </optgroup>
                 <optgroup label="Playtime">
                     <option value="playtime_asc">Playtime (Shortest to Longest)</option>
@@ -119,5 +119,29 @@
             const elems = document.querySelectorAll('select');
             const instances = M.FormSelect.init(elems, {});
         });
+    </script>
+
+    <script type="text/javascript">
+        const selectDropdown = document.querySelectorAll(".sort-select-dropdown")
+        selectDropdown.forEach(dropdown => dropdown.addEventListener("change", function() {
+            const chosenSorting = this.value;
+            console.log(chosenSorting)
+            const currentUrl = new URL(window.location);
+
+            if (chosenSorting != "reset") {
+                const sort = chosenSorting.split("_")[0]
+                const direction = chosenSorting.split("_")[1]
+                
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.set("sort");
+                currentUrl.searchParams.set("direction");
+
+                window.location.replace(currentUrl);
+            }
+        }))
     </script>
 {% endblock %}
