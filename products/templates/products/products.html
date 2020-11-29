@@ -13,32 +13,32 @@
         <div class="col s4">
             <a href="#" class="waves-effect waves-light btn">Filters</a>
         </div>
-        <div class="input-field col s8">
+        <div class="input-field browser-default col s8">
             <!--Filter selection dropdown-->
             <select id="mobile-sort-select-dropdown" name="mobile-sort-select-dropdown" class="sort-select-dropdown">
-                <option value="reset" disabled selected>Sort By</option>
+                <option value="reset" disabled {% if current_sorting == "None-None" %}selected{% endif %}>Sort By</option>
                 <optgroup label="Alphabetically">
-                    <option value="name_asc">Name (A-Z)</option>
-                    <option value="name_desc">Name (Z-A)</option>
+                    <option value="name-asc" {% if current_sorting == "name-asc" %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="name-desc" {% if current_sorting == "name-desc" %}selected{% endif %}>Name (Z-A)</option>
                 </optgroup>
                 <optgroup label="By Price">
-                    <option value="price_asc">Price (Low to High)</option>
-                    <option value="price_desc">Price (High to Low)</option>
+                    <option value="price-asc" {% if current_sorting == "price-asc" %}selected{% endif %}>Price (Low to High)</option>
+                    <option value="price-desc" {% if current_sorting == "price-desc" %}selected{% endif %}>Price (High to Low)</option>
                 </optgroup>
                 <optgroup label="Min Players">
-                    <option value="min-players_asc">Min Players (Low to High)</option>
-                    <option value="min-players_desc">Min Players (High to Low)</option>
+                    <option value="min_players-asc" {% if current_sorting == "min_players-asc" %}selected{% endif %}>Min Players (Low to High)</option>
+                    <option value="min_players-desc" {% if current_sorting == "min_players-desc" %}selected{% endif %}>Min Players (High to Low)</option>
                 </optgroup>
                 <optgroup label="Max Players">
-                    <option value="max-players_desc">Max Players (High to Low)</option>
-                    <option value="max-players_asc">Max Players (Low to High)</option>
+                    <option value="max_players-desc" {% if current_sorting == "max_players-desc" %}selected{% endif %}>Max Players (High to Low)</option>
+                    <option value="max_players-asc" {% if current_sorting == "max_players-asc" %}selected{% endif %}>Max Players (Low to High)</option>
                 </optgroup>
                 <optgroup label="Playtime">
-                    <option value="playtime_asc">Playtime (Shortest to Longest)</option>
-                    <option value="playtime_desc">Playtime (Longest to Shortest)</option>
+                    <option value="playing_time-asc" {% if current_sorting == "playing_time-asc" %}selected{% endif %}>Playtime (Shortest to Longest)</option>
+                    <option value="playing_time-desc" {% if current_sorting == "playing_time-desc" %}selected{% endif %}>Playtime (Longest to Shortest)</option>
                 </optgroup>
             </select>
-            <label for="mobile-sort-select-dropdown">Product Sorting</label>
+            <label for="mobile-sort-select-dropdown">{% if current_sorting != "None-None" %}Currently Sorting By: {% else %}Select Product Sorting{% endif %}</label>
         </div>
     </div>
     <div class="row">
@@ -63,29 +63,29 @@
         <div class="input-field col hide-on-small-only m6 push-m2">
             <!--Filter selection dropdown-->
             <select id="sort-select-dropdown" name="sort-select-dropdown" class="sort-select-dropdown">
-                <option value="reset" disabled selected>Sort By</option>
+                <option value="reset" disabled {% if current_sorting == "None-None" %}selected{% endif %}>Sort By</option>
                 <optgroup label="Alphabetically">
-                    <option value="name_asc">Name (A-Z)</option>
-                    <option value="name_desc">Name (Z-A)</option>
+                    <option value="name-asc" {% if current_sorting == "name-asc" %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="name-desc" {% if current_sorting == "name-desc" %}selected{% endif %}>Name (Z-A)</option>
                 </optgroup>
                 <optgroup label="By Price">
-                    <option value="price_asc">Price (Low to High)</option>
-                    <option value="price_desc">Price (High to Low)</option>
+                    <option value="price-asc" {% if current_sorting == "price-asc" %}selected{% endif %}>Price (Low to High)</option>
+                    <option value="price-desc" {% if current_sorting == "price-desc" %}selected{% endif %}>Price (High to Low)</option>
                 </optgroup>
                 <optgroup label="Min Players">
-                    <option value="min_players_asc">Min Players (Low to High)</option>
-                    <option value="min_players_desc">Min Players (High to Low)</option>
+                    <option value="min_players-asc" {% if current_sorting == "min_players-asc" %}selected{% endif %}>Min Players (Low to High)</option>
+                    <option value="min_players-desc" {% if current_sorting == "min_players-desc" %}selected{% endif %}>Min Players (High to Low)</option>
                 </optgroup>
                 <optgroup label="Max Players">
-                    <option value="max_players_desc">Max Players (High to Low)</option>
-                    <option value="max_players_asc">Max Players (Low to High)</option>
+                    <option value="max_players-desc" {% if current_sorting == "max_players-desc" %}selected{% endif %}>Max Players (High to Low)</option>
+                    <option value="max_players-asc" {% if current_sorting == "max_players-asc" %}selected{% endif %}>Max Players (Low to High)</option>
                 </optgroup>
                 <optgroup label="Playtime">
-                    <option value="playtime_asc">Playtime (Shortest to Longest)</option>
-                    <option value="playtime_desc">Playtime (Longest to Shortest)</option>
+                    <option value="playing_time-asc" {% if current_sorting == "playing_time-asc" %}selected{% endif %}>Playtime (Shortest to Longest)</option>
+                    <option value="playing_time-desc" {% if current_sorting == "playing_time-desc" %}selected{% endif %}>Playtime (Longest to Shortest)</option>
                 </optgroup>
             </select>
-            <label for="sort-select-dropdown">Product Sorting</label>
+            <label for="sort-select-dropdown">{% if current_sorting != "None-None" %}Currently Sorting By: {% else %}Select Product Sorting{% endif %}</label>
         </div>
         <div class="products-panel">
             <!--Products-->
@@ -129,8 +129,8 @@
             const currentUrl = new URL(window.location);
 
             if (chosenSorting != "reset") {
-                const sort = chosenSorting.split("_")[0]
-                const direction = chosenSorting.split("_")[1]
+                const sort = chosenSorting.split("-")[0]
+                const direction = chosenSorting.split("-")[1]
                 
                 currentUrl.searchParams.set("sort", sort);
                 currentUrl.searchParams.set("direction", direction);
