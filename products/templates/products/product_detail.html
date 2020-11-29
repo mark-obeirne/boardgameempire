@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="product-panel">
+            <h2 class="center-align">{{ product.name }}</h2>
+            <div class="row">
+                <div class="col s12 hide-on-med-and-up">
+                    <div class="card center-align">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-content">
+                            <p>€{{ product.price }}</p>
+                            <p>{{ product.rating }}</p>
+                            <div class="card-action">
+                                <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m8 offset-2 hide-on-small-only">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>€{{ product.price }}</p>
+                                <p>{{ product.rating }}</p>
+                                <div class="card-action center-align">
+                                    {% if product.inventory > 0 %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                    {% else %}
+                                    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                    {% endif %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

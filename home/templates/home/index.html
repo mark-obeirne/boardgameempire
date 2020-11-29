@@ -47,7 +47,7 @@
                                 <p>€{{ best_seller.price }}</p>
                                 <p>{{ best_seller.rating }}</p>
                                 <div class="card-action center-align">
-                                    <a href="#" class="waves-effect waves-light btn">More Details</a>
+                                    <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn">More Details</a>
                                     {% if best_seller.inventory > 0 %}
                                     <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
                                     {% else %}

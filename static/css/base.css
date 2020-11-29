@@ -58,3 +58,10 @@ body {
     font-size: 2rem;
     padding: .5rem;
 }
+
+/* Media Queries */
+@media screen and (min-width: 992px) {
+    .navbar-fixed {
+        height: 13rem;
+    }
+}
