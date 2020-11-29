@@ -21,8 +21,8 @@ def all_products(request):
                 sortkey = f"-{sortkey}"
         products = products.order_by(sortkey)
 
-    current_sorting = f"{sort}_{direction}"
-
+    current_sorting = f"{sort}-{direction}"
+    print(current_sorting)
     context = {
         "products": products,
         "current_sorting": current_sorting,
