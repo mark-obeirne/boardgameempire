@@ -37,3 +37,11 @@ def product_detail(request, product_id):
         "product": product,
     }
     return render(request, "products/product_detail.html", context)
+
+
+def get_random_game(request):
+    product = Product.objects.order_by("?")[0]
+    context = {
+        "product": product,
+    }
+    return render(request, "products/random.html", context)
