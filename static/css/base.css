@@ -19,6 +19,17 @@ body {
   z-index: 2;
 }
 
+.row .col.padding-0 {
+    padding: 0;
+}
+
+/* Buttons */
+.search-btn {
+    padding: 0;
+    border: none;
+    cursor: pointer; 
+}
+
 /* Nav Menu */
 .navbar-fixed {
     height: 12rem;
