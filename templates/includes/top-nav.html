@@ -1,39 +1,48 @@
 <div class="row top-nav-row bg-brown">    
-    <ul class="right">
-        <li>
-            <a href="#">
-                <div>
-                    <i class="fas fa-search"></i>
+    <div class="col s12">
+        <div class="col s4 offset-s4">
+            <form method="GET" action="{% url 'products' %}">
+                <div class="searchbar col s10">
+                    <input type="text" placeholder="Search for a product" class="search-field" id="top-nav-search" name="q">
                 </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="center-align">
-                    <a href="{% url 'get_random_game' %}"><i class="fas fa-dice"></i> </a>
+                <div class="col s2 padding-0">
+                    <button type="submit" class="search-btn">
+                        <span class="icon">
+                            <i class="fas fa-search bg-brown white-text"></i>
+                        </span>
+                    </button>
                 </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="center-align">
-                    <i class="fas fa-heart"></i>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="center-align">
-                    <i class="fas fa-user"></i>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="center-align">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-            </a>
-        </li>
-    </ul>
+            </form>
+        </div>
+        <ul class="right">
+            <li>
+                <a href="#">
+                    <div class="center-align">
+                        <a href="{% url 'get_random_game' %}"><i class="fas fa-dice"></i> </a>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="center-align">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="center-align">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="center-align">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
