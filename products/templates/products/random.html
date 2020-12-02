@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="product-panel">
+            <h2 class="center-align">{{ product.name }}</h2>
+            <div class="row">
+                <div class="col s12 hide-on-med-and-up">
+                    <div class="card center-align">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-content">
+                            <p>€{{ product.price }}</p>
+                            <p>{{ product.rating }}</p>
+                            <p>{{ product.description }}</p>
+                            <div class="card-action center-align">
+                                {% if product.inventory > 0 %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                    {% else %}
+                                    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                {% endif %}
+                                <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                            </div>
+                            <ul class="tabs more-info-panel">
+                                <li class="tab col s6"><a href="#mobile-details-panel">Details</a></li>
+                                <li class="tab col s6"><a href="#mobile-reviews-panel">Reviews</a></li>
+                            </ul>
+                            <div class="details-panel col s12" id="mobile-details-panel">
+                                <p><i class="fas fa-users prefix"></i> Number of Players: {{ product.min_players }}-{{ product.max_players }}</p>
+                                <p><i class="fas fa-smile prefix"></i> Age Suitability: {{ product.min_age }}</p>
+                                <p><i class="fas fa-clock prefix"></i> Typical Playtime: {{ product.playing_time }}</p>
+                                <p><i class="fas fa-user-edit prefix"></i> Designer: {{ product.developer }}</p>
+                                <p><i class="fas fa-truck-loading prefix"></i> Publisher: {{ product.publisher }}</p>
+                            </div>
+                            <div class="reviews-panel col s12" id="mobile-reviews-panel">
+                                User Reviews
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m8 offset-m2 hide-on-small-only">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                        <img src="images/sample-1.jpg">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>€{{ product.price }}</p>
+                                <p>{{ product.rating }}</p>
+                                <p>{{ product.description }}</p>
+                                <div class="card-action center-align">
+                                    {% if product.inventory > 0 %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                    {% else %}
+                                    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                    {% endif %}
+                                    <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                                </div>
+                            </div>
+                            <ul class="tabs more-info-panel">
+                                <li class="tab col s6"><a href="#details-panel">Details</a></li>
+                                <li class="tab col s6"><a href="#reviews-panel">Reviews</a></li>
+                            </ul>
+                            <div class="details-panel col s12" id="details-panel">
+                                <p><i class="fas fa-users prefix"></i> Number of Players: {{ product.min_players }}-{{ product.max_players }}</p>
+                                <p><i class="fas fa-smile prefix"></i> Age Suitability: {{ product.min_age }}</p>
+                                <p><i class="fas fa-clock prefix"></i> Typical Playtime: {{ product.playing_time }}</p>
+                                <p><i class="fas fa-user-edit prefix"></i> Designer: {{ product.developer }}</p>
+                                <p><i class="fas fa-truck-loading prefix"></i> Publisher: {{ product.publisher }}</p>
+                            </div>
+                            <div class="reviews-panel col s12" id="reviews-panel">
+                                User Reviews
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const elems = document.querySelectorAll('.tabs')
+            const instance = M.Tabs.init(elems, {
+                swipeable: true
+            });
+        });
+    </script>
+{% endblock %}
