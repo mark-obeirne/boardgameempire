@@ -28,7 +28,8 @@ def all_products(request):
         query = request.GET["q"]
         if not query:
             return redirect(reverse('products'))
-        products = products.filter(name__contains=query)
+        queries = Q(name__icontains=query) | Q(designer__icontains=query) | Q(publisher__icontains=query) 
+        products = products.filter(queries)
             
 
     current_sorting = f"{sort}-{direction}"
