@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from .models import Product
+from django.db.models import Q
 from django.db.models.functions import Lower
 
 
@@ -8,6 +9,7 @@ def all_products(request):
     products = Product.objects.all()
     sort = None
     direction = None
+    query = None
 
     if "sort" in request.GET:
         sortkey = request.GET["sort"]
@@ -22,8 +24,15 @@ def all_products(request):
                 sortkey = f"-{sortkey}"
         products = products.order_by(sortkey)
 
+    if "q" in request.GET:
+        query = request.GET["q"]
+        if not query:
+            return redirect(reverse('products'))
+        queries = Q(name__icontains=query) | Q(designer__icontains=query) | Q(publisher__icontains=query) 
+        products = products.filter(queries)
+            
+
     current_sorting = f"{sort}-{direction}"
-    print(current_sorting)
     context = {
         "products": products,
         "current_sorting": current_sorting,

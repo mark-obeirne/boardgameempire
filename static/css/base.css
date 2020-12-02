@@ -19,6 +19,17 @@ body {
   z-index: 2;
 }
 
+.row .col.padding-0 {
+    padding: 0;
+}
+
+/* Buttons */
+.search-btn {
+    padding: 0;
+    border: none;
+    cursor: pointer; 
+}
+
 /* Nav Menu */
 .navbar-fixed {
     height: 12rem;
@@ -32,6 +43,12 @@ nav .bottom-nav-row ul a {
     font-size: 1.6rem;
 }
 
+#search-dropdown {
+    width: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+}
+
 /* Colours */
 body {
     background-color: #cde6d0;
@@ -41,8 +58,16 @@ body {
     background-color: #392417;
 }
 
+.bg-sheer-white {
+    background-color: #FFFFFF;
+}
+
 .white-text {
     color: #d5d5d5;
+}
+
+.brown-text {
+    color: #392417;
 }
 
 /* Products Page */
