@@ -1,9 +1,9 @@
 <div class="row top-nav-row bg-brown">    
     <div class="col s12">
-        <div class="col s4 offset-s4">
+        <div class="col l4 offset-l4 hide-on-med-and-down show-on-large">
             <form method="GET" action="{% url 'products' %}">
-                <div class="searchbar col s10">
-                    <input type="text" placeholder="Search for a product" class="search-field" id="top-nav-search" name="q">
+                <div class="searchbar input-field col s10">
+                    <input type="text" placeholder="Search products" class="search-field" id="top-nav-search" name="q">
                 </div>
                 <div class="col s2 padding-0">
                     <button type="submit" class="search-btn">
@@ -15,6 +15,27 @@
             </form>
         </div>
         <ul class="right">
+            <li class="hide-on-large-only">
+                <a href="#" class="dropdown-trigger search-dropdown-trigger" id="search-dropdown-trigger" data-target="search-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search"></i>
+                </a>
+                <div id="search-dropdown" class="row search-row search-dropdown dropdown-content valign-wrapper" aria-labelledby="search-dropdown-trigger">
+                    <div class="col s12">
+                        <form method="GET" action="{% url 'products' %}">
+                            <div class="col s10 searchbar input-field">
+                                <input type="text" placeholder="Search products" class="search-field" id="top-nav-search" name="q">
+                            </div>
+                            <div class="col s2 padding-0">
+                                <button type="submit" class="search-btn">
+                                    <span class="icon">
+                                        <i class="fas fa-search bg-sheer-white brown-text"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
             <li>
                 <a href="#">
                     <div class="center-align">
