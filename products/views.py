@@ -4,6 +4,7 @@ from django.db.models.functions import Lower
 
 
 def all_products(request):
+    """ View to display all products currently stocked """
     products = Product.objects.all()
     sort = None
     direction = None
@@ -32,8 +33,18 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
+    """ Return details of an individual product """
     product = get_object_or_404(Product, pk=product_id)
     context = {
         "product": product,
     }
     return render(request, "products/product_detail.html", context)
+
+
+def get_random_game(request):
+    """ Return details of a random product """
+    product = Product.objects.order_by("?")[0]
+    context = {
+        "product": product,
+    }
+    return render(request, "products/random.html", context)
