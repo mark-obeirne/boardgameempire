@@ -8,13 +8,14 @@ def view_cart(request):
 
 def add_to_cart(request, product_id):
     """ Add a product to the cart """
+    quantity = int(request.POST.get("quantity"))
     cart = request.session.get("cart", {})
-    redirect_url = request.POST.get('redirect_url')
+    redirect_url = request.POST.get("redirect_url")
 
     if product_id in list(cart.keys()):
-        cart[product_id] += 1
+        cart[product_id] += quantity
     else:
-        cart[product_id] = 1
+        cart[product_id] = quantity
 
     request.session["cart"] = cart
     print(cart)
