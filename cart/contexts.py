@@ -1,5 +1,6 @@
-from decimal import decimal
+from decimal import Decimal
 from django.conf import settings
+
 
 def cart_contents(request):
     cart_items = []
@@ -12,7 +13,7 @@ def cart_contents(request):
     else:
         delivery = 0
         free_delivery_remainder = 0
-    
+
     grand_total = total + delivery
 
     context = {
