@@ -58,7 +58,7 @@
                 <h3>Price</h3>
         </div>
         <div class="col s12 m4 push-m2">
-                <p>Showing x-x of ___ results</p>
+                <p>Showing x-x of ___ results{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
             </div>
         <div class="input-field col hide-on-small-only m6 push-m2">
             <!--Sort selection dropdown-->
