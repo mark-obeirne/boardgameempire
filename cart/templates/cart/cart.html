@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12">
+            {% if items_in_cart %}
+
+            {% else %}
+                <p>Your cart is currently empty</p>
+                <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
