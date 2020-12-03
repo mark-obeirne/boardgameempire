@@ -1,0 +1,20 @@
+<p>€{{ product.price }}</p>
+<p>{{ product.rating }}</p>
+<p>{{ product.description }}</p>
+<div class="row center-align">
+    <div class="col s12 m6">
+    {% if product.inventory > 0 %}
+        <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ product.inventory }}" data-item_id="{{ product.id }}" id="product-qty-input">
+            <input type="submit" class="waves-effect waves-light btn" value="Add to Cart">
+            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+        </form>
+    {% else %}
+    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+    {% endif %}
+    </div>
+    <div class="col s12 m6">
+        <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+    </div>
+</div>

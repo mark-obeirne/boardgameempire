@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'home',
     'products',
     'userprofiles',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'boardgame_empire.contexts.all_categories',
+                'cart.contexts.cart_contents',
             ],
         },
     },
@@ -150,3 +152,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Delivery Cost Settings
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_FEE = 6
