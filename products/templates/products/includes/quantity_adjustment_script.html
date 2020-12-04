@@ -4,8 +4,13 @@
     increaseQtyBtn.addEventListener("click", function() {
         const inputField = increaseQtyBtn.previousElementSibling
         let inputValue = parseInt(inputField.value)
-        inputValue += 1;
-        inputField.setAttribute("value", inputValue)
+        const maxValue = inputField.getAttribute("max")
+        if (inputValue == maxValue) {
+            increaseQtyBtn.classList.add("disabled")
+        } else {
+            inputValue += 1;
+            inputField.setAttribute("value", inputValue)
+        }
     })
 </script>
 
@@ -15,7 +20,11 @@
     decreaseQtyBtn.addEventListener("click", function() {
         const inputField = decreaseQtyBtn.nextElementSibling
         let inputValue = parseInt(inputField.value)
-        inputValue -= 1;
-        inputField.setAttribute("value", inputValue)
+        if (inputValue == 1) {
+            decreaseQtyBtn.classList.add("disabled")
+        } else {
+            inputValue -= 1;
+            inputField.setAttribute("value", inputValue)
+        }
     })
 </script>
