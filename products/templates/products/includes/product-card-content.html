@@ -10,7 +10,9 @@
     {% if product.inventory > 0 %}
         <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
             {% csrf_token %}
+            <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ product.id }}" id="decrease-qty_{{ product.id }}">-</span>
             <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ product.inventory }}" data-item_id="{{ product.id }}" id="product-qty-input">
+            <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ product.id }}" id="increase-qty_{{ product.id }}">+</span>
             <input type="submit" class="waves-effect waves-light btn" value="Add to Cart">
             <input type="hidden" name="redirect_url" value="{{ request.path }}">
         </form>
