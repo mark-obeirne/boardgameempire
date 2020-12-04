@@ -1,4 +1,8 @@
-<p>€{{ product.price }}</p>
+{% if product.on_sale %}
+    <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+{% else %}
+    <p>€{{ product.price }}</p>
+{% endif %}
 <p>{{ product.rating }}</p>
 <p>{{ product.description }}</p>
 <div class="row center-align">

@@ -97,7 +97,11 @@
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">{{ product.name }}</h3>
-                        <p>€{{ product.price }}</p>
+                        {% if product.on_sale %}
+                            <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                        {% else %}
+                            <p>€{{ product.price }}</p>
+                        {% endif %}
                         <p>{{ product.rating }}</p>
                         <div class="card-action">
                             <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>

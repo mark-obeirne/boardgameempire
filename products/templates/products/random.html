@@ -13,7 +13,11 @@
                         <img src="images/sample-1.jpg">
                         </div>
                         <div class="card-content">
-                            <p>€{{ product.price }}</p>
+                            {% if product.on_sale %}
+                                <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                            {% else %}
+                                <p>€{{ product.price }}</p>
+                            {% endif %}
                             <p>{{ product.rating }}</p>
                             <p>{{ product.description }}</p>
                             <div class="card-action center-align">
@@ -48,7 +52,11 @@
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
-                                <p>€{{ product.price }}</p>
+                                {% if product.on_sale %}
+                                    <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                                {% else %}
+                                    <p>€{{ product.price }}</p>
+                                {% endif %}
                                 <p>{{ product.rating }}</p>
                                 <p>{{ product.description }}</p>
                                 <div class="card-action center-align">
