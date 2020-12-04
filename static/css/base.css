@@ -77,6 +77,14 @@ body {
     height: 100%;
 }
 
+/* Product Displays */
+#product-qty-input {
+    width: 12%;
+    margin: 0;
+    text-align: center;
+    border: 1px solid red;
+}
+
 /* Footer */
 .social-media-icon {
     display: inline-block;
