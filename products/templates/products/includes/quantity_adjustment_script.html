@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    const increaseQtyBtn = document.querySelector(".qty-increase")
+
+    increaseQtyBtn.addEventListener("click", function() {
+        const inputField = increaseQtyBtn.previousElementSibling
+        let inputValue = parseInt(inputField.value)
+        inputValue += 1;
+        inputField.setAttribute("value", inputValue)
+    })
+</script>
+
+<script type="text/javascript">
+    const decreaseQtyBtn = document.querySelector(".qty-decrease")
+
+    decreaseQtyBtn.addEventListener("click", function() {
+        const inputField = decreaseQtyBtn.nextElementSibling
+        let inputValue = parseInt(inputField.value)
+        inputValue -= 1;
+        inputField.setAttribute("value", inputValue)
+    })
+</script>
