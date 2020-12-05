@@ -46,6 +46,11 @@
         {% include 'includes/mobile-side-nav.html' %}
         
         {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                {% include 'includes/messages/message_success.html' %}
+            {% endfor %}
+        </div>
         {% endif %}
 
         {% block page_header %}
@@ -103,6 +108,14 @@
                         constrainwidth: false,
                         closeOnClick: false
                     });
+                });
+            </script>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    const messagesContainer = document.querySelector(".messages-container")
+                    if (messagesContainer) {
+                        M.toast({html: 'Success?'})
+                    }
                 });
             </script>
         {% endblock %}    
