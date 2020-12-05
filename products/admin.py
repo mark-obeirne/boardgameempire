@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib import admin
 from .models import Category, Mechanic, Product, CategoryToProduct, MechanicOfProduct
 
-# Register your models here.
+admin.site.site_header = "Boardgame Empire Admin"
+admin.site.site_title = "Boardgame Empire Admin Area"
+admin.site.index_title = "Welcome to the Boardgame Empire admin panel"
 
 
 class CategoryToProductAdminInline(admin.TabularInline):
