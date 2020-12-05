@@ -46,6 +46,11 @@
         {% include 'includes/mobile-side-nav.html' %}
         
         {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                {% include 'includes/messages/message_success.html' %}
+            {% endfor %}
+        </div>
         {% endif %}
 
         {% block page_header %}
@@ -105,6 +110,14 @@
                     });
                 });
             </script>
+            <script type="text/javascript">
+                const closeBtn = document.querySelector(".message-close-btn")
+                closeBtn.addEventListener("click", function() {
+                    const message = document.querySelector(".message-container")
+                    message.classList.add("none")
+                })
+            </script>
+
         {% endblock %}    
     </body>
 </html>
