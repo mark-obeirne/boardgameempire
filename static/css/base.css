@@ -49,6 +49,28 @@ nav .bottom-nav-row ul a {
     margin: 0 !important;
 }
 
+/* Messages */
+.message-container {
+    width: 100%;
+}
+
+.message-header {
+    margin-bottom: 0;
+}
+
+.message-close {
+    margin-right: 1rem;
+}
+
+.message {
+    background-color: #cccccc;
+    color: #392417;
+}
+
+.message-body {
+    padding: 1rem;
+}
+
 /* Colours */
 body {
     background-color: #cde6d0;
