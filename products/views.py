@@ -62,9 +62,9 @@ def get_random_game(request):
 
 def get_deals(request):
     """ Return products currently on sale """
-    products = Product.objects.filter(on_sale=True)
-    sort = None
-    direction = None
+    products = Product.objects.filter(on_sale=True).order_by("sale_price")
+    sort = "sale_price"
+    direction = "asc"
 
     if "sort" in request.GET:
         sortkey = request.GET["sort"]
@@ -79,9 +79,13 @@ def get_deals(request):
                 sortkey = f"-{sortkey}"
         products = products.order_by(sortkey)
 
+    current_sorting = f"{sort}-{direction}"
+
     context = {
         "products": products,
+        "current_sorting": current_sorting,
     }
+
     return render(request, "products/deals.html", context)
 
 
