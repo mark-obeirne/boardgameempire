@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from products.models import Product
 
 
@@ -31,3 +31,15 @@ def update_cart(request, product_id):
     cart[product_id] = new_quantity
     request.session["cart"] = cart
     return redirect(reverse("view_cart"))
+
+
+def remove_from_cart(request, product_id):
+    """ Remove specified product from user's cart """
+    cart = request.session.get("cart", {})
+    try:
+        cart.pop(product_id)
+
+        request.session["cart"] = cart
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)

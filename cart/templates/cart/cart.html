@@ -27,7 +27,7 @@
                             <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ item.product.id }}" id="increase-qty_{{ item.product.id }}">+</span>
                         </form>
                         <a href="#" class="update-qty">Update Quantity</a>
-                        <p class="remove-item">Remove Item</p>
+                        <a href="#" class="remove-item" id="remove_{{ item.product_id }}">Remove Item</a>
                         <p>Item Subtotal</p>
                     </div>
                 </div>
@@ -47,7 +47,9 @@
                     {% endif %}
                     <p>€{{ grand_total }}</p>
                 </div>
-                <p>Spend xxx more to avail of free delivery</p>
+                {% if delivery %}
+                    <p>Spend xxx more to avail of free delivery</p>
+                {% endif %}
                 Continue Shopping Button
                 Checkout Button
             </div>
@@ -71,5 +73,27 @@
             itemForm.submit();
 
         }
+    </script>
+
+    <script type="text/javascript">
+        const removeItemBtns = document.querySelectorAll(".remove-item")
+        removeItemBtns.forEach(removeBtn => removeBtn.addEventListener("click", removeItem))
+
+        function removeItem(e) {
+            const csrfToken = "{{ csrf_token }}"
+            console.log("Removing")
+            console.log(this) 
+            const productId = this.getAttribute("id").split("_")[1]
+            const url = `/cart/remove/${productId}/`
+            const data = {"csrfmiddlewaretoken": csrfToken}
+            console.log(csrfToken)
+
+            const request = new XMLHttpRequest();
+            request.open("POST", url, true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            request.setRequestHeader('X-CSRFToken', csrfToken);
+            request.send(data)
+            location.reload()
+        } 
     </script>
 {% endblock %}
