@@ -58,3 +58,28 @@ def get_random_game(request):
         "product": product,
     }
     return render(request, "products/random.html", context)
+
+
+def get_deals(request):
+    """ Return products currently on sale """
+    products = Product.objects.filter(on_sale=True)
+    sort = None
+    direction = None
+
+    if "sort" in request.GET:
+        sortkey = request.GET["sort"]
+        sort = sortkey
+        if "sortkey" == "name":
+            sortkey = "lower_name"
+            products = products.annotate(lower_name=Lower("name"))
+
+        if "direction" in request.GET:
+            direction = request.GET["direction"]
+            if direction == "desc":
+                sortkey = f"-{sortkey}"
+        products = products.order_by(sortkey)
+
+    context = {
+        "products": products,
+    }
+    return render(request, "products/deals.html", context)
