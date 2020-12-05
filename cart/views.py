@@ -31,21 +31,24 @@ def add_to_cart(request, product_id):
 
 def update_cart(request, product_id):
     """ Update the quantity of a product in the user's cart """
+    product = Product.objects.get(pk=product_id)
     cart = request.session.get("cart", {})
     new_quantity = int(request.POST.get("quantity"))
     cart[product_id] = new_quantity
+    messages.success(request, f"Cart updated. You now have {cart[product_id]}x {product.name} in your cart")
     request.session["cart"] = cart
     return redirect(reverse("view_cart"))
 
 
 def remove_from_cart(request, product_id):
     """ Remove specified product from user's cart """
+    product = Product.objects.get(pk=product_id)
     cart = request.session.get("cart", {})
     try:
         cart.pop(product_id)
 
         request.session["cart"] = cart
-        messages.add_message(request, messages.INFO, 'Item removed.')
+        messages.success(request, f"{product.name} removed from your cart")
         return HttpResponse(status=200)
     except Exception as e:
         return HttpResponse(status=500)
