@@ -47,7 +47,9 @@
                     {% endif %}
                     <p>€{{ grand_total }}</p>
                 </div>
-                <p>Spend xxx more to avail of free delivery</p>
+                {% if delivery %}
+                    <p>Spend xxx more to avail of free delivery</p>
+                {% endif %}
                 Continue Shopping Button
                 Checkout Button
             </div>
