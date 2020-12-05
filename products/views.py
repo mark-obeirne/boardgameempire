@@ -83,3 +83,12 @@ def get_deals(request):
         "products": products,
     }
     return render(request, "products/deals.html", context)
+
+
+def game_of_the_month(request):
+    product = Product.objects.filter(game_of_the_month=True)[0]
+    print(product)
+    context = {
+        "product": product,
+    }
+    return render(request, "products/gotm.html", context)
