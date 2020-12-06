@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
+    'crispy_forms_materialize',
     'home',
     'products',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'boardgame_empire.urls'
+
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
 
 TEMPLATES = [
     {
@@ -77,6 +82,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'boardgame_empire.contexts.all_categories',
                 'cart.contexts.cart_contents',
+            ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
