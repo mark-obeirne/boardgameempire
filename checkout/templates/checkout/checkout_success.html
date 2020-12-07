@@ -2,6 +2,100 @@
 
 {% load static %}
 
-{% block content %}
-    Order submitted successfully!
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
+
+{% block page_header %}
+    Breadcrumbs
+    <h1>Order Summary</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l6">
+                <div class="valign-wrapper">
+                    <div class="col s2">
+                        <i class="fas fa-thumbs-up checkout-thumbs"></i>
+                    </div>
+                    <div class="col s10">
+                        <p class="flow-text">Order Number: {{ order.order_number }}</p>
+                        <p>Thank you, {{ order.full_name }}</p>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <p class="flow-text">Your order is confirmed and we'll start getting it ready now!</p>
+                    <p class="flow-text">The details of your order can be found below. A confirmation email will be sent to {{ order.email }}</p>
+                    <p class="flow-text">We hope you have a great time with your purchases and that you'll shop with us again soon!</p>
+                    <div class="center-align">
+                        <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <h2><p>Customer Information</p></h2>
+                    <strong><p>Delivery Details</p></strong>
+                    <span class="customer-info">{{ order.full_name }}</span>
+                    <span class="customer-info">{{ order.street_address1 }}</span>
+                    {% if street_address2 %}
+                        <span class="customer-info">{{ order.street_address2 }}</span>
+                    {% endif %}
+                    <span class="customer-info">{{ order.town_or_city }}</span>
+                    <span class="customer-info">{{ order.county_or_state }}</span>
+                    <span class="customer-info">{{ order.postcode }}</span>
+                    <span class="customer-info">{{ order.country }}</span>
+                    <strong><p>Billing Details</p></strong>
+                    <span class="customer-info">{{ order.full_name }}</span>
+                    <span class="customer-info">{{ order.street_address1 }}</span>
+                    {% if street_address2 %}
+                        <span class="customer-info">{{ order.street_address2 }}</span>
+                    {% endif %}
+                    <span class="customer-info">{{ order.town_or_city }}</span>
+                    <span class="customer-info">{{ order.county_or_state }}</span>
+                    <span class="customer-info">{{ order.postcode }}</span>
+                    <span class="customer-info">{{ order.country }}</span>
+                </div>
+            </div>
+            <div class="col s12 l6">
+                <h2>Purchased Items</h2>
+                <div class="col s3 m3"></div>
+                <div class="col s6 m6">
+                    <strong><p>Item</p></strong>
+                </div>
+                <div class="col s3 m3">
+                    <strong><p>Item Subtotal</p></strong>
+                </div>
+                
+                    <div class="row">
+                        <div class="col s3 m3">
+                            <p>Image</p>
+                        </div>
+                        <div class="col s6 m6">
+                            <p>Item Name</p>
+                            <p>Quantity & Price</p>
+                        </div>
+                        <div class="col s3 m3">
+                            <p>Item Subtotal</p>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col s6 offset-s3">
+                        <p>Order Total:</p>
+                        <p>Delivery:</p>
+                        <p>Points Used:</p>
+                        <p>Grand Total:</p>
+                        <p>You earned xxx points on this purchase.</p>
+                    </div>
+                    <div class="col s3">
+                        <p>€ Total </p>
+                        <p>€ Delivery </p>
+                        <p> Points</p>
+                        <p>€ Grand Total </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
