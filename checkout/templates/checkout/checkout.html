@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block page_header %}
     Breadcrumbs
     <h1>Checkout</h1>
@@ -39,7 +43,7 @@
                     <div class="col s12 m6">
                         <p>
                             <label>
-                                <input type="checkbox" />
+                                <input type="checkbox" class="filled-in" />
                                 <span>This purchase is a gift</span>
                             </label>
                         </p>
@@ -55,7 +59,7 @@
                     </fieldset> 
                     <div class="form-buttons center-align">
                         <a class="waves-effect waves-light btn"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
-                        <button class="btn waves-effect waves-light" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
+                        <button class="btn waves-effect waves-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
                         </button>
                     </div>
                 </form>
@@ -98,4 +102,12 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
