@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block page_header %}
     Breadcrumbs
     <h1>Checkout</h1>
@@ -39,7 +43,7 @@
                     <div class="col s12 m6">
                         <p>
                             <label>
-                                <input type="checkbox" />
+                                <input type="checkbox" class="filled-in" />
                                 <span>This purchase is a gift</span>
                             </label>
                         </p>
@@ -98,4 +102,12 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
