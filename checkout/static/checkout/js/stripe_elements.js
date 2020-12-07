@@ -28,6 +28,7 @@ const style = {
 const card = elements.create("card", {style: style});
 card.mount("#card-element")
 
+// Display errors after user enters card details if necessary 
 card.addEventListener("change", function(e) {
     const errorDiv = document.querySelector("#card-errors");
     if (e.error) {
@@ -41,4 +42,37 @@ card.addEventListener("change", function(e) {
     } else {
         errorDiv.textContent = "";
     }
+})
+
+// Handle form submission
+const form = document.querySelector("#checkout-form")
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const submitBtn = document.querySelector("#checkout-button")
+    card.update({"disabled": true});
+    submitBtn.setAttribute("disabled", true);
+
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+        }
+    }).then(function(result) {
+        if(result.error) {
+            const errorDiv = document.querySelector("#card-errors");
+            const errorHtml = `
+            <span class="icon" role="alert">
+                <i class="fas fa-exclamation-triangle error"></i>
+            </span>
+            <span>${result.error.message}</span>
+            `;
+            errorDiv.innerHTML = errorHtml;
+            card.update({"disabled": true});
+            submitBtn.setAttribute("disabled", true);
+        } else {
+            if (result.paymentIntent.status === "succeeded") {
+                form.submit()
+            }
+        }
+    })
 })
