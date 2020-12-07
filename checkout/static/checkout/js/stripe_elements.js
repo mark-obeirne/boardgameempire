@@ -27,3 +27,18 @@ const style = {
 
 const card = elements.create("card", {style: style});
 card.mount("#card-element")
+
+card.addEventListener("change", function(e) {
+    const errorDiv = document.querySelector("#card-errors");
+    if (e.error) {
+        const errorHtml = `
+        <span class="icon" role="alert">
+            <i class="fas fa-exclamation-triangle error"></i>
+        </span>
+        <span>${e.error.message}</span>
+        `;
+        errorDiv.innerHTML = errorHtml;
+    } else {
+        errorDiv.textContent = "";
+    }
+})
