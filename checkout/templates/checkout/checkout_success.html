@@ -20,8 +20,9 @@
                         <i class="fas fa-thumbs-up checkout-thumbs"></i>
                     </div>
                     <div class="col s10">
-                        <p class="flow-text">Order Number: {{ order.order_number }}</p>
-                        <p>Thank you, {{ order.full_name }}</p>
+                        <strong><span class="flow-text block">Order Number: {{ order.order_number }}</span></strong>
+                        <span class="block">Thank you, {{ order.full_name }}</span>
+                        <span class="block">Order Date: {{ order.order_date }}</span>
                     </div>
                 </div>
                 <div class="col s12">
@@ -35,25 +36,34 @@
                 <div class="col s12">
                     <h2><p>Customer Information</p></h2>
                     <strong><p>Delivery Details</p></strong>
-                    <span class="customer-info">{{ order.full_name }}</span>
-                    <span class="customer-info">{{ order.street_address1 }}</span>
+                    <span class="block">{{ order.full_name }}</span>
+                    <span class="block">{{ order.street_address1 }}</span>
                     {% if street_address2 %}
-                        <span class="customer-info">{{ order.street_address2 }}</span>
+                        <span class="block">{{ order.street_address2 }}</span>
                     {% endif %}
-                    <span class="customer-info">{{ order.town_or_city }}</span>
-                    <span class="customer-info">{{ order.county_or_state }}</span>
-                    <span class="customer-info">{{ order.postcode }}</span>
-                    <span class="customer-info">{{ order.country }}</span>
+                    <span class="block">{{ order.town_or_city }}</span>
+                    {% if county_or_state %}
+                        <span class="block">{{ order.county_or_state }}</span>
+                    {% endif %}
+                    {% if postcode %}
+                        <span class="block">{{ order.postcode }}</span>
+                    {% endif %}
+                    <span class="block">{{ order.country }}</span>
+                    
                     <strong><p>Billing Details</p></strong>
-                    <span class="customer-info">{{ order.full_name }}</span>
-                    <span class="customer-info">{{ order.street_address1 }}</span>
+                    <span class="block">{{ order.full_name }}</span>
+                    <span class="block">{{ order.street_address1 }}</span>
                     {% if street_address2 %}
-                        <span class="customer-info">{{ order.street_address2 }}</span>
+                        <span class="block">{{ order.street_address2 }}</span>
                     {% endif %}
-                    <span class="customer-info">{{ order.town_or_city }}</span>
-                    <span class="customer-info">{{ order.county_or_state }}</span>
-                    <span class="customer-info">{{ order.postcode }}</span>
-                    <span class="customer-info">{{ order.country }}</span>
+                    <span class="block">{{ order.town_or_city }}</span>
+                    {% if county_or_state %}
+                        <span class="block">{{ order.county_or_state }}</span>
+                    {% endif %}
+                    {% if postcode %}
+                        <span class="block">{{ order.postcode }}</span>
+                    {% endif %}
+                    <span class="block">{{ order.country }}</span>
                 </div>
             </div>
             <div class="col s12 l6">
@@ -65,33 +75,33 @@
                 <div class="col s3 m3">
                     <strong><p>Item Subtotal</p></strong>
                 </div>
-                
+                {% for item in order.lineitems.all %}
                     <div class="row">
                         <div class="col s3 m3">
-                            <p>Image</p>
+                            <p>{{ item.product.image }}</p>
                         </div>
                         <div class="col s6 m6">
-                            <p>Item Name</p>
-                            <p>Quantity & Price</p>
+                            <p>{{ item.product.name }}</p>
+                            <p>{{ item.quantity }} @ €{{ item.product.price }}</p>
                         </div>
                         <div class="col s3 m3">
                             <p>Item Subtotal</p>
                         </div>
                     </div>
-
+                {% endfor %}
                 <div class="row">
                     <div class="col s6 offset-s3">
                         <p>Order Total:</p>
                         <p>Delivery:</p>
                         <p>Points Used:</p>
                         <p>Grand Total:</p>
-                        <p>You earned xxx points on this purchase.</p>
+                        <p>You earned {{ order.points_earned }} points on this purchase.</p>
                     </div>
                     <div class="col s3">
-                        <p>€ Total </p>
-                        <p>€ Delivery </p>
-                        <p> Points</p>
-                        <p>€ Grand Total </p>
+                        <p>€{{ order.order_total }} </p>
+                        <p>€{{ order.delivery_cost }} </p>
+                        <p>{{ order.points_used }}</p>
+                        <p>€{{ order.grand_total }} </p>
                     </div>
                 </div>
             </div>
