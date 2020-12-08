@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col s12 l6">
                 <p>Please fill out the form with your information</p>
-                <form action="" method="POST" id="checkout-form">
+                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <fieldset>
                         <legend>Customer Details</legend>
