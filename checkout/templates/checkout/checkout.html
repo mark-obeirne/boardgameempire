@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
+{% block corejs %}
+    {{ block.super }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
 {% block page_header %}
     Breadcrumbs
     <h1>Checkout</h1>
@@ -50,13 +55,12 @@
                     </div>
                     <fieldset class="billing-details none">
                         <legend>Billing Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.street_address1 | as_crispy_field }}
-                        {{ order_form.street_address2 | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.county_or_state | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
+                        {{ order_form.billing_full_name | as_crispy_field }}
+                        {{ order_form.billing_street_address1 | as_crispy_field }}
+                        {{ order_form.billing_street_address2 | as_crispy_field }}
+                        {{ order_form.billing_town_or_city | as_crispy_field }}
+                        {{ order_form.billing_county_or_state | as_crispy_field }}
+                        {{ order_form.billing_country | as_crispy_field }}
                     </fieldset>
                     <fieldset>
                         <legend>Payment Details</legend>
