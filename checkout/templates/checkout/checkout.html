@@ -35,7 +35,7 @@
                     <div class="col s12 m6">
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
+                                <input type="checkbox" class="filled-in" checked="checked" name="same-billing-shipping" id="same-billing-shipping"/>
                                 <span>Billing details same as delivery details</span>
                             </label>
                         </p>
@@ -43,11 +43,21 @@
                     <div class="col s12 m6">
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" />
+                                <input type="checkbox" class="filled-in" name="gift-purchase" id="gift-purchase"/>
                                 <span>This purchase is a gift</span>
                             </label>
                         </p>
                     </div>
+                    <fieldset class="billing-details none">
+                        <legend>Billing Details</legend>
+                        {{ order_form.full_name | as_crispy_field }}
+                        {{ order_form.street_address1 | as_crispy_field }}
+                        {{ order_form.street_address2 | as_crispy_field }}
+                        {{ order_form.town_or_city | as_crispy_field }}
+                        {{ order_form.county_or_state | as_crispy_field }}
+                        {{ order_form.postcode | as_crispy_field }}
+                        {{ order_form.country | as_crispy_field }}
+                    </fieldset>
                     <fieldset>
                         <legend>Payment Details</legend>
                         <!-- Stripe card element -->
@@ -110,4 +120,18 @@
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+    <script type="text/javascript">
+        const billingCheckbox = document.querySelector("#same-billing-shipping")
+        const billingDetails = document.querySelector(".billing-details")
+
+        billingCheckbox.addEventListener("change", function() {    
+            console.log(billingDetails)
+            if (billingCheckbox.checked) {
+                billingDetails.classList.add("none");
+                autofillBilling()
+            } else {
+                billingDetails.classList.remove("none")
+            }
+        })
+    </script>
 {% endblock %}
