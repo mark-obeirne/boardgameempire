@@ -45,6 +45,8 @@ card.addEventListener("change", function(e) {
 })
 
 // Handle form submission
+
+
 const form = document.querySelector("#checkout-form")
 
 form.addEventListener("submit", function(e) {
@@ -52,31 +54,96 @@ form.addEventListener("submit", function(e) {
     const submitBtn = document.querySelector("#checkout-button")
     card.update({"disabled": true});
     submitBtn.setAttribute("disabled", true);
+    
+    const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
+    console.log(csrfToken)
+    const postData = {
+        "csrfmiddlewaretoken": csrfToken,
+        "client_secret": clientSecret,
+    }
+    const url = "/checkout/cache_checkout_data/";
 
-    stripe.confirmCardPayment(clientSecret, {
+    $.post(url, postData).done(function () {
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: form.billing_full_name.value.trim(),
+                    email: form.email.value.trim(),
+                    address: {
+                        line1: form.billing_street_address1.value.trim(),
+                        line2: form.billing_street_address2.value.trim(),
+                        city: form.billing_town_or_city.value.trim(),
+                        state: form.billing_county_or_state.value.trim(),
+                        country: form.billing_country.value.trim(),
+                    }
+                }
+            },
+            shipping: {
+                name: form.full_name.value.trim(),
+                address: {
+                    line1: form.street_address1.value.trim(),
+                    line2: form.street_address2.value.trim(),
+                    city: form.town_or_city.value.trim(),
+                    state: form.county_or_state.value.trim(),
+                    postal_code: form.postcode.value.trim(),
+                    country: form.country.value.trim(),
+                    }
+                },
+        }).then(function(result) {
+            if (result.error) {
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+                
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
+            }
+        });
+    }).fail(function () {
+        // just reload the page, the error will be in django messages
+        location.reload();
+    })
+
+    /*
+    Use JQuery for now...
+    let request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.send(url, postData);
+    request.addEventListener("load", function(e) {
+        alert("Sent!")
+        stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
-            billingDetails: {
-                name: form.full_name.value.trim(),
+            billing_details: {
+                name: form.billing_full_name.value.trim(),
                 email: form.email.value.trim(),
                 address: {
-                    addressLine1: form.street_address1.value.trim(),
-                    addressLine2: form.street_address2.value.trim(),
-                    townOrCity: form.town_or_city.value.trim(),
-                    countyOrState: form.county_or_state.value.trim(),
-                    country: form.country.value.trim(),
+                    line1: form.billing_street_address1.value.trim(),
+                    line2: form.billing_street_address2.value.trim(),
+                    city: form.billing_town_or_city.value.trim(),
+                    state: form.billing_county_or_state.value.trim(),
+                    country: form.billing_country.value.trim(),
                 }
             }
         },
         shipping: {
             name: form.full_name.value.trim(),
-            email: form.email.value.trim(),
             address: {
-                addressLine1: form.street_address1.value.trim(),
-                addressLine2: form.street_address2.value.trim(),
-                townOrCity: form.town_or_city.value.trim(),
-                countyOrState: form.county_or_state.value.trim(),
-                postCode: form.postcode.value.trim(),
+                line1: form.street_address1.value.trim(),
+                line2: form.street_address2.value.trim(),
+                city: form.town_or_city.value.trim(),
+                state: form.county_or_state.value.trim(),
+                postal_code: form.postcode.value.trim(),
                 country: form.country.value.trim(),
                 }
             },
@@ -98,4 +165,8 @@ form.addEventListener("submit", function(e) {
             }
         }
     })
+    })
+    request.addEventListener("error", function(e) {
+        location.reload();  
+    })*/
 })
