@@ -23,6 +23,10 @@ body {
     display: none;
 }
 
+.block {
+    display: block;
+}
+
 .row .col.padding-0 {
     padding: 0;
 }
