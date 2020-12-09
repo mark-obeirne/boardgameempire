@@ -28,6 +28,7 @@ class Order(models.Model):
     billing_town_or_city = models.CharField(max_length=40, null=False, blank=False)
     billing_county_or_state = models.CharField(max_length=40, null=True, blank=True)
     billing_country = models.CharField(max_length=40, null=False, blank=False)
+    gift_purchase = models.BooleanField(default=False, null=True, blank=True)
     original_cart = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
