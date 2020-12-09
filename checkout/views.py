@@ -13,11 +13,14 @@ import json
 @require_POST
 def cache_checkout_data(request):
     try:
-        print("cache_checkout")
         pid = request.POST.get("client_secret").split("_secret")[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        gift_purchase = request.POST.get("gift_purchase", "")
+        print("CACHE")
+        print(gift_purchase)
         stripe.PaymentIntent.modify(pid, metadata={
             "cart": json.dumps(request.session.get("cart", {})),
+            "gift_purchase": gift_purchase
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -31,7 +34,12 @@ def checkout(request):
 
     if request.method == "POST":
         cart = request.session.get("cart", {})
-        print(cart)
+        gift_purchase = request.POST.get("gift_purchase", False)
+        if gift_purchase == "on":
+            gift_purchase = True
+            print("Changing from on")
+            print(gift_purchase)
+
         form_data = {
             "full_name": request.POST["full_name"],
             "email": request.POST["email"],
@@ -47,7 +55,9 @@ def checkout(request):
             "billing_town_or_city": request.POST["billing_town_or_city"],
             "billing_county_or_state": request.POST["billing_county_or_state"],
             "billing_country": request.POST["billing_country"],
+            "gift_purchase": gift_purchase,
         }
+        print(form_data)
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
