@@ -48,6 +48,8 @@ def all_products(request):
             products = products.filter(mechanic=entry.pk)
 
     current_sorting = f"{sort}-{direction}"
+    number_of_results = len(products)
+    print(number_of_results)
 
     context = {
         "products": products,
@@ -55,6 +57,7 @@ def all_products(request):
         "query": query,
         "current_category": category,
         "current_mechanic": mechanic,
+        "number_of_results": number_of_results,
     }
 
     return render(request, "products/products.html", context)
