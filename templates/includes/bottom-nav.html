@@ -7,16 +7,24 @@
         <li><a href="/">Home</a></li>
         <li><a href="{% url 'products' %}">All Boardgames</a></li>
         <li><a href="#" class="dropdown-trigger" data-target="theme-dropdown">Boardgames by Theme</a></li>
-        <ul id="theme-dropdown" class="dropdown-content">
+        <ul id="theme-dropdown" class="dropdown-content wide-menu">
+            <div class="row">
             {% for category in all_categories %}
-                <li class="dropdown-menu-item"><a href="#!">{{ category.friendly_name }}</a></li>
+                <div class="col m4">
+                    <li class="dropdown-menu-item"><a href="#!">{{ category.friendly_name }}</a></li>
+                </div>
             {% endfor %}
+            </div>
         </ul>
         <li><a href="#" class="dropdown-trigger" data-target="mechanics-dropdown">Boardgames by Mechanic</a></li>
-        <ul id="mechanics-dropdown" class="dropdown-content">
+        <ul id="mechanics-dropdown" class="dropdown-content wide-menu">
+            <div class="row">
             {% for mechanic in all_mechanics %}
-                <li class="dropdown-menu-item"><a href="#!">{{ mechanic.friendly_name }}</a></li>
+                <div class="col m4">
+                    <li class="dropdown-menu-item"><a href="#!">{{ mechanic.friendly_name }}</a></li>
+                </div>
             {% endfor %}
+            </div>
         </ul>
         <li><a href="{% url 'get_deals' %}">Deals</a></li>
         <li><a href="{% url 'game_of_the_month' %}">Game of the Month</a></li>
