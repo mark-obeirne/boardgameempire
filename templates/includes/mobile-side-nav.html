@@ -1,17 +1,17 @@
 <ul class="sidenav" id="sidenav-menu">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">All Boardgames</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="{% url 'products' %}">All Boardgames</a></li>
     <li><a href="#" class="dropdown-trigger" data-target="mobile-theme-dropdown">Boardgames by Theme</a></li>
         <ul id="mobile-theme-dropdown" class="dropdown-content">
             {% for category in all_categories %}
-                <li class="dropdown-menu-item">{{ category.friendly_name }}</li>
+                <li class="dropdown-menu-item"><a href="#!">{{ category.friendly_name }}</a></li>
             {% endfor %}
         </ul>
     <li><a href="#" class="dropdown-trigger" data-target="mobile-mechanic-dropdown">Boardgames by Mechanic</a></li>
         <ul id="mobile-mechanic-dropdown" class="dropdown-content">
-            <li><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
-            <li><a href="#!">three</a></li>
+            {% for mechanic in all_mechanics %}
+                <li class="dropdown-menu-item"><a href="#!">{{ mechanic.friendly_name }}</a></li>
+            {% endfor %}
         </ul>
     <li><a href="{% url 'get_deals' %}">Deals</a></li>
     <li><a href="{% url 'game_of_the_month' %}">Game of the Month</a></li>
