@@ -61,6 +61,8 @@
 {% endblock %}
 
 {% block postloadjs %}
+    {{ block.super }}
+    
     <script type="text/javascript">
         const updateItemBtns = document.querySelectorAll(".update-qty")
         updateItemBtns.forEach(updateBtn => updateBtn.addEventListener("click", updateItem))
