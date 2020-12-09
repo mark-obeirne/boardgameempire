@@ -7,7 +7,7 @@ def all_categories(request):
 
 
 def all_mechanics(request):
-    """ Return all categories from Category model """
+    """ Return all mechanics from Mechanic model """
     from products.models import Mechanic
     return {
         'all_mechanics': Mechanic.objects.all().order_by('friendly_name')

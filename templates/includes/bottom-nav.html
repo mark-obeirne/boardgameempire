@@ -4,19 +4,27 @@
     </a>
     <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
     <ul class="right hide-on-med-and-down">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">All Boardgames</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'products' %}">All Boardgames</a></li>
         <li><a href="#" class="dropdown-trigger" data-target="theme-dropdown">Boardgames by Theme</a></li>
-        <ul id="theme-dropdown" class="dropdown-content">
+        <ul id="theme-dropdown" class="dropdown-content wide-menu">
+            <div class="row">
             {% for category in all_categories %}
-                <li class="dropdown-menu-item">{{ category.friendly_name }}</li>
+                <div class="col m4">
+                    <li class="dropdown-menu-item"><a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a></li>
+                </div>
             {% endfor %}
+            </div>
         </ul>
-        <li><a href="#" class="dropdown-trigger" data-target="mechanic-dropdown">Boardgames by Mechanic</a></li>
-        <ul id="mechanic-dropdown" class="dropdown-content">
-            <li><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
-            <li><a href="#!">three</a></li>
+        <li><a href="#" class="dropdown-trigger" data-target="mechanics-dropdown">Boardgames by Mechanic</a></li>
+        <ul id="mechanics-dropdown" class="dropdown-content wide-menu">
+            <div class="row">
+            {% for mechanic in all_mechanics %}
+                <div class="col m4">
+                    <li class="dropdown-menu-item"><a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a></li>
+                </div>
+            {% endfor %}
+            </div>
         </ul>
         <li><a href="{% url 'get_deals' %}">Deals</a></li>
         <li><a href="{% url 'game_of_the_month' %}">Game of the Month</a></li>

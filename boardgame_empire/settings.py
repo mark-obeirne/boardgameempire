@@ -81,6 +81,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'boardgame_empire.contexts.all_categories',
+                'boardgame_empire.contexts.all_mechanics',
                 'cart.contexts.cart_contents',
             ],
             'builtins': [

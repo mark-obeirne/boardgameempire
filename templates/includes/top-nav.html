@@ -50,20 +50,21 @@
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <div class="center-align">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="center-align">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                </a>
-            </li>
+            <li><a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="fas fa-user"></i></a></li>
+            <ul id="user-dropdown" class="dropdown-content">
+                {% if user.is_authenticated %}
+                    <li><a href="#!">My Profile</a></li>
+                    <li><a href="#!">Logout</a></li>
+                {% else %}
+                    <li><a href="#!">Login</a></li>
+                    <li><a href="#!">Register</a></li>
+                {% endif %}
+            </ul>
+            <li><a href="#" class="dropdown-trigger" data-target="cart-dropdown"><i class="fas fa-shopping-cart"></i></a></li>
+            <ul id="cart-dropdown" class="dropdown-content">
+                <li><a href="{% url 'view_cart' %}">View Cart</a></li>
+                <li><a href="{% url 'checkout' %}">Checkout</a></li>
+            </ul>
         </ul>
     </div>
 </div>
