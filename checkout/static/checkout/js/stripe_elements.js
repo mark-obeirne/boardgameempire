@@ -56,11 +56,14 @@ form.addEventListener("submit", function(e) {
     submitBtn.setAttribute("disabled", true);
     
     const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
-    console.log(csrfToken)
+    const giftPurchase = document.querySelector("#gift_purchase").checked
+    console.log(giftPurchase)
     const postData = {
         "csrfmiddlewaretoken": csrfToken,
         "client_secret": clientSecret,
+        "gift_purchase": giftPurchase,
     }
+    console.log(postData)
     const url = "/checkout/cache_checkout_data/";
 
     $.post(url, postData).done(function () {
