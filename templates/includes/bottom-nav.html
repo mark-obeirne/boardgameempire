@@ -11,7 +11,7 @@
             <div class="row">
             {% for category in all_categories %}
                 <div class="col m4">
-                    <li class="dropdown-menu-item"><a href="#!">{{ category.friendly_name }}</a></li>
+                    <li class="dropdown-menu-item"><a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a></li>
                 </div>
             {% endfor %}
             </div>
