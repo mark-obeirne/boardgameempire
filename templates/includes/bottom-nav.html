@@ -21,7 +21,7 @@
             <div class="row">
             {% for mechanic in all_mechanics %}
                 <div class="col m4">
-                    <li class="dropdown-menu-item"><a href="#!">{{ mechanic.friendly_name }}</a></li>
+                    <li class="dropdown-menu-item"><a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a></li>
                 </div>
             {% endfor %}
             </div>
