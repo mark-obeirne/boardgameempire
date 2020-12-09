@@ -4,6 +4,7 @@ from django.db.models import Sum
 from django.db.models.functions import Round
 from django.conf import settings
 from products.models import Product
+from django_countries.fields import CountryField
 
 
 class Order(models.Model):
@@ -15,7 +16,7 @@ class Order(models.Model):
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     county_or_state = models.CharField(max_length=40, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
-    country = models.CharField(max_length=40, null=False, blank=False)
+    country = CountryField(blank_label="Country *", null=False, blank=False)
     order_date = models.DateTimeField(auto_now_add=True)
     points_earned = models.IntegerField(null=False, blank=False, editable=False, default=0)
     points_used = models.IntegerField(null=False, blank=False, editable=False, default=0)
@@ -27,7 +28,7 @@ class Order(models.Model):
     billing_street_address2 = models.CharField(max_length=80, null=True, blank=True)
     billing_town_or_city = models.CharField(max_length=40, null=False, blank=False)
     billing_county_or_state = models.CharField(max_length=40, null=True, blank=True)
-    billing_country = models.CharField(max_length=40, null=False, blank=False)
+    billing_country = CountryField(blank_label="Country *", null=False, blank=False)
     gift_purchase = models.BooleanField(default=False, null=True, blank=True)
     original_cart = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
