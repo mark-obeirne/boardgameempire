@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
 from .forms import OrderForm
+from profiles.forms import UserProfileForm
 from .models import Order, OrderLineItem
 from products.models import Product
+from profiles.models import UserProfile
 from cart.contexts import cart_contents
 import stripe
 import json
@@ -20,7 +22,8 @@ def cache_checkout_data(request):
         print(gift_purchase)
         stripe.PaymentIntent.modify(pid, metadata={
             "cart": json.dumps(request.session.get("cart", {})),
-            "gift_purchase": gift_purchase
+            "gift_purchase": gift_purchase,
+            "username": request.user,
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -101,7 +104,30 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+        # Attempt to prefill order form with user info
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    "full_name": profile.default_full_name,
+                    "email": profile.default_email,
+                    "street_address1": profile.default_street_address1,
+                    "street_address2": profile.default_street_address2,
+                    "town_or_city": profile.default_town_or_city,
+                    "county_or_state": profile.default_county_or_state,
+                    "postcode": profile.default_postcode,
+                    "country": profile.default_country,
+                    "billing_full_name": profile.default_full_name,
+                    "billing_street_address1": profile.default_street_address1,
+                    "billing_street_address2": profile.default_street_address2,
+                    "billing_town_or_city": profile.default_town_or_city,
+                    "billing_county_or_state": profile.default_county_or_state,
+                    "billing_country": profile.default_country,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(
@@ -119,6 +145,12 @@ def checkout(request):
 def checkout_success(request, order_number):
     """ Handle successful submission of form and checkout """
     order = get_object_or_404(Order, order_number=order_number)
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        order.user_profile = profile
+        order.save()
+
     messages.success(request, f"Thank you for your order. Your order number is {order_number}. A confirmation email will be sent to {order.email}.")
 
     if "cart" in request.session:

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block corejs %}
+    {{ block.super }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block page_header %}
+    Breadcrumbs
+    <h1>My Profile</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l6">
+                <p>Please fill out the form with your information</p>
+                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                    {% csrf_token%}
+                    {{ form|crispy }}
+                    <button>Update Information</button>
+                </form>
+            </div>
+            <div class="col s12 l6">
+                <h2>Order History</h2>
+                <p>Click an order number for more information</p>
+                <div class="col s4 m4">
+                    <strong><p>Order Number</p></strong>
+                </div>
+                <div class="col s4 m4">
+                    <strong><p>Date</p></strong>
+                </div>
+                <div class="col s4 m4">
+                    <strong><p>Total</p></strong>
+                </div>
+                <div class="col s12">
+                {% for order in orders %}
+                    <div class="row">
+                        <div class="col s4 m4">
+                            <a href="{% url 'order_history' order.order_number %}"><p>{{ order.order_number|truncatechars:5 }}</p></a>
+                        </div>
+                        <div class="col s4 m4">
+                            <p>{{ order.order_date }}</p>
+                        </div>
+                        <div class="col s3 m3">
+                            <p>{{ order.grand_total }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    <!--Initialise Materialize select dropdown-->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+    </script>
+{% endblock %}
