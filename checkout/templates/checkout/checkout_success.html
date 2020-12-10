@@ -26,11 +26,18 @@
                     </div>
                 </div>
                 <div class="col s12">
+                    {% if from_profile %}
+                    <p class="flow-text">We hope that your purchase was everything you hoped for and more! If there were any issues, please get in touch with us.</p>
+                    {% else %}
                     <p class="flow-text">Your order is confirmed and we'll start getting it ready now!</p>
                     <p class="flow-text">The details of your order can be found below. A confirmation email will be sent to {{ order.email }}</p>
                     <p class="flow-text">We hope you have a great time with your purchases and that you'll shop with us again soon!</p>
+                    {% endif %}
                     <div class="center-align">
-                        <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+                        {% if from_profile %}
+                        <a href="{% url 'profile' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Back to Profile</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col s12">
