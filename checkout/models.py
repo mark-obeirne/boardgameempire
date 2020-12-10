@@ -60,7 +60,8 @@ class Order(models.Model):
 
     def update_points_earned(self):
         """ Update points earned on an order each time a line item is added """
-        self.points_earned = self.lineitems.aggregate(Sum("lineitem_points_earned"))["lineitem_points_earned__sum"]
+        self.points_earned = self.lineitems.aggregate(Sum("lineitem_points_earned"))["lineitem_points_earned__sum"] or 0
+        self.save()
 
 
 class OrderLineItem(models.Model):
