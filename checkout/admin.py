@@ -11,7 +11,7 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ("order_number", "order_date", "delivery_cost",
-                       "order_total", "grand_total", "points_earned", "points_used",)
+                       "order_total", "grand_total", "points_earned",)
 
     fields = ("order_number", "user_profile", "order_date", "full_name",
               "email", "street_address1", "town_or_city",

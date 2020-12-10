@@ -21,7 +21,7 @@ class Order(models.Model):
     country = CountryField(blank_label="Country *", null=False, blank=False)
     order_date = models.DateTimeField(auto_now_add=True)
     points_earned = models.IntegerField(null=False, blank=False, editable=False, default=0)
-    points_used = models.IntegerField(null=False, blank=False, editable=False, default=0)
+    points_used = models.IntegerField(null=False, blank=False, default=0)
     delivery_cost = models.DecimalField(max_digits=4, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
@@ -60,7 +60,8 @@ class Order(models.Model):
 
     def update_points_earned(self):
         """ Update points earned on an order each time a line item is added """
-        self.points_earned = self.lineitems.aggregate(Sum("lineitem_points_earned"))["lineitem_points_earned__sum"]
+        self.points_earned = self.lineitems.aggregate(Sum("lineitem_points_earned"))["lineitem_points_earned__sum"] or 0
+        self.save()
 
 
 class OrderLineItem(models.Model):

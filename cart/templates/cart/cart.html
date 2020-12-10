@@ -48,10 +48,14 @@
                     <p>€{{ grand_total }}</p>
                 </div>
                 {% if delivery %}
-                    <p>Spend xxx more to avail of free delivery</p>
+                    <p>Spend {{ free_delivery_remainder }} more to avail of free delivery</p>
                 {% endif %}
-                Continue Shopping Button
-                Checkout Button
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+                        <a href="{% url 'checkout' %}" class="waves-effect waves-light btn"><i class="far fa-credit-card"></i> Proceed to Checkout</a>
+                    </div>
+                </div>
             </div>
         {% else %}
             <p>Your cart is currently empty</p>

@@ -66,6 +66,29 @@
                     </div>
                     <div class="col s12">
                         <fieldset>
+                            <legend>{% if user.is_authenticated %}Loyalty Points and {% endif %}Charges</legend>
+                            <div class="col s6">
+                                <p>Order Total:</p>
+                                {% if user.is_authenticated %}
+                                    <p>Points Available:</p>
+                                    <p>Loyalty Points to Use:</p>
+                                {% endif %}
+                                <p>Delivery:</p>
+                                <p>Grand Total:</p>
+                            </div>
+                            <div class="col s6">
+                                <p>€ {{ total | floatformat:2 }}</p>
+                                {% if user.is_authenticated %}
+                                    <p class="user-loyalty-points">{{ profile.loyalty_points }}</p>
+                                    {{ order_form.points_used | as_crispy_field }}
+                                {% endif %}
+                                <p>€ {{ delivery | floatformat:2 }}</p>
+                                <p>€ {{ grand_total | floatformat:2 }}</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col s12">
+                        <fieldset>
                             <legend>Payment Details</legend>
                             <!-- Stripe card element -->
                             <div id="card-element"></div>
@@ -75,10 +98,20 @@
                             <input type="hidden" value="{{ client_secret }}" name="client_secret">
                         </fieldset>
                     </div>
-                    <div class="form-buttons center-align">
+                    <div class="col s12 form-buttons center-align">
                         <a class="waves-effect waves-light btn"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
                         <button class="btn waves-effect waves-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
                         </button>
+                    </div>
+                    <div class="col s6">
+                    </div>
+                    <div class="col s6 left-align">
+                        <p class="small">Your card will be charged €{{ grand_total | floatformat:2 }}</p>
+                        {% if user.is_authenticated %}
+                            <p class="small">You will earn {{ points_earned }} loyalty points on this purchase</p>
+                        {% else %}
+                            <p class="small">Login or register to earn {{ points_earned }} loyalty points on this purchase</p>
+                        {% endif %}
                     </div>
                 </form>
             </div>
@@ -106,16 +139,7 @@
                     </div>
                 {% endfor %}
                 <div class="row">
-                    <div class="col s6 offset-s3">
-                        <p>Order Total:</p>
-                        <p>Delivery:</p>
-                        <p>Grand Total:</p>
-                    </div>
-                    <div class="col s3">
-                        <p>€ {{ total | floatformat:2 }}</p>
-                        <p>€ {{ delivery | floatformat:2 }}</p>
-                        <p>€ {{ grand_total | floatformat:2 }}</p>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -143,7 +167,18 @@
             }
         })
     </script>
-
+    
+    <!--Update settings on id_points_used-->
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const pointsToUse = document.querySelector("#id_points_used")
+        const pointsAvailable = document.querySelector(".user-loyalty-points").textContent
+        pointsToUse.setAttribute("min", "0");
+        pointsToUse.setAttribute("max", pointsAvailable);
+        pointsToUse.setAttribute("step", "50");
+    })
+    </script>
+    
     <!--Handle autofilling if billing address same as delivery address checkbox checked-->
     <script type="text/javascript">
         const inputFields = document.querySelectorAll(".input-field")
