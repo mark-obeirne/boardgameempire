@@ -138,6 +138,7 @@ def checkout(request):
         "order_form": order_form,
         "stripe_public_key": "pk_test_51HieJBFDbEFsB8WkeMbtU3A1VOoXZiLUDK1R8dZNKmAIaLzLurFz2UR46wQe8NSSJlil7RlmTWpZZNCf8jKqb8wN00bhnWedj1",
         "client_secret": intent.client_secret,
+        "profile": profile,
     }
     return render(request, "checkout/checkout.html", context)
 
@@ -148,6 +149,8 @@ def checkout_success(request, order_number):
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
+        profile.loyalty_points += order.points_earned
+        profile.save()
         order.user_profile = profile
         order.save()
 
