@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import Order, OrderLineItem
 from products.models import Product
+from profiles.models import UserProfile
 
 import json
 import time
@@ -24,14 +25,9 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart
-        print(cart)
         billing_details = intent.charges.data[0].billing_details
-        print(billing_details)
-        print(type(billing_details))
         shipping_details = intent.shipping
-        print(shipping_details)
         grand_total = round(intent.charges.data[0].amount / 100, 2)
-        print(grand_total)
 
         for field, value in shipping_details.address.items():
             if value == "":
@@ -39,6 +35,11 @@ class StripeWH_Handler:
         for field, value in billing_details.address.items():
             if value == "":
                 billing_details.address[field] = None
+
+        profile = None
+        username = intent.metadata.username
+        if username != "AnonymousUser":
+            profile = UserProfile.objects.get(user__username=username)
 
         order_exists = False
         attempt = 1
@@ -77,6 +78,7 @@ class StripeWH_Handler:
             order = None
             try:
                 order = Order.objects.create(
+                    user_profile=profile,
                     billing_full_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
                     billing_town_or_city__iexact=billing_details.address.city,
