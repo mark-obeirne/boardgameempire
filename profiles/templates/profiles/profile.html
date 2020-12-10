@@ -21,7 +21,11 @@
         <div class="row">
             <div class="col s12 l6">
                 <p>Please fill out the form with your information</p>
-                
+                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                    {% csrf_token%}
+                    {{ form|crispy }}
+                    <button>Update Information</button>
+                </form>
             </div>
             <div class="col s12 l6">
                 <h2>Order History</h2>
@@ -34,6 +38,21 @@
                 </div>
                 <div class="col s4 m4">
                     <strong><p>Total</p></strong>
+                </div>
+                <div class="col s12">
+                {% for order in orders %}
+                    <div class="row">
+                        <div class="col s4 m4">
+                            <a href="{% url 'order_history' order.order_number %}"><p>{{ order.order_number|truncatechars:5 }}</p></a>
+                        </div>
+                        <div class="col s4 m4">
+                            <p>{{ order.order_date }}</p>
+                        </div>
+                        <div class="col s3 m3">
+                            <p>{{ order.grand_total }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
                 </div>
             </div>
         </div>
