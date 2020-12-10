@@ -20,3 +20,8 @@
 .checkout-thumbs {
     font-size: 3rem;
 }
+
+label[for=id_country],
+label[for=id_billing_country] {
+    display: none;
+}
