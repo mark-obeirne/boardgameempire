@@ -5,6 +5,7 @@ from profiles.models import UserProfile
 
 import json
 import time
+from math import ceil
 
 
 class StripeWH_Handler:
@@ -97,13 +98,17 @@ class StripeWH_Handler:
                     postcode__iexact=shipping_details.address.postal_code,
                     country__iexact=shipping_details.address.country,
                 )
-                for product_id, quantity in json.loads(bag).items():
+                for product_id, quantity in json.loads(cart).items():
                     product = Product.objects.get(id=product_id)
+                    lineitem_points_earned = ceil((product.price * quantity) * 10)
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
                         quantity=quantity,
+                        lineitem_points_earned=lineitem_points_earned,
                     )
+                    profile.loyalty_points += lineitem_points_earned
+                    profile.save()
                     order_line_item.save()
             except Exception as e:
                 if order:
