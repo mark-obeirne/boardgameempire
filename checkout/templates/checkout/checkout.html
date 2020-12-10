@@ -79,7 +79,7 @@
                             <div class="col s6">
                                 <p>€ {{ total | floatformat:2 }}</p>
                                 {% if user.is_authenticated %}
-                                    <p>{{ profile.loyalty_points }}</p>
+                                    <p class="user-loyalty-points">{{ profile.loyalty_points }}</p>
                                     {{ order_form.points_used | as_crispy_field }}
                                 {% endif %}
                                 <p>€ {{ delivery | floatformat:2 }}</p>
@@ -167,15 +167,17 @@
             }
         })
     </script>
-    <!--
-    Update value of points used field on page load
+    
+    <!--Update settings on id_points_used-->
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            const loyaltyPointsField = document.querySelector("#id_points_used")
-            loyaltyPointsField.value = 0;
-        })
+    document.addEventListener('DOMContentLoaded', function() {
+        const pointsToUse = document.querySelector("#id_points_used")
+        const pointsAvailable = document.querySelector(".user-loyalty-points").textContent
+        pointsToUse.setAttribute("min", "0");
+        pointsToUse.setAttribute("max", pointsAvailable);
+        pointsToUse.setAttribute("step", "50");
+    })
     </script>
-    -->
     
     <!--Handle autofilling if billing address same as delivery address checkbox checked-->
     <script type="text/javascript">
