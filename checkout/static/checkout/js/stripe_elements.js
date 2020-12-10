@@ -57,11 +57,14 @@ form.addEventListener("submit", function(e) {
     
     const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
     const giftPurchase = document.querySelector("#gift_purchase").checked
+    const pointsUsed = document.querySelector("#id_points_used").value
+    console.log(pointsUsed)
     console.log(giftPurchase)
     const postData = {
         "csrfmiddlewaretoken": csrfToken,
         "client_secret": clientSecret,
         "gift_purchase": giftPurchase,
+        "pointsUsed": pointsUsed
     }
     console.log(postData)
     const url = "/checkout/cache_checkout_data/";
