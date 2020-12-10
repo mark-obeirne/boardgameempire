@@ -20,12 +20,14 @@
     <div class="container">
         <div class="row">
             <div class="col s12 l6">
+                <h2>User Details</h2>
                 <p>Please fill out the form with your information</p>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token%}
                     {{ form|crispy }}
                     <button>Update Information</button>
                 </form>
+                <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
             </div>
             <div class="col s12 l6">
                 <h2>Order History</h2>
