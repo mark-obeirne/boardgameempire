@@ -79,6 +79,16 @@
                         <a class="waves-effect waves-light btn"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
                         <button class="btn waves-effect waves-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
                         </button>
+                    <div class="col s6">
+                    </div>
+                    <div class="col s6 left-align">
+                        <p class="small">Your card will be charged €{{ grand_total | floatformat:2 }}</p>
+                        {% if user.is_authenticated %}
+                            <p class="small">You will earn {{ points_earned }} loyalty points on this purchase</p>
+                        {% else %}
+                            <p class="small">Login or register to earn {{ points_earned }} loyalty points on this purchase</p>
+                        {% endif %}
+                    </div>
                     </div>
                 </form>
             </div>
@@ -108,11 +118,17 @@
                 <div class="row">
                     <div class="col s6 offset-s3">
                         <p>Order Total:</p>
+                        <p>Points Available:</p>
                         <p>Delivery:</p>
                         <p>Grand Total:</p>
                     </div>
                     <div class="col s3">
                         <p>€ {{ total | floatformat:2 }}</p>
+                        {% if profile.loyalty_points %}
+                            <p>{{ profile.loyalty_points }}</p>
+                        {% else %}
+                            <p>0</p>
+                        {% endif %}
                         <p>€ {{ delivery | floatformat:2 }}</p>
                         <p>€ {{ grand_total | floatformat:2 }}</p>
                     </div>
