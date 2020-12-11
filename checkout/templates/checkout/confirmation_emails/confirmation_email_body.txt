@@ -1,0 +1,37 @@
+Thank you for your order, {{ order.full_name }}
+
+Your order number is {{ order.order_number }} and the total cost was {{ order.grand_total }}. We'll start prepping your order for delivery now! 
+
+This email contains a summary of your order. Please retain this confirmation for your records and if you have any issues with any part of your order, please contact us at {{ contact_email }} and include your order number.
+
+Order Date: {{ order.order_date }}
+
+{% for item in order.lineitems.all %}
+Item: {{ item.product.name }}
+Quantity & Price Each: {{ item.quantity }} @ €{{ item.product.price }}
+{% endfor %}
+
+Order Total: €{{ order.order_total }}
+Delivery Cost: €{{ order.delivery_cost }}
+Loyalty Points Used: {{ order.points_used }}
+Grand Total: €{{ order.grand_total }} 
+
+You earned {{ order.points_earned }} on this purchase.
+
+Your order will be shipped to:
+{{ order.full_name }}
+{{ order.street_address1 }}
+{% if order.street_address2 %}
+    {{ order.street_address2 }}
+{% endif %}
+{{ order.town_or_city }}
+{% if order.county_or_state%}
+    {{ order.county_or_state }}
+{% endif %}
+{% if order.postcode %}
+    {{ order.postcode }}
+{% endif %}
+{{ order.country }}
+
+Thank you for shopping with us. We hope that you enjoy your purchase and that we'll see you again!
+The Boardgame Empire Team.
