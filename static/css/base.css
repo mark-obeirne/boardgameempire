@@ -68,6 +68,11 @@ nav .bottom-nav-row ul a {
     margin: 0 !important;
 }
 
+.nav-product-count {
+    font-size: 1.4rem;
+    margin-left: 0.5rem;
+}
+
 /* Messages */
 .message-container {
     width: 100%;
