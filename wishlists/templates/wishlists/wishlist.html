@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1>My Wishlist</h1>
+
+{% for product in wishlist %}
+    {{ product.name}}
+    {{ product.price }}
+{% endfor %}
+{% endblock %}
