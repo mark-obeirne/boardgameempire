@@ -60,7 +60,21 @@
                     <li><a href="{% url 'account_signup' %}">Register</a></li>
                 {% endif %}
             </ul>
-            <li><a href="#" class="dropdown-trigger" data-target="cart-dropdown"><i class="fas fa-shopping-cart"></i></a></li>
+            <li>
+                <a href="#" class="dropdown-trigger" data-target="cart-dropdown">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="hide-on-small-only nav-product-count">
+                        {% if total %}
+                        €{{ total|floatformat:2 }}
+                        {% else %}
+                        €0.00
+                        {% endif %}
+                    </span>
+                    <span class="nav-product-count">
+                        ({{ product_count }})
+                    </span>
+                </a>
+            </li>
             <ul id="cart-dropdown" class="dropdown-content">
                 <li><a href="{% url 'view_cart' %}">View Cart</a></li>
                 <li><a href="{% url 'checkout' %}">Checkout</a></li>
