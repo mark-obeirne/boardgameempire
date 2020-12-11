@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load cart_tools %}
+
 {% block extracss %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
@@ -134,7 +136,7 @@
                             <p>{{ item.quantity }} @ €{{ item.product.price }}</p>
                         </div>
                         <div class="col s3 m3">
-                            <p>Item Subtotal</p>
+                            <p><p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p></p>
                         </div>
                     </div>
                 {% endfor %}
