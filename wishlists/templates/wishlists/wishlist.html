@@ -72,6 +72,10 @@
 {% endif %}
 </div>
 <div class="col s12 center-align">
-    <a href="#" class="waves-effect waves-light btn">Delete Wishlist</a>
+    <form class="form" method="POST" action="{% url 'delete_wishlist' %}">
+    {% csrf_token %}
+        <input type="submit" class="waves-effect waves-light btn" value="Delete Wishlist">
+        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+    </form>
 </div>
 {% endblock %}
