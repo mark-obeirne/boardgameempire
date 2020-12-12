@@ -55,3 +55,11 @@ def remove_from_wishlist(request, product_id):
     else:
         messages.error(request, f"{ product.name } was not on your wishlist")
         return redirect(redirect_url)
+
+
+def delete_wishlist(request):
+    user = get_object_or_404(UserProfile, user=request.user)
+    redirect_url = request.POST.get("redirect_url")
+    wishlist = get_object_or_404(Wishlist, user_profile=user)
+    wishlist.products.clear()
+    return redirect(redirect_url)
