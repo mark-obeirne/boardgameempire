@@ -5,7 +5,8 @@
 {% block content %}
 <h1>My Wishlist</h1>
 <div class="row">
-{% for product in wishlist %}
+{% if wishlisted_products %}
+    {% for product in wishlisted_products %}
      <div class="col s12 hide-on-med-and-up">
         <div class="card">
             <div class="card-image">
@@ -34,8 +35,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="col m8 offset-m2 hide-on-small-only">
         <div class="card horizontal">
             <div class="card-image">
@@ -67,6 +66,10 @@
         </div>
     </div>    
 {% endfor %}
+{% else %}
+    <p>Your wishlist is currently empty.</p>
+    <a href="#" class="waves-effect waves-light btn">Browse products</a>
+{% endif %}
 </div>
 <div class="col s12 center-align">
     <a href="#" class="waves-effect waves-light btn">Delete Wishlist</a>
