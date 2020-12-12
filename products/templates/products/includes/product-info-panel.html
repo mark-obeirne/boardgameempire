@@ -1,14 +1,18 @@
-<ul class="tabs more-info-panel">
-    <li class="tab col s6"><a href="#details-panel">Details</a></li>
-    <li class="tab col s6"><a href="#reviews-panel">Reviews</a></li>
-</ul>
-<div class="details-panel col s12" id="details-panel">
-    <p><i class="fas fa-users prefix"></i> Number of Players: {{ product.min_players }} - {{ product.max_players }}</p>
-    <p><i class="fas fa-smile prefix"></i> Age Suitability: {{ product.min_age }}+</p>
-    <p><i class="fas fa-clock prefix"></i> Typical Playtime: {{ product.playing_time }}</p>
-    <p><i class="fas fa-user-edit prefix"></i> Designer: {{ product.designer }}</p>
-    <p><i class="fas fa-truck-loading prefix"></i> Publisher: {{ product.publisher }}</p>
-</div>
-<div class="reviews-panel col s12" id="reviews-panel">
-    <p>User Reviews</p>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs more-info-panel">
+            <li class="tab col s6"><a href="#details-panel">Details</a></li>
+            <li class="tab col s6"><a href="#reviews-panel">Reviews</a></li>
+        </ul>
+        <div class="details-panel col s12" id="details-panel">
+            <p><i class="fas fa-users prefix"></i> Number of Players: {{ product.min_players }} - {{ product.max_players }}</p>
+            <p><i class="fas fa-smile prefix"></i> Age Suitability: {{ product.min_age }}+</p>
+            <p><i class="fas fa-clock prefix"></i> Typical Playtime: {{ product.playing_time }}</p>
+            <p><i class="fas fa-user-edit prefix"></i> Designer: {{ product.designer }}</p>
+            <p><i class="fas fa-truck-loading prefix"></i> Publisher: {{ product.publisher }}</p>
+        </div>
+        <div class="reviews-panel col s12" id="reviews-panel">
+            <p>User Reviews</p>
+        </div>
+    </div>
 </div>
