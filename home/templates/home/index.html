@@ -28,15 +28,30 @@
                             <p>€{{ best_seller.price }}</p>
                             <p>{{ best_seller.rating }}</p>
                             <div class="card-action">
-                                <a href="#" class="waves-effect waves-light btn">More Details</a>
-                                <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
-                                <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                                <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn">More Details</a>
+                                    {% if best_seller.inventory > 0 %}
+                                    <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
+                                        {% csrf_token %}
+                                        <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}">-</span>
+                                        <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
+                                        <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}">+</span>
+                                        <input type="submit" class="waves-effect waves-light btn" value="Add to Cart">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
+                                    {% else %}
+                                        <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                    {% endif %}
+                                    <form class="form" method="POST" action="{% url 'add_to_wishlist' best_seller.id %}">
+                                    {% csrf_token %}
+                                        <input type="submit" class="waves-effect waves-light btn" value="Add to Wishlist">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
                             </div>
                         </div>
                     </div>
-                    <p>Shop All Boardgames</p>
+                    <a href="{% url 'products' %}">Shop All Boardgames</a>
                 </div>
-                <div class="col m8 offset-2 hide-on-small-only">
+                <div class="col m8 offset-m2 hide-on-small-only">
                     <div class="card horizontal">
                         <div class="card-image">
                         <img src="images/sample-1.jpg">
@@ -49,16 +64,27 @@
                                 <div class="card-action center-align">
                                     <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn">More Details</a>
                                     {% if best_seller.inventory > 0 %}
-                                    <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                                    <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
+                                        {% csrf_token %}
+                                        <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}">-</span>
+                                        <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
+                                        <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}">+</span>
+                                        <input type="submit" class="waves-effect waves-light btn" value="Add to Cart">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
                                     {% else %}
-                                    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                        <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
                                     {% endif %}
-                                    <a href="#" class="waves-effect waves-light btn">Add to Wishlist</a>
+                                    <form class="form" method="POST" action="{% url 'add_to_wishlist' best_seller.id %}">
+                                    {% csrf_token %}
+                                        <input type="submit" class="waves-effect waves-light btn" value="Add to Wishlist">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <p>Shop All Boardgames</p>
+                    <a href="{% url 'products' %}">Shop All Boardgames</a>
                 </div>
             </div>
             <!--Why Us?-->
