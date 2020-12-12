@@ -39,14 +39,14 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h2>{{ product.name }}</h2>
+                    <h2><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h2>
                     {% if product.on_sale %}
                         <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
                     {% else %}
                         <p>€{{ product.price }}</p>
                     {% endif %}
                 </div>
-                <div class="card-action">
+                <div class="card-action center-align">
                     <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>
                     {% if product.inventory > 0 %}
                         <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
