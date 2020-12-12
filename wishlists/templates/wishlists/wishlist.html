@@ -4,9 +4,63 @@
 
 {% block content %}
 <h1>My Wishlist</h1>
-
+<div class="row">
 {% for product in wishlist %}
-    {{ product.name}}
-    {{ product.price }}
+     <div class="col s12 hide-on-med-and-up">
+        <div class="card">
+            <div class="card-image">
+            <img src="images/sample-1.jpg">
+            </div>
+            <div class="card-content">
+                <h2>{{ product.name }}</h2>
+                {% if product.on_sale %}
+                    <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                {% else %}
+                    <p>€{{ product.price }}</p>
+                {% endif %}
+            </div>
+            <div class="card-action center-align">
+                <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>
+                {% if product.inventory > 0 %}
+                    <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                {% else %}
+                    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                {% endif %}
+                <a href="#" class="waves-effect waves-light btn">Remove from Wishlist</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col m8 offset-m2 hide-on-small-only">
+        <div class="card horizontal">
+            <div class="card-image">
+            <img src="images/sample-1.jpg">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h2>{{ product.name }}</h2>
+                    {% if product.on_sale %}
+                        <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                    {% else %}
+                        <p>€{{ product.price }}</p>
+                    {% endif %}
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>
+                    {% if product.inventory > 0 %}
+                        <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+                    {% else %}
+                        <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                    {% endif %}
+                    <a href="#" class="waves-effect waves-light btn">Remove from Wishlist</a>
+                </div>
+            </div>
+        </div>
+    </div>    
 {% endfor %}
+</div>
+<div class="col s12 center-align">
+    <a href="#" class="waves-effect waves-light btn">Delete Wishlist</a>
+</div>
 {% endblock %}
