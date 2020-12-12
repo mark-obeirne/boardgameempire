@@ -26,7 +26,13 @@ def add_to_wishlist(request, product_id):
     print(user)
     redirect_url = request.POST.get("redirect_url")
     wishlist = get_object_or_404(Wishlist, user_profile=user)
-    wishlist.products.add(product)
-    print("Product added to wishlist")
-    messages.success(request, f"{ product.name } added to your wishlist")
-    return redirect(redirect_url)
+    print(wishlist.products.all())
+    if product in wishlist.products.all():
+        print("Already exists!")
+        messages.info(request, f"{ product.name } is already on your wishlist")
+        return redirect(redirect_url)
+    else:
+        wishlist.products.add(product)
+        print("Product added to wishlist")
+        messages.success(request, f"{ product.name } added to your wishlist")
+        return redirect(redirect_url)
