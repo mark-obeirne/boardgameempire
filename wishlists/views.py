@@ -7,13 +7,15 @@ from .models import Wishlist
 
 def wishlist(request):
     profile = get_object_or_404(UserProfile, user=request.user)
-    wishlist = Product.objects.filter(wishlist__user_profile=profile)
     print(profile)
+    wishlist, created = Wishlist.objects.get_or_create(user_profile=profile)
     print(wishlist)
+    wishlisted_products = Product.objects.filter(wishlist__user_profile=profile)
+    print(wishlisted_products)
 
     context = {
         "profile": profile,
-        "wishlist": wishlist,
+        "wishlisted_products": wishlisted_products,
     }
 
     return render(request, "wishlists/wishlist.html", context)
@@ -25,8 +27,10 @@ def add_to_wishlist(request, product_id):
     user = get_object_or_404(UserProfile, user=request.user)
     print(user)
     redirect_url = request.POST.get("redirect_url")
-    wishlist = get_object_or_404(Wishlist, user_profile=user)
+    wishlist, created = Wishlist.objects.get_or_create(user_profile=user)
     print(wishlist.products.all())
+    if created:
+        print("Creating wishlist")
     if product in wishlist.products.all():
         print("Already exists!")
         messages.info(request, f"{ product.name } is already on your wishlist")
@@ -48,7 +52,6 @@ def remove_from_wishlist(request, product_id):
         print("Found product to remove")
         wishlist.products.remove(product)
         messages.success(request, f"{ product.name } removed from your wishlist")
-        return redirect(redirect_url)
     else:
         messages.error(request, f"{ product.name } was not on your wishlist")
         return redirect(redirect_url)
