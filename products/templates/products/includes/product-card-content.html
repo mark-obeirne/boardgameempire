@@ -21,18 +21,22 @@
     {% endif %}
     </div>
     <div class="col s12 m6">
-        {% if on_wishlist %}
-            <form class="form" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
-                {% csrf_token %}
-                <input type="submit" class="waves-effect waves-light btn" value="Remove from Wishlist">
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form>
+        {% if user.is_authenticated %}
+            {% if on_wishlist %}
+                <form class="form" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
+                    {% csrf_token %}
+                    <input type="submit" class="waves-effect waves-light btn" value="Remove from Wishlist">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            {% else %}
+                <form class="form" method="POST" action="{% url 'add_to_wishlist' product.id %}">
+                    {% csrf_token %}
+                    <input type="submit" class="waves-effect waves-light btn" value="Add to Wishlist">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            {% endif %}
         {% else %}
-            <form class="form" method="POST" action="{% url 'add_to_wishlist' product.id %}">
-                {% csrf_token %}
-                <input type="submit" class="waves-effect waves-light btn" value="Add to Wishlist">
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form>
+            <a href="#" class="waves-effect waves-light btn wishlist-logged-out">Add to Wishlist</a>
         {% endif %}
     </div>   
 
