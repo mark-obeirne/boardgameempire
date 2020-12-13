@@ -64,7 +64,7 @@ form.addEventListener("submit", function(e) {
         "csrfmiddlewaretoken": csrfToken,
         "client_secret": clientSecret,
         "gift_purchase": giftPurchase,
-        "pointsUsed": pointsUsed
+        "points_used": pointsUsed
     }
     console.log(postData)
     const url = "/checkout/cache_checkout_data/";
