@@ -21,10 +21,19 @@
     {% endif %}
     </div>
     <div class="col s12 m6">
-        <form class="form" method="POST" action="{% url 'add_to_wishlist' product.id %}">
-            {% csrf_token %}
-            <input type="submit" class="waves-effect waves-light btn" value="Add to Wishlist">
-            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-        </form>
-    </div>
+        {% if on_wishlist %}
+            <form class="form" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
+                {% csrf_token %}
+                <input type="submit" class="waves-effect waves-light btn" value="Remove from Wishlist">
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form>
+        {% else %}
+            <form class="form" method="POST" action="{% url 'add_to_wishlist' product.id %}">
+                {% csrf_token %}
+                <input type="submit" class="waves-effect waves-light btn" value="Add to Wishlist">
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form>
+        {% endif %}
+    </div>   
+
 </div>
