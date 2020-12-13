@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from .models import Product, Category, Mechanic
+from profiles.models import UserProfile
+from wishlists.models import Wishlist
 from django.db.models import Q
 from django.db.models.functions import Lower
 
@@ -66,8 +68,16 @@ def all_products(request):
 def product_detail(request, product_id):
     """ Return details of an individual product """
     product = get_object_or_404(Product, pk=product_id)
+    on_wishlist = False
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user=request.user)
+        users_wishlist = Product.objects.filter(wishlist__user_profile=user)
+        if product in users_wishlist:
+            on_wishlist = True
+
     context = {
         "product": product,
+        "on_wishlist": on_wishlist
     }
     return render(request, "products/product_detail.html", context)
 
