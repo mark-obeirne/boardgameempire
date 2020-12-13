@@ -78,6 +78,8 @@ class StripeWH_Handler:
         if order_exists:
             print("order exists")
             self._send_order_confirmation_email(order)
+            self._update_product_inventory(order, cart)
+            self._update_product_quantity_sold(order, cart)
             return HttpResponse(content=f"Webhook received: {event['type']} | SUCCESS: Order exists in the database", status=200)
         else:
             order = None
@@ -120,6 +122,8 @@ class StripeWH_Handler:
                     return HttpResponse(content=f"Webhook received: {event['type']} | ERROR: {e}", status=500)
 
         self._send_order_confirmation_email(order)
+        self._update_product_inventory(order, cart)
+        self._update_product_quantity_sold(order, cart)
         return HttpResponse(
             content=f"Webhook received: {event['type']} | SUCCESS: Created order in webhook",
             status=200
@@ -143,6 +147,20 @@ class StripeWH_Handler:
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         )
+
+    def _update_product_inventory(self, order, cart):
+        """ Update product's inventory based on quantity sold """
+        for product_id, quantity in json.loads(cart).items():
+            product = Product.objects.get(id=product_id)
+            product.inventory -= quantity
+            product.save()
+
+    def _update_product_quantity_sold(self, order, cart):
+        """ Update product's overall quantity sold based on quantity sold in transaction """
+        for product_id, quantity in json.loads(cart).items():
+            product = Product.objects.get(id=product_id)
+            product.quantity_sold += quantity
+            product.save()
 
     def handle_payment_intent_failed(self, event):
         """ Handle Stripe's payment_intent.payment_failed webhook """
