@@ -52,6 +52,7 @@ def remove_from_wishlist(request, product_id):
         print("Found product to remove")
         wishlist.products.remove(product)
         messages.success(request, f"{ product.name } removed from your wishlist")
+        return redirect(redirect_url)
     else:
         messages.error(request, f"{ product.name } was not on your wishlist")
         return redirect(redirect_url)
