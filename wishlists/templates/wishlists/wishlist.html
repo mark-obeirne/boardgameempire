@@ -21,7 +21,7 @@
                 {% endif %}
             </div>
             <div class="card-action center-align">
-                <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>
+                <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                 {% if product.inventory > 0 %}
                     <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
                 {% else %}
@@ -50,7 +50,7 @@
                     {% endif %}
                 </div>
                 <div class="card-action center-align">
-                    <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>
+                    <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                     {% if product.inventory > 0 %}
                         <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
                     {% else %}
@@ -68,7 +68,7 @@
 {% endfor %}
 {% else %}
     <p>Your wishlist is currently empty.</p>
-    <a href="#" class="waves-effect waves-light btn">Browse products</a>
+    <a href="#" class="waves-effect waves-light btn">Browse products  <i class="fas fa-caret-square-right prefix"></i></a>
 {% endif %}
 </div>
 <div class="col s12 center-align">

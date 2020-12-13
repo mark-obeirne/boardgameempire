@@ -28,7 +28,7 @@
                             <p>€{{ best_seller.price }}</p>
                             <p>{{ best_seller.rating }}</p>
                             <div class="card-action">
-                                <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn">More Details</a>
+                                <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                                     {% if best_seller.inventory > 0 %}
                                     <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
                                         {% csrf_token %}
@@ -57,7 +57,7 @@
                                 <p>€{{ best_seller.price }}</p>
                                 <p>{{ best_seller.rating }}</p>
                                 <div class="card-action center-align">
-                                    <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn">More Details</a>
+                                    <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                                     {% if best_seller.inventory > 0 %}
                                     <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
                                         {% csrf_token %}
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{% url 'products' %}">Shop All Boardgames</a>
+                    <a href="{% url 'products' %}">Shop All Boardgames <i class="fas fa-caret-square-right prefix"></i></a>
                 </div>
             </div>
             <!--Why Us?-->

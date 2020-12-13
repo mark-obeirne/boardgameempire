@@ -104,7 +104,7 @@
                         {% endif %}
                         <p>{{ product.rating }}</p>
                         <div class="card-action">
-                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn">More Details</a>
+                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                             {% if product.inventory > 0 %}
                                 <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
                             {% else %}
