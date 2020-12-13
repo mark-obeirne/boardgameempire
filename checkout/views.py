@@ -21,13 +21,10 @@ def cache_checkout_data(request):
         gift_purchase = request.POST.get("gift_purchase", "")
         points_used = int(request.POST.get("points_used"))
         print(points_used)
-        amount = 0
+        intent = stripe.PaymentIntent.retrieve(pid)
+        amount = intent.get("amount")
 
         if points_used > 0:
-            intent = stripe.PaymentIntent.retrieve(pid)
-            print(intent)
-            amount = intent.get("amount")
-            print(amount)
             points_used = int(points_used / 5)
             print(points_used)
             amount -= points_used
