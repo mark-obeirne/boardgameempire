@@ -37,18 +37,18 @@
                 </div>
             </li>
             <li>
-                <a href="#">
-                    <div class="center-align">
-                        <a href="{% url 'get_random_game' %}"><i class="fas fa-dice"></i> </a>
-                    </div>
-                </a>
+                <div class="center-align">
+                    <a href="{% url 'get_random_game' %}"><i class="fas fa-dice"></i></a>
+                </div>
             </li>
             <li>
-                <a href="#">
-                    <div class="center-align">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </a>
+                <div class="center-align">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'wishlist' %}"><i class="fas fa-heart"></i></a>
+                    {% else %}
+                        <a href="#"><i class="fas fa-heart wishlist-logged-out"></i></a>
+                    {% endif %}
+                </div>
             </li>
             <li><a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="fas fa-user"></i></a></li>
             <ul id="user-dropdown" class="dropdown-content">

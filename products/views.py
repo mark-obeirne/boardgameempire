@@ -77,7 +77,7 @@ def product_detail(request, product_id):
 
     context = {
         "product": product,
-        "on_wishlist": on_wishlist
+        "on_wishlist": on_wishlist,
     }
     return render(request, "products/product_detail.html", context)
 
@@ -85,8 +85,16 @@ def product_detail(request, product_id):
 def get_random_game(request):
     """ Return details of a random product """
     product = Product.objects.order_by("?")[0]
+    on_wishlist = False
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user=request.user)
+        users_wishlist = Product.objects.filter(wishlist__user_profile=user)
+        if product in users_wishlist:
+            on_wishlist = True
+
     context = {
         "product": product,
+        "on_wishlist": on_wishlist,
     }
     return render(request, "products/random.html", context)
 
@@ -123,7 +131,15 @@ def get_deals(request):
 def game_of_the_month(request):
     product = Product.objects.filter(game_of_the_month=True)[0]
     print(product)
+    on_wishlist = False
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user=request.user)
+        users_wishlist = Product.objects.filter(wishlist__user_profile=user)
+        if product in users_wishlist:
+            on_wishlist = True
+
     context = {
         "product": product,
+        "on_wishlist": on_wishlist,
     }
     return render(request, "products/gotm.html", context)

@@ -85,7 +85,6 @@ TEMPLATES = [
                 'boardgame_empire.contexts.all_categories',
                 'boardgame_empire.contexts.all_mechanics',
                 'cart.contexts.cart_contents',
-                'wishlists.contexts.wishlist_contents',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
