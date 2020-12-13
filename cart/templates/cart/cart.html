@@ -63,7 +63,7 @@
             </div>
         {% else %}
             <p>Your cart is currently empty</p>
-            <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+            <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
         {% endif %}
     </div>
 {% endblock %}
