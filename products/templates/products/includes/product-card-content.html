@@ -17,7 +17,7 @@
             <input type="hidden" name="redirect_url" value="{{ request.path }}">
         </form>
     {% else %}
-    <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+    <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
     {% endif %}
     </div>
     <div class="col s12 m6">
@@ -36,7 +36,7 @@
                 </form>
             {% endif %}
         {% else %}
-            <a href="#" class="waves-effect waves-light btn wishlist-logged-out">Add to Wishlist</a>
+            <a href="#" class="waves-effect waves-light btn wishlist-logged-out"><i class="fas fa-clipboard-list prefix"></i> Add to Wishlist</a>
         {% endif %}
     </div>   
 
