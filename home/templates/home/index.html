@@ -3,17 +3,41 @@
 {% load static %}
 
 {% block content %}
-    <!--Carousel-->
-    <div class="carousel">
-        <div class="carousel-panel">
-            <p>Background Image with faded overlay</p>
-            <h1>Publisher Spotlight</h1>
-            <p>From games about spies and treachery to founding a fledgling civilization, 999 Games has something for everyone.</p>
-            <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Shop the range</a>
-        </div>
-    </div> 
+    <!--Slider-->
+    <div class="slider">
+        <ul class="slides">
+            <li>
+                <div class="slider-overlay">&nbsp;</div>
+                <div class="caption left-align">
+                    <h1 class="brown-text">Publisher Spotlight</h1>
+                    <p class="brown-text">Check out the best games from Asmodee</p>
+                    <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Shop the range</a>
+                </div>
+                <img src="https://azure.wgp-cdn.co.uk/app-table-top-gaming/posts/DSC_4587-38154.jpg" alt="Test Image">
+            </li>
+            <li>
+                <div class="slider-overlay">&nbsp;</div>
+                <div class="caption left-align">
+                    <h1 class="brown-text">Sales</h1>
+                    <p class="brown-text">Christmas is coming! Pick up the perfect gift at a discounted price.</p>
+                    <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> See our deals</a>
+                </div>
+                <img src="https://cdn.pixabay.com/photo/2017/10/26/19/45/christmas-2892235_960_720.png" alt="Test Image">
+            </li>
+            <li>
+                <div class="slider-overlay">&nbsp;</div>
+                <div class="caption left-align">
+                    <h1 class="brown-text">Game of the Month</h1>
+                    <p class="brown-text"><span class="bold">Hanabi</span> - a cooperative game where players try to create the perfect fireworks display.</p>
+                    <p class="brown-text">The perfect game to break out for New Years.</p>
+                    <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Shop the range</a>
+                </div>
+                <img src="https://stellar.ie/wp-content/uploads/2020/07/Screen-Shot-2020-07-03-at-15.02.48.png" alt="Test Image">
+            </li>
+        </ul>
+    </div>
 
-    <div class="container">
+    <div class="container bg-white">
         <!--Featured Best Seller-->
         <div class="best-seller">
             <h2 class="center-align">Featured Best Seller</h2>
@@ -21,12 +45,13 @@
                 <div class="col s12 hide-on-med-and-up">
                     <div class="card center-align">
                         <div class="card-image">
-                        <img src="images/sample-1.jpg">
+                        <img src="{{ best_seller.boxart_url }}">
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">{{ best_seller.name }}</h3>
                             <p>€{{ best_seller.price }}</p>
                             <p>{{ best_seller.rating }}</p>
+                            <p>{{ best_seller.description }}</p>
                             <div class="card-action">
                                 <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                                     {% if best_seller.inventory > 0 %}
@@ -39,23 +64,24 @@
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     </form>
                                     {% else %}
-                                        <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                        <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
                                     {% endif %}
                             </div>
                         </div>
                     </div>
-                    <a href="{% url 'products' %}">Shop All Boardgames</a>
+                    <a href="{% url 'products' %}">Shop All Boardgames <i class="fas fa-caret-square-right prefix"></i></a>
                 </div>
-                <div class="col m8 offset-m2 hide-on-small-only">
+                <div class="col m12 hide-on-small-only">
                     <div class="card horizontal">
                         <div class="card-image">
-                        <img src="images/sample-1.jpg">
+                        <img src="{{ best_seller.boxart_url }}">
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
                                 <h3 class="card-title">{{ best_seller.name }}</h3>
                                 <p>€{{ best_seller.price }}</p>
                                 <p>{{ best_seller.rating }}</p>
+                                <p>{{ best_seller.description }}</p>
                                 <div class="card-action center-align">
                                     <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
                                     {% if best_seller.inventory > 0 %}
@@ -68,7 +94,7 @@
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     </form>
                                     {% else %}
-                                        <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                        <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -83,33 +109,33 @@
                 <div class="col s12 m4">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title">Free Delivery Over €50</span>
+                            <span class="card-title center-align uppercase">Free Delivery Over €50</span>
                             <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket, but if you're anything like us it'll be used for more boardgames!</p>
                         </div>
-                        <div class="card-action">
-                            <a href="{% url 'products' %}">Browse All Boardgames</a>
+                        <div class="card-action center-align">
+                            <a href="{% url 'products' %}"><i class="fas fa-store-alt prefix"></i> Browse All Boardgames</a>
                         </div>
                     </div>
                 </div>            
                 <div class="col s12 m4">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title">Earn Loyalty Points</span>
+                            <span class="card-title center-align uppercase">Earn Loyalty Points</span>
                             <p>Sign in to (or sign up for) your Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
                         </div>
-                        <div class="card-action">
-                        <a href="#">Find Out More</a>
+                        <div class="card-action center-align">
+                        <a href="#"><i class="fas fa-piggy-bank prefix"></i> Find Out More</a>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m4">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title">Can't See A Game Listed?</span>
+                            <span class="card-title center-align uppercase">Can't See A Game Listed?</span>
                             <p>If we don't currently stock a boardgame that you're interested in, please contact us and we'll see if we can get our hands on it for you.</p>
                         </div>
-                        <div class="card-action">
-                        <a href="#">Contact Us</a>
+                        <div class="card-action center-align">
+                        <a href="#"><i class="fas fa-envelope prefix"></i> Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -117,4 +143,16 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.slider');
+        var instances = M.Slider.init(elems, {
+            duration: 700
+        });
+    });
+</script>
 {% endblock %}
