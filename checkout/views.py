@@ -15,17 +15,32 @@ import json
 @require_POST
 def cache_checkout_data(request):
     try:
+        print("Trying to modify")
         pid = request.POST.get("client_secret").split("_secret")[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         gift_purchase = request.POST.get("gift_purchase", "")
-        points_used = request.POST.get("points_used")
+        points_used = int(request.POST.get("points_used"))
         print(points_used)
-        stripe.PaymentIntent.modify(pid, metadata={
-            "cart": json.dumps(request.session.get("cart", {})),
-            "gift_purchase": gift_purchase,
-            "username": request.user,
-            "points_used": points_used
-        })
+        amount = 0
+
+        if points_used > 0:
+            intent = stripe.PaymentIntent.retrieve(pid)
+            print(intent)
+            amount = intent.get("amount")
+            print(amount)
+            points_used = int(points_used / 5)
+            print(points_used)
+            amount -= points_used
+            print(amount)
+
+        stripe.PaymentIntent.modify(pid,
+                                    amount=amount,
+                                    metadata={
+                                        "cart": json.dumps(request.session.get("cart", {})),
+                                        "gift_purchase": gift_purchase,
+                                        "username": request.user,
+                                        "points_used": points_used,
+                                    })
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, "Sorry, we can't process your payment at the moment. Please try again later.")
@@ -60,7 +75,6 @@ def checkout(request):
             "gift_purchase": gift_purchase,
             "points_used": request.POST["points_used"],
         }
-        print(form_data)
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -83,6 +97,18 @@ def checkout(request):
                     messages.error(request, ("One of the products in your bag couldn't be found in our database. We're very sorry; please contact us for assistance!"))
                     order.delete()
                     return redirect(reverse("view_cart"))
+
+            points_used = int(request.POST.get('points_used', 0))
+            print("Order Valid")
+            print(points_used)
+            if points_used > 0:
+                current_cart = cart_contents(request)
+                cart_total = current_cart["grand_total"]
+                points_value = points_used / 5
+                cart_total = round(cart_total * 100)
+                total_minus_points = cart_total - points_value
+                order.grand_total = total_minus_points / 100
+                order.save()
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             print("Form is invalid")
@@ -94,7 +120,6 @@ def checkout(request):
         if not cart:
             messages.error(request, "Your cart is currently empty")
             return redirect(reverse('products'))
-
         current_cart = cart_contents(request)
         total = current_cart["grand_total"]
         stripe_total = round(total * 100)
