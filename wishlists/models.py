@@ -8,4 +8,4 @@ class Wishlist(models.Model):
     products = models.ManyToManyField('products.Product')
 
     def __str__(self):
-        return "Wishlist"
+        return f"{self.user_profile}'s wishlist"
