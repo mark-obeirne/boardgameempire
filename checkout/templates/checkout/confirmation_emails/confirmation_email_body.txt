@@ -16,7 +16,9 @@ Delivery Cost: €{{ order.delivery_cost }}
 Loyalty Points Used: {{ order.points_used }}
 Grand Total: €{{ order.grand_total }} 
 
-You earned {{ order.points_earned }} on this purchase.
+{% if order.points_earned %}
+    You earned {{ order.points_earned }} loyalty points on this purchase.
+{% endif %}
 
 Your order will be shipped to:
 {{ order.full_name }}
