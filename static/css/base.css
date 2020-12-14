@@ -136,6 +136,10 @@ body {
     color: #392417;
 }
 
+.grey-bottom-border {
+    border-bottom: 1px solid #d3d3d3;
+}
+
 /* Slider */
 .slider-overlay {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0.3));
