@@ -51,6 +51,14 @@ body {
     cursor: pointer; 
 }
 
+.form-buttons {
+    margin-top: 1rem;
+}
+
+#checkout-button {
+    margin-top: 1rem;
+}
+
 /* Nav Menu */
 .navbar-fixed {
     height: 12rem;
@@ -195,5 +203,9 @@ body {
 
     .slider-overlay {
         background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.3));
+    }
+
+    .col.order-column {
+        padding-left: 2rem;
     }
 }
