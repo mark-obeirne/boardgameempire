@@ -134,7 +134,7 @@
                             <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
                         </div>
                         <div class="col s3 m3">
-                            <p><p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p></p>
+                            <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
                         </div>
                     </div>
                 {% endfor %}
