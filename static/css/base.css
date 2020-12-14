@@ -141,6 +141,7 @@ body {
 
 .slider .slides li .caption {
     z-index: 4;
+    left: 5%;
 }
 
 .slider {
@@ -180,6 +181,6 @@ body {
     }
 
     .slider-overlay {
-        background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.3));
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.3));
     }
 }

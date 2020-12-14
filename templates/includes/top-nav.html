@@ -50,7 +50,7 @@
                     {% endif %}
                 </div>
             </li>
-            <li><a href="#" class="dropdown-trigger" data-target="user-dropdown"><i class="fas fa-user"></i></a></li>
+            <li><a href="#" class="click-dropdown-trigger" data-target="user-dropdown"><i class="fas fa-user"></i></a></li>
             <ul id="user-dropdown" class="dropdown-content">
                 {% if user.is_authenticated %}
                     <li><a href="#!">My Profile</a></li>
@@ -61,7 +61,7 @@
                 {% endif %}
             </ul>
             <li>
-                <a href="#" class="dropdown-trigger" data-target="cart-dropdown">
+                <a href="#" class="click-dropdown-trigger" data-target="cart-dropdown">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="hide-on-small-only nav-product-count">
                         {% if total %}

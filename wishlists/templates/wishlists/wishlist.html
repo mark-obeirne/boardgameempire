@@ -66,16 +66,16 @@
         </div>
     </div>    
 {% endfor %}
-{% else %}
-    <p>Your wishlist is currently empty.</p>
-    <a href="#" class="waves-effect waves-light btn">Browse products  <i class="fas fa-caret-square-right prefix"></i></a>
-{% endif %}
-</div>
 <div class="col s12 center-align">
     <form class="form" method="POST" action="{% url 'delete_wishlist' %}">
     {% csrf_token %}
         <input type="submit" class="waves-effect waves-light btn" value="Delete Wishlist">
         <input type="hidden" name="redirect_url" value="{{ request.path }}">
     </form>
+</div>
+{% else %}
+    <p>Your wishlist is currently empty.</p>
+    <a href="#" class="waves-effect waves-light btn">Browse products  <i class="fas fa-caret-square-right prefix"></i></a>
+{% endif %}
 </div>
 {% endblock %}
