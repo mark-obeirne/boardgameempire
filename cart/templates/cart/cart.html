@@ -10,54 +10,64 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container bg-light">
+        <div class="row center-align cart-headings">
+            <div class="col hide-on-small-only m2"></div>
+            <div class="col hide-on-small-only m3"><span class="bold">Product</span></div>
+            <div class="col hide-on-small-only m4"><span class="bold">Quantity</span></div>
+            <div class="col hide-on-small-only m3"><span class="bold">Item Subtotal</span></div>
+        </div>
         {% if items_in_cart %}
             {% for item in items_in_cart %}
-                <div class="row">
+                <div class="row grey-bottom-border">
                     <div class="col s12 m2">
                         <p>Image</p>
                     </div>
                     <div class="col s12 m3">
                         <p>{{ item.product.name }}</p>
-                        <p>{{ item.quantity }} @ €{{ item.product.price }}</p>
+                        <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
                     </div>
                     <div class="col s12 m4">
                         <form class="form" method="POST" action="{% url 'update_cart' item.product_id %}">
                             {% csrf_token %}
-                            <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ item.product.id }}" id="decrease-qty_{{ item.product.id }}">-</span>
-                            <input class="product-qty-input narrow-input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.inventory }}" data-item_id="{{ product.id }}" id="product-qty-input">
-                            <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ item.product.id }}" id="increase-qty_{{ item.product.id }}">+</span>
+                            <div class="input-field center-align">
+                                <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ product.id }}" id="decrease-qty_{{ product.id }}"><i class="fas fa-minus-square"></i></span>
+                                <input class="product-qty-input narrow-input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ product.inventory }}" data-item_id="{{ product.id }}" id="product-qty-input">
+                                <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ product.id }}" id="increase-qty_{{ product.id }}"><i class="fas fa-plus-square"></i></span>
+                            </div>
                         </form>
-                        <a href="#" class="update-qty">Update Quantity</a>
-                        <a href="#" class="remove-item" id="remove_{{ item.product_id }}">Remove Item</a>
+                        <div class="col s12 center-align">
+                            <a href="#" class="update-qty small">Update Quantity</a> | 
+                            <a href="#" class="remove-item small" id="remove_{{ item.product_id }}">Remove Item</a>
+                        </div>
                     </div>
-                    <div class="col s12 m2">
-                        <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
+                    <div class="col s12 m3 center-align">
+                        <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.price | calculate_subtotal:item.quantity }}</span>
                     </div>
                 </div>
             {% endfor %}
             <div class="row">
-                <div class="col s10 m5 offset-m2">
+                <div class="col s8 m5 offset-m2">
                     <p>Cart Total:</p>
                     <p>Delivery Cost:</p>
-                    <p>Grand Total:</p>
+                    <p class="bold">Grand Total:</p>
                 </div>
-                <div class="col s2 m4">
+                <div class="col s4 m4">
                     <p>€{{ total }}</p>
                     {% if delivery %}
                         <p>€{{ delivery }}</p>
                     {% else %}
                         <p>FREE</p>
                     {% endif %}
-                    <p>€{{ grand_total }}</p>
+                    <p class="bold">€{{ grand_total }}</p>
                 </div>
                 {% if delivery %}
                     <p>Spend {{ free_delivery_remainder }} more to avail of free delivery</p>
                 {% endif %}
                 <div class="row">
-                    <div class="col s12 center-align">
+                    <div class="col s12 center-align form-buttons">
                         <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
-                        <a href="{% url 'checkout' %}" class="waves-effect waves-light btn"><i class="far fa-credit-card"></i> Proceed to Checkout</a>
+                        <a href="{% url 'checkout' %}" class="waves-effect waves-light btn checkout-btn"><i class="far fa-credit-card"></i> Proceed to Checkout</a>
                     </div>
                 </div>
             </div>
