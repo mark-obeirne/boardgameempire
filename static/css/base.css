@@ -51,6 +51,14 @@ body {
     cursor: pointer; 
 }
 
+.form-buttons {
+    margin-top: 1rem;
+}
+
+#checkout-button {
+    margin-top: 1rem;
+}
+
 /* Nav Menu */
 .navbar-fixed {
     height: 12rem;
@@ -128,6 +136,10 @@ body {
     color: #392417;
 }
 
+.grey-bottom-border {
+    border-bottom: 1px solid #d3d3d3;
+}
+
 /* Slider */
 .slider-overlay {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0.3));
@@ -164,7 +176,20 @@ body {
     width: 12%;
     margin: 0;
     text-align: center;
-    border: 1px solid red;
+    border: none;
+}
+
+.qty-btn {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.qty-increase {
+    margin-right: 1rem;
+}
+
+.wishlist-btn {
+    width: 100%;
 }
 
 /* Footer */
@@ -182,5 +207,9 @@ body {
 
     .slider-overlay {
         background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.3));
+    }
+
+    .col.order-column {
+        padding-left: 2rem;
     }
 }
