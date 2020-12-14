@@ -164,7 +164,20 @@ body {
     width: 12%;
     margin: 0;
     text-align: center;
-    border: 1px solid red;
+    border: none;
+}
+
+.qty-btn {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.qty-increase {
+    margin-right: 1rem;
+}
+
+.wishlist-btn {
+    width: 100%;
 }
 
 /* Footer */
