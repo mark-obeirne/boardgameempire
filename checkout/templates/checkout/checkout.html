@@ -79,13 +79,13 @@
                                 <p>Grand Total:</p>
                             </div>
                             <div class="col s6">
-                                <p>€ {{ total | floatformat:2 }}</p>
+                                <p>€{{ total | floatformat:2 }}</p>
                                 {% if user.is_authenticated %}
                                     <p class="user-loyalty-points">{{ profile.loyalty_points }}</p>
                                     {{ order_form.points_used | as_crispy_field }}
                                 {% endif %}
-                                <p>€ {{ delivery | floatformat:2 }}</p>
-                                <p>€ {{ grand_total | floatformat:2 }}</p>
+                                <p class="delivery-cost">€{{ delivery | floatformat:2 }}</p>
+                                <p class="grand-total">€{{ grand_total | floatformat:2 }}</p>
                             </div>
                         </fieldset>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="col s6">
                     </div>
                     <div class="col s6 left-align">
-                        <p class="small">Your card will be charged €{{ grand_total | floatformat:2 }}</p>
+                        <p class="small">Your card will be charged <span class="grand-total">€{{ grand_total | floatformat:2 }}</span></p>
                         {% if user.is_authenticated %}
                             <p class="small">You will earn {{ points_earned }} loyalty points on this purchase</p>
                         {% else %}
@@ -141,7 +141,12 @@
                     </div>
                 {% endfor %}
                 <div class="row">
-                    
+                    <div class="col s6 offset-s3 m6 offset-m3">
+                        <p class="bold">Cart Total:</p>
+                    </div>
+                    <div class="col s3 m3">
+                        <p class="cart-total bold">€{{ total | floatformat:2 }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -212,4 +217,35 @@
         var instances = M.FormSelect.init(elems, {});
     });
     </script>
+
+    <!--Change grand total to pay when points used-->
+    <script type="text/javascript">
+        const pointsToUse = document.querySelector("#id_points_used")
+        pointsToUse.addEventListener("change", function() {
+            // Get cart total and points user has opted to use
+            const cartTotal = document.querySelector(".cart-total")
+            let cartTotalText = cartTotal.innerText
+            const regex = /[€\s]/g
+            let totalToPay = parseFloat(cartTotalText.replace(regex, ""))
+            const userInputPoints = pointsToUse.value
+            const pointsCashEquivalent = userInputPoints / 500
+
+            // Get delivery cost
+            let deliveryCost = 0 
+            const deliveryText = document.querySelector(".delivery-cost")
+            if (deliveryText.innerText === "€6.00") {
+                deliveryCost = 6
+            }
+
+            // Calculate cart total remaining
+            const cartTotalRemaining = (totalToPay - pointsCashEquivalent + deliveryCost).toFixed(2)
+            const cartTotalRemainingText = "€" + cartTotalRemaining.toString()
+            console.log(cartTotalRemaining)
+
+            // Change grand total text values
+            let grandTotal = document.querySelectorAll(".grand-total")
+            grandTotal.forEach(total => total.innerText = cartTotalRemainingText)
+        })
+    </script>
+
 {% endblock %}
