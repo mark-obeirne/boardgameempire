@@ -3,6 +3,27 @@
 {% else %}
     <p>€{{ product.price }}</p>
 {% endif %}
+
+{% if product.inventory == 0%}
+<span class="stock-info out-of-stock inline-block bold">
+    Sorry! Out of stock
+</span>
+    {% if user.is_authenticated %}
+        <span class="small block">Add it to your wishlist below to see when it's available.</span>
+    {% else %}
+        <span>Login or register to add to your wishlist.</span>
+    {% endif %}
+{% elif product.inventory < 5 %}
+<span class="stock-info limited-stock inline-block bold">
+    Limited availability
+</span>
+{% else %}
+<span class="stock-info available inline-block bold">
+    Available
+</span>
+{% endif %}
+
+
 <p>{{ product.rating }}</p>
 <p>{{ product.description }}</p>
 <div class="row">
