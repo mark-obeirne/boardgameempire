@@ -53,7 +53,7 @@
             <li><a href="#" class="click-dropdown-trigger" data-target="user-dropdown"><i class="fas fa-user"></i></a></li>
             <ul id="user-dropdown" class="dropdown-content">
                 {% if user.is_authenticated %}
-                    <li><a href="#!">My Profile</a></li>
+                    <li><a href="{% url 'profile' %}">My Profile</a></li>
                     <li><a href="{% url 'account_logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'account_login' %}">Login</a></li>
