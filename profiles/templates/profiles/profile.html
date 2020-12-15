@@ -2,10 +2,6 @@
 
 {% load static %}
 
-{% block extracss %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
-{% endblock %}
-
 {% block corejs %}
     {{ block.super }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -17,9 +13,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container bg-light">
         <div class="row">
-            <div class="col s12 l6">
+            <div class="col s12 l6 column-large">
                 <h2>User Details</h2>
                 <p>Please fill out the form with your information</p>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
@@ -29,8 +25,39 @@
                 </form>
                 <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
             </div>
-            <div class="col s12 l6">
+            <div class="col s12 l6 column-large">
+                <h2>My Wishlist</h2>
+                {% if wishlisted_products %}
+                    {% for product in wishlisted_products %}
+                    <div class="row valign-wrapper grey-bottom-border">
+                        <div class="col s4">
+                            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                        </div>
+                        <div class="col s4">
+                            {% if product.on_sale %}
+                                <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                            {% else %}
+                                <p>€{{ product.price }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col s4">
+                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> Details</a>
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <a href="{% url 'wishlist' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Manage Wishlist</a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col s12 center-align">
+                        <p>You haven't added any products to your wishlist yet!</p>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col s12 l6 column-large">
                 <h2>Order History</h2>
+                {% if orders %}
                 <p>Click an order number for more information</p>
                 <div class="col s4 m4">
                     <strong><p>Order Number</p></strong>
@@ -43,7 +70,7 @@
                 </div>
                 <div class="col s12">
                 {% for order in orders %}
-                    <div class="row">
+                    <div class="row grey-bottom-border">
                         <div class="col s4 m4">
                             <a href="{% url 'order_history' order.order_number %}"><p>{{ order.order_number|truncatechars:5 }}</p></a>
                         </div>
@@ -56,6 +83,12 @@
                     </div>
                 {% endfor %}
                 </div>
+                {% else %}
+                    <div class="col s12 center-align">
+                        <p>There are currently no orders to display.</p>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
