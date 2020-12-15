@@ -48,26 +48,6 @@ body {
     text-transform: uppercase;
 }
 
-.stock-info {
-    padding: 0.5rem;
-    margin: 0.5rem 0rem 0.5rem 0rem;
-    border-radius: 0.2rem;  
-}
-
-.out-of-stock {
-    background-color: red;
-    color: white;
-}
-
-.limited-stock {
-    background-color: orange;
-    
-}
-
-.available {
-    background-color: green;
-    color: white;
-}
 
 /* Buttons */
 .search-btn {
@@ -219,6 +199,27 @@ body {
 
 .wishlist-btn {
     width: 100%;
+}
+
+.stock-info {
+    padding: 0.5rem;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    border-radius: 0.2rem;  
+}
+
+.out-of-stock {
+    background-color: red;
+    color: white;
+}
+
+.limited-stock {
+    background-color: orange;
+    
+}
+
+.available {
+    background-color: green;
+    color: white;
 }
 
 /* Cart Page */
