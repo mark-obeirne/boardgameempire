@@ -68,6 +68,10 @@ body {
     margin-top: 1rem;
 }
 
+.last-btn {
+    margin-bottom: 2rem;
+}
+
 /* Nav Menu */
 .navbar-fixed {
     height: 12rem;
@@ -254,5 +258,9 @@ body {
 
     .checkout-btn {
         margin-top: 0rem;
+    }
+
+    .row .col.l6.column-large {
+        padding: 0rem 3rem;
     }
 }
