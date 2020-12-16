@@ -254,7 +254,7 @@ a.bg-brown:hover{
 #spinner-overlay img {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 30%;
 }
 
 /* Footer */
@@ -265,6 +265,12 @@ a.bg-brown:hover{
 }
 
 /* Media Queries */
+@media screen and (min-width: 768px) {
+    #spinner-overlay img {
+        left: 40%;
+    }
+}
+
 @media screen and (min-width: 992px) {
     .navbar-fixed {
         height: 13rem;
@@ -284,5 +290,9 @@ a.bg-brown:hover{
 
     .row .col.l6.column-large {
         padding: 0rem 3rem;
+    }
+
+    #spinner-overlay img {
+        left: 50%;
     }
 }
