@@ -52,8 +52,10 @@ const form = document.querySelector("#checkout-form")
 form.addEventListener("submit", function(e) {
     e.preventDefault();
     const submitBtn = document.querySelector("#checkout-button")
+    const spinnerOverlay = document.querySelector("#spinner-overlay")
     card.update({"disabled": true});
     submitBtn.setAttribute("disabled", true);
+    spinnerOverlay.classList.remove("none")
     
     const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
     const giftPurchase = document.querySelector("#gift_purchase").checked
@@ -105,7 +107,7 @@ form.addEventListener("submit", function(e) {
                     </span>
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
-                
+                spinner-overlay.classList.add("none")
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
