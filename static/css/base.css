@@ -133,6 +133,10 @@ body {
     background-color: #392417;
 }
 
+a.bg-brown:hover{
+    background-color: #5D3B26;
+}
+
 .bg-sheer-white {
     background-color: #FFFFFF;
 }
