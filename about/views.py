@@ -7,3 +7,7 @@ def about_us(request):
 
 def loyalty(request):
     return render(request, "about/loyalty.html")
+
+
+def returns(request):
+    return render(request, "about/returns.html")
