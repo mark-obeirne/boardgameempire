@@ -239,6 +239,24 @@ a.bg-brown:hover{
     padding-top: 1rem;
 }
 
+/* Checkout Page */
+#spinner-overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.8;
+    z-index: 999;
+}
+
+#spinner-overlay img {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
 /* Footer */
 .social-media-icon {
     display: inline-block;
@@ -247,6 +265,12 @@ a.bg-brown:hover{
 }
 
 /* Media Queries */
+@media screen and (min-width: 768px) {
+    #spinner-overlay img {
+        left: 40%;
+    }
+}
+
 @media screen and (min-width: 992px) {
     .navbar-fixed {
         height: 13rem;
@@ -266,5 +290,9 @@ a.bg-brown:hover{
 
     .row .col.l6.column-large {
         padding: 0rem 3rem;
+    }
+
+    #spinner-overlay img {
+        left: 50%;
     }
 }
