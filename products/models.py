@@ -53,8 +53,8 @@ class Product(models.Model):
     game_of_the_month = models.BooleanField(default=False, null=True, blank=True)
     number_reviews = models.IntegerField()
     rating = models.DecimalField(max_digits=6, decimal_places=2)
-    boxart_url = models.URLField(max_length=1024, null=True, blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
+    boxart = models.ImageField(null=True, blank=True)
+    product_image = models.ImageField(null=True, blank=True)
     youtube_video_1 = models.URLField(max_length=1024, null=True, blank=True)
     youtube_video_2 = models.URLField(max_length=1024, null=True, blank=True)
 
