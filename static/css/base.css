@@ -239,6 +239,24 @@ a.bg-brown:hover{
     padding-top: 1rem;
 }
 
+/* Checkout Page */
+#spinner-overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.8;
+    z-index: 999;
+}
+
+#spinner-overlay img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 /* Footer */
 .social-media-icon {
     display: inline-block;
