@@ -29,6 +29,7 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart
+        print(cart)
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
@@ -77,7 +78,7 @@ class StripeWH_Handler:
 
         if order_exists:
             print("order exists")
-            self._send_order_confirmation_email(order)
+            #self._send_order_confirmation_email(order)
             self._update_product_inventory(order, cart)
             self._update_product_quantity_sold(order, cart)
             return HttpResponse(content=f"Webhook received: {event['type']} | SUCCESS: Order exists in the database", status=200)
@@ -106,22 +107,29 @@ class StripeWH_Handler:
                 )
                 for product_id, quantity in json.loads(cart).items():
                     product = Product.objects.get(id=product_id)
-                    lineitem_points_earned = ceil((product.price * quantity) * 10)
-                    order_line_item = OrderLineItem(
-                        order=order,
-                        product=product,
-                        quantity=quantity,
-                        lineitem_points_earned=lineitem_points_earned,
-                    )
-                    profile.loyalty_points += lineitem_points_earned
-                    profile.save()
+                    if profile:
+                        lineitem_points_earned = ceil((product.price * quantity) * 10)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=quantity,
+                            lineitem_points_earned=lineitem_points_earned,
+                        )
+                        profile.loyalty_points += lineitem_points_earned
+                        profile.save()
+                    else:
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=quantity,
+                        )
                     order_line_item.save()
             except Exception as e:
                 if order:
                     order.delete()
                     return HttpResponse(content=f"Webhook received: {event['type']} | ERROR: {e}", status=500)
 
-        self._send_order_confirmation_email(order)
+        #self._send_order_confirmation_email(order)
         self._update_product_inventory(order, cart)
         self._update_product_quantity_sold(order, cart)
         return HttpResponse(
