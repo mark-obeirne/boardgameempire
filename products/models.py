@@ -45,11 +45,11 @@ class Product(models.Model):
     designer = models.CharField(max_length=254)
     publisher = models.CharField(max_length=254)
     mechanic = models.ManyToManyField('Mechanic', blank=True, through='MechanicOfProduct')
-    price = models.DecimalField(max_digits=6, decimal_places=2)
     inventory = models.IntegerField()
     quantity_sold = models.IntegerField(default=0)
     on_sale = models.BooleanField(default=False, null=True, blank=True)
-    sale_price = models.DecimalField(max_digits=6, decimal_places=2)
+    sale_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     game_of_the_month = models.BooleanField(default=False, null=True, blank=True)
     number_reviews = models.IntegerField()
     rating = models.DecimalField(max_digits=6, decimal_places=2)
@@ -61,6 +61,11 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def get_current_price(self):
+        if self.on_sale:
+            return self.sale_price
+        else:
+            return self.price
 
 class CategoryToProduct(models.Model):
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
