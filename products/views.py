@@ -2,13 +2,20 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from .models import Product, Category, Mechanic
 from profiles.models import UserProfile
 from wishlists.models import Wishlist
-from django.db.models import Q
-from django.db.models.functions import Lower
+from django.db.models import Q, Case, When, Value
+from django.db.models.functions import Lower, Coalesce
+from django.db import models
 
 
 def all_products(request):
     """ View to display all products currently stocked """
     products = Product.objects.all()
+    #products_on_sale = Product.objects.filter(on_sale=True).annotate(current_price="sale_price")
+    #products_full_price = Product.objects.filter(on_sale=False).annotate(current_price="price")
+    #products = products.annotate(current_price=Case(
+    #            When(on_sale=True, then=Value("sale_price"), output_field=models.IntegerField()),
+    #            When(on_sale=False, then=Value("price"), output_field=models.IntegerField())))
+    
     sort = None
     direction = None
     query = None
@@ -20,15 +27,31 @@ def all_products(request):
     if "sort" in request.GET:
         sortkey = request.GET["sort"]
         sort = sortkey
-        if "sortkey" == "name":
+        print(sortkey)
+        if sortkey == "name":
             sortkey = "lower_name"
             products = products.annotate(lower_name=Lower("name"))
+
+        if sortkey == "price":
+            print("Yes, it's price")
+            sortkey = Coalesce("sale_price", "price")
+            print("Coalescing")
 
         if "direction" in request.GET:
             direction = request.GET["direction"]
             if direction == "desc":
-                sortkey = f"-{sortkey}"
-        products = products.order_by(sortkey)
+                if sortkey == Coalesce("sale_price", "price"):
+                    pass
+                else:
+                    sortkey = f"-{sortkey}"
+
+        if sortkey == Coalesce("sale_price", "price") and direction == "desc":
+            print("Trying to reverse Coalescing")
+            products = products.order_by(Coalesce("sale_price", "price"))
+            products = products.reverse()
+            print(products)
+        else:
+            products = products.order_by(sortkey)
 
     if "q" in request.GET:
         query = request.GET["q"]
@@ -51,7 +74,6 @@ def all_products(request):
 
     current_sorting = f"{sort}-{direction}"
     number_of_results = len(products)
-    print(number_of_results)
 
     context = {
         "products": products,
