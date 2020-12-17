@@ -17,27 +17,41 @@ def cache_checkout_data(request):
     try:
         print("Trying to modify")
         pid = request.POST.get("client_secret").split("_secret")[0]
+        print(pid)
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        print(stripe.api_key)
         gift_purchase = request.POST.get("gift_purchase", "")
-        points_used = int(request.POST.get("points_used"))
-        print(points_used)
-        intent = stripe.PaymentIntent.retrieve(pid)
-        amount = intent.get("amount")
-
-        if points_used > 0:
-            points_used = int(points_used / 5)
+        print(gift_purchase)
+        if request.user.is_authenticated:
+            print("authenticated")
+            points_used = int(request.POST.get("points_used"), 0)
             print(points_used)
-            amount -= points_used
-            print(amount)
+            intent = stripe.PaymentIntent.retrieve(pid)
+            amount = intent.get("amount")
 
-        stripe.PaymentIntent.modify(pid,
-                                    amount=amount,
-                                    metadata={
-                                        "cart": json.dumps(request.session.get("cart", {})),
-                                        "gift_purchase": gift_purchase,
-                                        "username": request.user,
-                                        "points_used": points_used,
-                                    })
+            if points_used > 0:
+                points_used = int(points_used / 5)
+                print(points_used)
+                amount -= points_used
+                print(amount)
+
+            stripe.PaymentIntent.modify(pid,
+                                        amount=amount,
+                                        metadata={
+                                            "cart": json.dumps(request.session.get("cart", {})),
+                                            "gift_purchase": gift_purchase,
+                                            "username": request.user,
+                                            "points_used": points_used,
+                                        })
+        else:
+            print("User not authenticated")
+            stripe.PaymentIntent.modify(pid,
+                                        metadata={
+                                            "cart": json.dumps(request.session.get("cart", {})),
+                                            "gift_purchase": gift_purchase,
+                                            "username": request.user,
+                                        })
+            print("Intent modified")
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, "Sorry, we can't process your payment at the moment. Please try again later.")
@@ -49,29 +63,50 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == "POST":
-        print(request.POST)
         cart = request.session.get("cart", {})
         gift_purchase = request.POST.get("gift_purchase", False)
         if gift_purchase == "on":
             gift_purchase = True
-        form_data = {
-            "full_name": request.POST["full_name"],
-            "email": request.POST["email"],
-            "street_address1": request.POST["street_address1"],
-            "street_address2": request.POST["street_address2"],
-            "town_or_city": request.POST["town_or_city"],
-            "county_or_state": request.POST["county_or_state"],
-            "postcode": request.POST["postcode"],
-            "country": request.POST["country"],
-            "billing_full_name": request.POST["billing_full_name"],
-            "billing_street_address1": request.POST["billing_street_address1"],
-            "billing_street_address2": request.POST["billing_street_address2"],
-            "billing_town_or_city": request.POST["billing_town_or_city"],
-            "billing_county_or_state": request.POST["billing_county_or_state"],
-            "billing_country": request.POST["billing_country"],
-            "gift_purchase": gift_purchase,
-            "points_used": request.POST["points_used"],
-        }
+        if request.user.is_authenticated:
+            form_data = {
+                "full_name": request.POST["full_name"],
+                "email": request.POST["email"],
+                "street_address1": request.POST["street_address1"],
+                "street_address2": request.POST["street_address2"],
+                "town_or_city": request.POST["town_or_city"],
+                "county_or_state": request.POST["county_or_state"],
+                "postcode": request.POST["postcode"],
+                "country": request.POST["country"],
+                "billing_full_name": request.POST["billing_full_name"],
+                "billing_street_address1": request.POST["billing_street_address1"],
+                "billing_street_address2": request.POST["billing_street_address2"],
+                "billing_town_or_city": request.POST["billing_town_or_city"],
+                "billing_county_or_state": request.POST["billing_county_or_state"],
+                "billing_country": request.POST["billing_country"],
+                "gift_purchase": gift_purchase,
+                "points_used": request.POST["points_used"],
+            }
+            print(form_data)
+        else:
+            form_data = {
+                "full_name": request.POST["full_name"],
+                "email": request.POST["email"],
+                "street_address1": request.POST["street_address1"],
+                "street_address2": request.POST["street_address2"],
+                "town_or_city": request.POST["town_or_city"],
+                "county_or_state": request.POST["county_or_state"],
+                "postcode": request.POST["postcode"],
+                "country": request.POST["country"],
+                "billing_full_name": request.POST["billing_full_name"],
+                "billing_street_address1": request.POST["billing_street_address1"],
+                "billing_street_address2": request.POST["billing_street_address2"],
+                "billing_town_or_city": request.POST["billing_town_or_city"],
+                "billing_county_or_state": request.POST["billing_county_or_state"],
+                "billing_country": request.POST["billing_country"],
+                "gift_purchase": gift_purchase,
+                "points_used": 0,
+            }
+            print(form_data)
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -84,6 +119,10 @@ def checkout(request):
             for product_id, quantity in cart.items():
                 try:
                     product = Product.objects.get(id=product_id)
+                    if quantity > product.inventory:
+                        messages.error(request, (f"Sorry! We currently have {product.inventory}x {product.name} in stock. Please update your cart."))
+                        order.delete()
+                        return redirect(reverse("view_cart"))
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
@@ -95,17 +134,18 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse("view_cart"))
 
-            points_used = int(request.POST.get('points_used', 0))
-            print("Order Valid")
-            print(points_used)
-            if points_used > 0:
-                current_cart = cart_contents(request)
-                cart_total = current_cart["grand_total"]
-                points_value = points_used / 5
-                cart_total = round(cart_total * 100)
-                total_minus_points = cart_total - points_value
-                order.grand_total = total_minus_points / 100
-                order.save()
+            if request.user.is_authenticated:
+                points_used = int(request.POST.get('points_used', 0))
+                print("Order Valid")
+                print(points_used)
+                if points_used > 0:
+                    current_cart = cart_contents(request)
+                    cart_total = current_cart["grand_total"]
+                    points_value = points_used / 5
+                    cart_total = round(cart_total * 100)
+                    total_minus_points = cart_total - points_value
+                    order.grand_total = total_minus_points / 100
+                    order.save()
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             print("Form is invalid")
@@ -156,13 +196,21 @@ def checkout(request):
             request,
             "Did you forget to set your Stripe public key in your environment?")
 
-    context = {
-        "order_form": order_form,
-        "stripe_public_key": "pk_test_51HieJBFDbEFsB8WkeMbtU3A1VOoXZiLUDK1R8dZNKmAIaLzLurFz2UR46wQe8NSSJlil7RlmTWpZZNCf8jKqb8wN00bhnWedj1",
-        "client_secret": intent.client_secret,
-        "profile": profile,
-    }
-    return render(request, "checkout/checkout.html", context)
+    if request.user.is_authenticated:
+        context = {
+            "order_form": order_form,
+            "stripe_public_key": "pk_test_51HieJBFDbEFsB8WkeMbtU3A1VOoXZiLUDK1R8dZNKmAIaLzLurFz2UR46wQe8NSSJlil7RlmTWpZZNCf8jKqb8wN00bhnWedj1",
+            "client_secret": intent.client_secret,
+            "profile": profile,
+        }
+        return render(request, "checkout/checkout.html", context)
+    else:
+        context = {
+            "order_form": order_form,
+            "stripe_public_key": "pk_test_51HieJBFDbEFsB8WkeMbtU3A1VOoXZiLUDK1R8dZNKmAIaLzLurFz2UR46wQe8NSSJlil7RlmTWpZZNCf8jKqb8wN00bhnWedj1",
+            "client_secret": intent.client_secret,
+        }
+        return render(request, "checkout/checkout.html", context)
 
 
 def checkout_success(request, order_number):
