@@ -18,9 +18,21 @@ def add_to_cart(request, product_id):
     quantity = int(request.POST.get("quantity"))
     redirect_url = request.POST.get("redirect_url")
 
+    # If user has stayed on a page for a while before adding products to cart, prevent them from adding more copies of a product to their cart than there are in stock
+    if quantity > product.inventory:
+        messages.error(request, f"Sorry! We don't have enough copies of {product.name} in stock to complete your request right now")
+        return redirect(redirect_url)
+
     if product_id in list(cart.keys()):
-        cart[product_id] += quantity
-        messages.success(request, f"{product.name} added to cart. You have {cart[product_id]}x {product.name} in your cart")
+        current_quantity = cart[product_id]
+        # Prevent user from adding quantities of a product to cart that would exceed the inventory in stock  
+        if current_quantity + quantity > product.inventory:
+            messages.error(request,
+                f"Sorry! You are trying to add too many copies of {product.name} to your cart. You currently have {cart[product_id]}x {product.name} in your cart")
+            return redirect(redirect_url)
+        else:
+            cart[product_id] += quantity
+            messages.success(request, f"{product.name} added to cart. You have {cart[product_id]}x {product.name} in your cart")
     else:
         cart[product_id] = quantity
         messages.success(request, f"{product.name} added to cart. You have {cart[product_id]}x {product.name} in your cart")
