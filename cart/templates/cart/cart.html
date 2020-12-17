@@ -25,7 +25,11 @@
                     </div>
                     <div class="col s12 m3">
                         <p>{{ item.product.name }}</p>
-                        <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
+                        {% if item.product.on_sale %}
+                            <p class="small">{{ item.quantity }} @ €{{ item.product.sale_price }}</p>
+                        {% else %}
+                            <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
+                        {% endif %}
                     </div>
                     <div class="col s12 m4">
                         <form class="form" method="POST" action="{% url 'update_cart' item.product_id %}">
@@ -42,7 +46,11 @@
                         </div>
                     </div>
                     <div class="col s12 m3 center-align">
-                        <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.price | calculate_subtotal:item.quantity }}</span>
+                        {% if item.product.on_sale %}
+                            <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</span>
+                        {% else %}
+                            <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.price | calculate_subtotal:item.quantity }}</span>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

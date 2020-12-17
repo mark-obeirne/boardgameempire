@@ -131,10 +131,18 @@
                         </div>
                         <div class="col s6 m6">
                             <p>{{ item.product.name }}</p>
-                            <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
+                            {% if item.product.on_sale %}
+                                <p class="small">{{ item.quantity }} @ €{{ item.product.sale_price }}</p>
+                            {% else %}
+                                <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
+                            {% endif %}
                         </div>
                         <div class="col s3 m3">
-                            <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
+                            {% if item.product.on_sale %}
+                                <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</span>
+                            {% else %}
+                                <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
