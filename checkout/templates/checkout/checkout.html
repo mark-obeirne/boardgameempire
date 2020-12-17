@@ -188,10 +188,12 @@
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         const pointsToUse = document.querySelector("#id_points_used")
-        const pointsAvailable = document.querySelector(".user-loyalty-points").textContent
-        pointsToUse.setAttribute("min", "0");
-        pointsToUse.setAttribute("max", pointsAvailable);
-        pointsToUse.setAttribute("step", "50");
+        if (pointsToUse) {
+            const pointsAvailable = document.querySelector(".user-loyalty-points").textContent
+            pointsToUse.setAttribute("min", "0");
+            pointsToUse.setAttribute("max", pointsAvailable);
+            pointsToUse.setAttribute("step", "50");
+        }
     })
     </script>
     
@@ -230,6 +232,7 @@
     <!--Change grand total to pay when points used-->
     <script type="text/javascript">
         const pointsToUse = document.querySelector("#id_points_used")
+        if (pointsToUse) {
         pointsToUse.addEventListener("change", function() {
             // Get cart total and points user has opted to use
             const cartTotal = document.querySelector(".cart-total")
@@ -255,6 +258,7 @@
             let grandTotal = document.querySelectorAll(".grand-total")
             grandTotal.forEach(total => total.innerText = cartTotalRemainingText)
         })
+        }
     </script>
 
 {% endblock %}
