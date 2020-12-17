@@ -51,6 +51,7 @@ const form = document.querySelector("#checkout-form")
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
+    let postData;
     const submitBtn = document.querySelector("#checkout-button")
     const spinnerOverlay = document.querySelector("#spinner-overlay")
     card.update({"disabled": true});
@@ -59,19 +60,31 @@ form.addEventListener("submit", function(e) {
     
     const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
     const giftPurchase = document.querySelector("#gift_purchase").checked
-    const pointsUsed = document.querySelector("#id_points_used").value
-    console.log(pointsUsed)
-    console.log(giftPurchase)
-    const postData = {
-        "csrfmiddlewaretoken": csrfToken,
-        "client_secret": clientSecret,
-        "gift_purchase": giftPurchase,
-        "points_used": pointsUsed
+    const pointsId = document.querySelector("#id_points_used")
+    
+    if (pointsId) {
+        const pointsUsed = pointsId.value
+        console.log(pointsUsed)
+        console.log(giftPurchase)
+        postData = {
+            "csrfmiddlewaretoken": csrfToken,
+            "client_secret": clientSecret,
+            "gift_purchase": giftPurchase,
+            "points_used": pointsUsed
+        }
+    } else {
+        console.log(giftPurchase)
+        postData = {
+            "csrfmiddlewaretoken": csrfToken,
+            "client_secret": clientSecret,
+            "gift_purchase": giftPurchase
+        }
+        console.log(postData)
     }
-    console.log(postData)
     const url = "/checkout/cache_checkout_data/";
 
     $.post(url, postData).done(function () {
+        console.log("received response")
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -120,61 +133,4 @@ form.addEventListener("submit", function(e) {
         // just reload the page, the error will be in django messages
         location.reload();
     })
-
-    /*
-    Use JQuery for now...
-    let request = new XMLHttpRequest();
-    request.open('POST', url, true);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    request.send(url, postData);
-    request.addEventListener("load", function(e) {
-        alert("Sent!")
-        stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-            billing_details: {
-                name: form.billing_full_name.value.trim(),
-                email: form.email.value.trim(),
-                address: {
-                    line1: form.billing_street_address1.value.trim(),
-                    line2: form.billing_street_address2.value.trim(),
-                    city: form.billing_town_or_city.value.trim(),
-                    state: form.billing_county_or_state.value.trim(),
-                    country: form.billing_country.value.trim(),
-                }
-            }
-        },
-        shipping: {
-            name: form.full_name.value.trim(),
-            address: {
-                line1: form.street_address1.value.trim(),
-                line2: form.street_address2.value.trim(),
-                city: form.town_or_city.value.trim(),
-                state: form.county_or_state.value.trim(),
-                postal_code: form.postcode.value.trim(),
-                country: form.country.value.trim(),
-                }
-            },
-    }).then(function(result) {
-        if(result.error) {
-            const errorDiv = document.querySelector("#card-errors");
-            const errorHtml = `
-            <span class="icon" role="alert">
-                <i class="fas fa-exclamation-triangle error"></i>
-            </span>
-            <span>${result.error.message}</span>
-            `;
-            errorDiv.innerHTML = errorHtml;
-            card.update({"disabled": true});
-            submitBtn.setAttribute("disabled", true);
-        } else {
-            if (result.paymentIntent.status === "succeeded") {
-                form.submit()
-            }
-        }
-    })
-    })
-    request.addEventListener("error", function(e) {
-        location.reload();  
-    })*/
 })
