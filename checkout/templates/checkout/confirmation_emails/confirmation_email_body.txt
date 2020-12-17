@@ -8,7 +8,11 @@ Order Date: {{ order.order_date }}
 
 {% for item in order.lineitems.all %}
 Item: {{ item.product.name }}
-Quantity & Price Each: {{ item.quantity }} @ €{{ item.product.price }}
+{% if item.product.on_sale %}
+    Quantity & Price Each: {{ item.quantity }} @ €{{ item.product.sale_price }}
+{% else %}
+    Quantity & Price Each: {{ item.quantity }} @ €{{ item.product.price }}
+{% endif %}
 {% endfor %}
 
 Order Total: €{{ order.order_total }}

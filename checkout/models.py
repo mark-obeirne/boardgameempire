@@ -76,6 +76,9 @@ class OrderLineItem(models.Model):
 
     def save(self, *args, **kwargs):
         """ Override original save method to set the lineitem total and the loyalty points earned """
-        self.lineitem_total = self.product.price * self.quantity
+        if self.product.on_sale:
+            self.lineitem_total = self.product.sale_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
         self.lineitem_points_earned = Round(self.lineitem_total * 10)
         super().save(*args, **kwargs)
