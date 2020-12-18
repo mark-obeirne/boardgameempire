@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from .models import Product, Category, Mechanic
 from profiles.models import UserProfile
 from wishlists.models import Wishlist
+from reviews.models import Review
 from django.db.models import Q, Case, When, Value
 from django.db.models.functions import Lower, Coalesce
 from django.db import models
@@ -90,7 +91,11 @@ def all_products(request):
 def product_detail(request, product_id):
     """ Return details of an individual product """
     product = get_object_or_404(Product, pk=product_id)
+    average_rating = 0
+    if product.number_reviews > 0:
+        average_rating = product.total_rating / product.number_reviews
     on_wishlist = False
+    review_list = Review.objects.filter(product=product)
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         users_wishlist = Product.objects.filter(wishlist__user_profile=user)
@@ -100,6 +105,8 @@ def product_detail(request, product_id):
     context = {
         "product": product,
         "on_wishlist": on_wishlist,
+        "review_list": review_list,
+        "average_rating": average_rating,
     }
     return render(request, "products/product_detail.html", context)
 

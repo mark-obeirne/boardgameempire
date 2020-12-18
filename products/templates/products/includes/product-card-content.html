@@ -24,7 +24,12 @@
 {% endif %}
 
 
-<p>{{ product.rating }}</p>
+{% if average_rating %}
+<p class="small">Rating: {{ average_rating | floatformat:1 }}/5</p>
+{% else %}
+<p class="small">Product not yet rated</p>
+{% endif %}
+
 <p>{{ product.description }}</p>
 <div class="row">
     <div class="col s12 m6">

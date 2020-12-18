@@ -265,6 +265,19 @@ a.bg-brown:hover{
     left: 30%;
 }
 
+/* Review Page */
+.input-field>label {
+    position: relative;
+}
+
+#id_review_text {
+    height: 20rem;
+}
+
+#id_rating {
+    display: block;
+}
+
 /* Footer */
 .social-media-icon {
     display: inline-block;
