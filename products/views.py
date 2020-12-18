@@ -6,6 +6,7 @@ from reviews.models import Review
 from django.db.models import Q, Case, When, Value
 from django.db.models.functions import Lower, Coalesce
 from django.db import models
+from django.contrib import messages
 
 
 def all_products(request):
@@ -57,6 +58,7 @@ def all_products(request):
     if "q" in request.GET:
         query = request.GET["q"]
         if not query:
+            messages.error(request, "You did not enter a search term")
             return redirect(reverse('products'))
         queries = Q(name__icontains=query) | Q(designer__icontains=query) | Q(publisher__icontains=query) 
         products = products.filter(queries)
