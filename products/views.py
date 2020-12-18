@@ -91,6 +91,9 @@ def all_products(request):
 def product_detail(request, product_id):
     """ Return details of an individual product """
     product = get_object_or_404(Product, pk=product_id)
+    average_rating = 0
+    if product.number_reviews > 0:
+        average_rating = product.total_rating / product.number_reviews
     on_wishlist = False
     review_list = Review.objects.filter(product=product)
     if request.user.is_authenticated:
@@ -103,6 +106,7 @@ def product_detail(request, product_id):
         "product": product,
         "on_wishlist": on_wishlist,
         "review_list": review_list,
+        "average_rating": average_rating,
     }
     return render(request, "products/product_detail.html", context)
 
