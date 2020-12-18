@@ -32,6 +32,10 @@ def write_review(request, product_id):
             review.user_profile = user_profile
             review.rating = rating
             review.save()
+
+            product.total_rating += review.rating
+            product.number_reviews += 1
+            product.save()
             messages.success(request, "Thank you for your review")
             return redirect(reverse('product_detail', args=[product.id]))
         else:
