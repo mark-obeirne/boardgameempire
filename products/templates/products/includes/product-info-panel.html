@@ -12,7 +12,14 @@
             <p><i class="fas fa-truck-loading prefix"></i> Publisher: {{ product.publisher }}</p>
         </div>
         <div class="reviews-panel col s12" id="reviews-panel">
-            <p>User Reviews</p>
+            {% for review in review_list %}
+                <div class="row">
+                        <h3 class="bold">{{ review.review_title }}</h3>
+                        <span class="rating">Rating: {{ review.rating }}/5</span>
+                        <p>{{ review.review_text }}</p>
+                        <p class="small">{{ review.date_published }}</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
