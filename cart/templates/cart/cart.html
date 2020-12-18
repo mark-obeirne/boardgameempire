@@ -21,7 +21,7 @@
             {% for item in items_in_cart %}
                 <div class="row grey-bottom-border">
                     <div class="col s12 m2">
-                        <p>Image</p>
+                        <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
                     </div>
                     <div class="col s12 m3">
                         <p>{{ item.product.name }}</p>

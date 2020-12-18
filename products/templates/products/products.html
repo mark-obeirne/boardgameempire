@@ -100,7 +100,7 @@
                         {% endif %}
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">{{ product.name }}</h3>
+                        <h3 class="card-title"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h3>
                         {% if product.on_sale %}
                             <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
                         {% else %}
