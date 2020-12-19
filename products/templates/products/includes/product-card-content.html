@@ -4,7 +4,7 @@
     <p>€{{ product.price }}</p>
 {% endif %}
 
-{% if product.inventory == 0%}
+{% if product.inventory <= 0%}
 <span class="stock-info out-of-stock inline-block bold">
     Sorry! Out of stock
 </span>

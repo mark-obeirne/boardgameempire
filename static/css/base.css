@@ -13,7 +13,9 @@ body {
   margin: 0;
 }
 
+
 /* Display Settings */
+
 .fixed {
   position: fixed;
   z-index: 2;
@@ -43,7 +45,9 @@ footer .row {
     margin-bottom: 0;
 }
 
+
 /* Fonts */
+
 .small {
     font-size: 1.2rem;
 }
@@ -58,6 +62,7 @@ footer .row {
 
 
 /* Buttons */
+
 .search-btn {
     padding: 0;
     border: none;
@@ -80,7 +85,16 @@ footer .row {
     margin-bottom: 2rem;
 }
 
+/* Images */
+
+.card-image {
+    padding: 2rem;
+    overflow: hidden;
+}
+
+
 /* Nav Menu */
+
 .navbar-fixed {
     height: 12rem;
 }
@@ -110,7 +124,9 @@ nav .bottom-nav-row ul a {
     margin-left: 0.5rem;
 }
 
+
 /* Messages */
+
 .message-container {
     width: 100%;
 }
@@ -132,7 +148,9 @@ nav .bottom-nav-row ul a {
     padding: 1rem;
 }
 
+
 /* Colours */
+
 body {
     background-color: #cde6d0;
 }
@@ -165,7 +183,9 @@ a.bg-brown:hover{
     border-bottom: 1px solid #d3d3d3;
 }
 
+
 /* Slider */
+
 .slider-overlay {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0.3));
     height: 100%;
@@ -189,14 +209,40 @@ a.bg-brown:hover{
     background-color: #392417;
 }
 
+
 /* Products Page */
+
 .filter-panel {
     background-color: white;
     width: 100%;
     height: 100%;
 }
 
+/*.product-card {
+    height: 500px;
+}*/
+
+.product-card .card-action {
+    height: 10rem;
+    margin: 1rem
+}
+
+.product-card .card-action .btn:first-of-type {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    width: 100%;
+}
+
+.product-card .card-action .btn:last-child {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 /* Product Displays */
+
 #product-qty-input {
     width: 12%;
     margin: 0;
@@ -238,7 +284,9 @@ a.bg-brown:hover{
     color: white;
 }
 
+
 /* Cart Page */
+
 .subtotal {
     margin-top: 1rem;
 }
@@ -247,7 +295,9 @@ a.bg-brown:hover{
     padding-top: 1rem;
 }
 
+
 /* Checkout Page */
+
 #spinner-overlay {
     height: 100vh;
     width: 100vw;
@@ -265,7 +315,9 @@ a.bg-brown:hover{
     left: 30%;
 }
 
+
 /* Review Page */
+
 .input-field>label {
     position: relative;
 }
@@ -278,14 +330,24 @@ a.bg-brown:hover{
     display: block;
 }
 
+
 /* Footer */
+
 .social-media-icon {
     display: inline-block;
     font-size: 2rem;
     padding: .5rem;
 }
 
+
 /* Media Queries */
+
+@media screen and (min-width: 600px) {
+    .product-card {
+        min-height: 550px;
+    }
+}
+
 @media screen and (min-width: 768px) {
     #spinner-overlay img {
         left: 40%;
@@ -315,5 +377,11 @@ a.bg-brown:hover{
 
     #spinner-overlay img {
         left: 50%;
+    }
+}
+
+@media screen and (min-width: 1680px) {
+    .product-card {
+        min-height: 600px;
     }
 }

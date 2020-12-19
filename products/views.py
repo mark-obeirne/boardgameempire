@@ -65,12 +65,14 @@ def all_products(request):
 
     if "category" in request.GET:
         category = request.GET["category"]
+        query = category
         category = categories.filter(name=category)
         for entry in category:
             products = products.filter(category=entry.pk)
 
     if "mechanic" in request.GET:
         mechanic = request.GET["mechanic"]
+        query = mechanic
         mechanic = mechanics.filter(name=mechanic)
         for entry in mechanic:
             products = products.filter(mechanic=entry.pk)
