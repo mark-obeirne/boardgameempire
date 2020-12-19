@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1>Contact Us</h1>
+<div class="container bg-light">
+    <div class="row">
+        <div class="col s12">
+            <form action="{% url 'contact_us' %}" method="POST">
+                {% csrf_token %}
+                {{ form| crispy }}
+                <button>Send Email</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
