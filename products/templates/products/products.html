@@ -8,12 +8,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row hide-on-med-and-up">
-        <!--Button to display available filters on mobile-->
-        <div class="col s4">
-            <a href="#" class="waves-effect waves-light btn">Filters</a>
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col s12">
+                <p>Showing {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
+            </div>
+            <!--Button to display available filters on mobile-->
+            <div class="col s12">
+                <a href="#" class="waves-effect waves-light btn">Filters</a>
+            </div>
+        <!--If current filters
+            <div class="col s8">
+            Current Filters:
+        </div>-->
         </div>
-        <div class="input-field browser-default col s8">
+        <div class="row">
+            <div class="input-field browser-default col s6">
             <!--Sort selection dropdown-->
             <select id="mobile-sort-select-dropdown" name="mobile-sort-select-dropdown" class="sort-select-dropdown">
                 <option value="reset" disabled {% if current_sorting == "None-None" %}selected{% endif %}>Sort By</option>
@@ -39,16 +49,11 @@
                 </optgroup>
             </select>
             <label for="mobile-sort-select-dropdown">{% if current_sorting != "None-None" %}Currently Sorting By: {% else %}Select Product Sorting{% endif %}</label>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s12 hide-on-med-and-up">
-            Current Filters:
-        </div>
-    </div>
     <div class="row">
         <!--Filters panel-->
-        <div class="fixed filter-panel col hide-on-small-only m2">
+        <!--<div class="fixed filter-panel col hide-on-small-only m2">
                 <h2>Filters</h2>
                 <h3>Min Players</h3>
                 <h3>Max Players</h3>
@@ -56,12 +61,10 @@
                 <h3>Typical Playtime</h3>
                 <h3>User Rating</h3>
                 <h3>Price</h3>
-        </div>
-        <div class="col s12 m4 push-m2">
-                <p>Showing x-x of {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
-            </div>
-        <div class="input-field col hide-on-small-only m6 push-m2">
-            <!--Sort selection dropdown-->
+        </div>-->
+            
+        <!--<div class="input-field col hide-on-small-only m6 push-m2">
+            Sort selection dropdown
             <select id="sort-select-dropdown" name="sort-select-dropdown" class="sort-select-dropdown">
                 <option value="reset" disabled {% if current_sorting == "None-None" %}selected{% endif %}>Sort By</option>
                 <optgroup label="Alphabetically">
@@ -86,12 +89,12 @@
                 </optgroup>
             </select>
             <label for="sort-select-dropdown">{% if current_sorting != "None-None" %}Currently Sorting By: {% else %}Select Product Sorting{% endif %}</label>
-        </div>
-        <div class="products-panel">
+        </div>-->
+        <div class="products-panel col s12">
             <!--Products-->
             {% for product in products %}
-            <div class="col s12 m8 push-m2 l5 push-l2">
-                <div class="card center-align">
+            <div class="col s12 m6 l4 xl3">
+                <div class="card center-align product-card">
                     <div class="card-image">
                         {% if product.boxart %}
                         <img src="{{ product.boxart.url }}" class="responsive-img">
@@ -121,6 +124,7 @@
             {% endfor %}
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
