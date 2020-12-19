@@ -4,8 +4,10 @@ from .forms import ReviewForm
 from .models import Review
 from profiles.models import UserProfile
 from products.models import Product
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def write_review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm()
