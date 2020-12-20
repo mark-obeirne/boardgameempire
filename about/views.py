@@ -28,7 +28,7 @@ def contact_us(request):
             message = form.cleaned_data["message"]
             try:
                 send_mail(subject, message, from_email, ["boardgameempire@example.com"])
-                messages.success(request, "Thank you for your email! We will be in touch.")
+                messages.success(request, "Email sent!")
             except BadHeaderError:
                 return HttpResponse("Invalid header found.")
             return redirect("contact_success")
