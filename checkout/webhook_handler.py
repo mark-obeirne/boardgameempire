@@ -78,7 +78,7 @@ class StripeWH_Handler:
 
         if order_exists:
             print("order exists")
-            #self._send_order_confirmation_email(order)
+            self._send_order_confirmation_email(order)
             self._update_product_inventory(order, cart)
             self._update_product_quantity_sold(order, cart)
             return HttpResponse(content=f"Webhook received: {event['type']} | SUCCESS: Order exists in the database", status=200)
@@ -129,7 +129,7 @@ class StripeWH_Handler:
                     order.delete()
                     return HttpResponse(content=f"Webhook received: {event['type']} | ERROR: {e}", status=500)
 
-        #self._send_order_confirmation_email(order)
+        self._send_order_confirmation_email(order)
         self._update_product_inventory(order, cart)
         self._update_product_quantity_sold(order, cart)
         return HttpResponse(
