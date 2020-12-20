@@ -1,4 +1,3 @@
-
 // Materialize Initialisations
 
 // Initialise Materialize Sidenav Menu
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
    
-// Initialise Materialize Dropdown
+// Initialise Materialize Dropdown for larger devices with hover
 
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.dropdown-trigger');
