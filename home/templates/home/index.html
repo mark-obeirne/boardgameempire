@@ -5,144 +5,91 @@
 {% block content %}
     <!--Slider-->
     <div class="slider">
-        <ul class="slides">
-            <li>
-                <div class="slider-overlay">&nbsp;</div>
-                <div class="caption left-align">
-                    <h1 class="brown-text">Publisher Spotlight</h1>
-                    <p class="brown-text">Check out the best games from Asmodee</p>
-                    <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Shop the range</a>
-                </div>
-                <img src="https://azure.wgp-cdn.co.uk/app-table-top-gaming/posts/DSC_4587-38154.jpg" alt="Test Image">
-            </li>
-            <li>
-                <div class="slider-overlay">&nbsp;</div>
-                <div class="caption left-align">
-                    <h1 class="brown-text">Sales</h1>
-                    <p class="brown-text">Christmas is coming! Pick up the perfect gift at a discounted price.</p>
-                    <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> See our deals</a>
-                </div>
-                <img src="https://cdn.pixabay.com/photo/2017/10/26/19/45/christmas-2892235_960_720.png" alt="Test Image">
-            </li>
-            <li>
-                <div class="slider-overlay">&nbsp;</div>
-                <div class="caption left-align">
-                    <h1 class="brown-text">Game of the Month</h1>
-                    <p class="brown-text"><span class="bold">Hanabi</span> - a cooperative game where players try to create the perfect fireworks display.</p>
-                    <p class="brown-text">The perfect game to break out for New Years.</p>
-                    <a class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Shop the range</a>
-                </div>
-                <img src="https://stellar.ie/wp-content/uploads/2020/07/Screen-Shot-2020-07-03-at-15.02.48.png" alt="Test Image">
-            </li>
-        </ul>
+        {% include 'home/includes/homepage-slider.html' %}
     </div>
 
     <div class="container bg-white">
         <!--Featured Best Seller-->
         <div class="best-seller">
-            <h2 class="center-align">Featured Best Seller</h2>
             <div class="row">
-                <div class="col s12 hide-on-med-and-up">
-                    <div class="card center-align">
-                        <div class="card-image">
+                <div class="col s12 card padding-2">
+                    <h2 class="center-align text-brown bold small-caps">Featured Best Seller</h2>
+                    <div class="col s12 m6 l4 center-align">
                         <img src="{{ best_seller.boxart.url }}" class="responsive-img">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">{{ best_seller.name }}</h3>
+                    </div>
+                    <div class="col s12 m6 l8">
+                        <h3 class="small-caps">{{ best_seller.name }}</h3>
+                        {% if best_seller.on_sale %}
+                            <p><s class="sale-strikethrough">({{ best_seller.price }})</s> {{ best_seller.sale_price }}</p>
+                        {% else %}
                             <p>€{{ best_seller.price }}</p>
-                            <p>{{ best_seller.rating }}</p>
-                            <p>{{ best_seller.description }}</p>
-                            <div class="card-action">
-                                <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
-                                    {% if best_seller.inventory > 0 %}
-                                    <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
-                                        {% csrf_token %}
-                                        <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}">-</span>
-                                        <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
-                                        <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}">+</span>
-                                        <input type="submit" class="waves-effect waves-light btn" value="Add to Cart">
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                    </form>
-                                    {% else %}
-                                        <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
-                                    {% endif %}
+                        {% endif %}
+                        <p>{{ best_seller.description|truncatechars:500 }}</p>
+                        <div class="product-btns center-align">
+                            <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn product-btn bg-brown"><i class="fas fa-eye prefix"></i> More Details</a>
+                            <div class="quantity-field margin-t1 last-btn">
+                                {% if best_seller.inventory > 0 %}
+                                <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
+                                    {% csrf_token %}
+                                    <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}"><i class="fas fa-minus-square text-brown"></i></span>
+                                    <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
+                                    <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}"><i class="fas fa-plus-square text-brown"></i></span>
+                                    <button class="btn waves-effect waves-light text-light bg-brown" id="add-cart-btn" type="submit" name="action"><i class="far fa-credit-card"></i> 
+                                        Add to Cart
+                                    </button>
+                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                </form>
+                                {% else %}
+                                    <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
+                                {% endif %}
                             </div>
                         </div>
+                    <div class="col margin-t1 center-align">
+                        <a href="{% url 'products' %}">Or Shop All Boardgames <i class="fas fa-caret-square-right prefix"></i></a>
                     </div>
-                    <a href="{% url 'products' %}">Shop All Boardgames <i class="fas fa-caret-square-right prefix"></i></a>
-                </div>
-                <div class="col m12 hide-on-small-only">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                        <img src="{{ best_seller.boxart.url }}" class="responsive-img">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h3 class="card-title">{{ best_seller.name }}</h3>
-                                <p>€{{ best_seller.price }}</p>
-                                <p>{{ best_seller.rating }}</p>
-                                <p>{{ best_seller.description }}</p>
-                                <div class="card-action center-align">
-                                    <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
-                                    {% if best_seller.inventory > 0 %}
-                                    <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
-                                        {% csrf_token %}
-                                        <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}">-</span>
-                                        <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
-                                        <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}">+</span>
-                                        <input type="submit" class="waves-effect waves-light btn" value="Add to Cart">
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                    </form>
-                                    {% else %}
-                                        <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <a href="{% url 'products' %}">Shop All Boardgames <i class="fas fa-caret-square-right prefix"></i></a>
                 </div>
             </div>
-            <!--Why Us?-->
-            <h2 class="center-align">Why Boardgame Empire?</h2>
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title center-align uppercase">Free Delivery Over €50</span>
-                            <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket, but if you're anything like us it'll be used for more boardgames!</p>
-                        </div>
-                        <div class="card-action center-align">
-                            <a href="{% url 'products' %}"><i class="fas fa-store-alt prefix"></i> Browse All Boardgames</a>
-                        </div>
+        </div>
+        
+        <!--Why Us?-->
+        <h2 class="center-align text-brown small-caps">Why Boardgame Empire?</h2>
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content text-brown">
+                        <span class="card-title center-align uppercase bold grey-bottom-border">Free Delivery Over €50</span>
+                        <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket! Buuuut if you're anything like us it'll be used for more boardgames!</p>
                     </div>
-                </div>            
-                <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title center-align uppercase">Earn Loyalty Points</span>
-                            <p>Sign in to (or sign up for) your Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
-                        </div>
-                        <div class="card-action center-align">
-                        <a href="#"><i class="fas fa-piggy-bank prefix"></i> Find Out More</a>
-                        </div>
+                    <div class="center-align">
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-store-alt prefix text-light"></i> Start Shopping</a>
                     </div>
                 </div>
-                <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title center-align uppercase">Can't See A Game Listed?</span>
-                            <p>If we don't currently stock a boardgame that you're interested in, please contact us and we'll see if we can get our hands on it for you.</p>
-                        </div>
-                        <div class="card-action center-align">
-                        <a href="#"><i class="fas fa-envelope prefix"></i> Contact Us</a>
-                        </div>
+            </div>            
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content text-brown">
+                        <span class="card-title center-align uppercase bold grey-bottom-border">Earn Loyalty Points</span>
+                        <p><a href="{% url 'account_login' %}">Sign in to</a> (or <a href="{% url 'account_signup' %}">sign up for</a>) a Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
+                    </div>
+                    <div class="center-align">
+                    <a href="{% url 'loyalty' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-piggy-bank prefix text-light"></i> Find Out More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content text-brown">
+                        <span class="card-title center-align uppercase bold grey-bottom-border">Can't See A Game Listed?</span>
+                        <p>If we don't stock a boardgame that you're interested in, or it's currently out of stock, please contact us. We'll see if we can get our hands on it for you or when it will be available.</p>
+                    </div>
+                    <div class="center-align">
+                    <a href="{% url 'contact_us' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-envelope prefix prefix text-light"></i> Contact Us</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block postloadjs %}
