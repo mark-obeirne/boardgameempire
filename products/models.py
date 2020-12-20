@@ -10,7 +10,7 @@ class Category(models.Model):
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(
-        max_length=254, null=True, blank=True)
+        max_length=254, blank=True, default=name)
 
     def __str__(self):
         return self.name
@@ -23,7 +23,7 @@ class Mechanic(models.Model):
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(
-        max_length=254, null=True, blank=True)
+        max_length=254, blank=True, default=name)
 
     def __str__(self):
         return self.name
@@ -33,30 +33,42 @@ class Mechanic(models.Model):
 
 
 class Product(models.Model):
-    sku = models.CharField(max_length=254, null=True, blank=True)
+    sku = models.CharField(max_length=254, blank=True, null=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    min_players = models.IntegerField()
-    max_players = models.IntegerField()
-    min_age = models.IntegerField()
-    playing_time = models.IntegerField()
-    year_published = models.IntegerField()
-    category = models.ManyToManyField('Category', blank=True, through='CategoryToProduct')
-    designer = models.CharField(max_length=254)
-    publisher = models.CharField(max_length=254)
-    mechanic = models.ManyToManyField('Mechanic', blank=True, through='MechanicOfProduct')
-    inventory = models.IntegerField()
+    min_players = models.IntegerField(null=False, blank=False)
+    max_players = models.IntegerField(null=False, blank=False)
+    min_age = models.IntegerField(null=False, blank=False)
+    playing_time = models.IntegerField(null=False, blank=False)
+    year_published = models.IntegerField(null=False, blank=False)
+    category = models.ManyToManyField('Category',
+                                      blank=True,
+                                      through='CategoryToProduct')
+    designer = models.CharField(max_length=254, null=False, blank=False)
+    publisher = models.CharField(max_length=254, null=False, blank=False)
+    mechanic = models.ManyToManyField('Mechanic',
+                                      blank=True,
+                                      through='MechanicOfProduct')
+    inventory = models.IntegerField(default=0, null=False, blank=False)
     quantity_sold = models.IntegerField(default=0)
     on_sale = models.BooleanField(default=False, null=True, blank=True)
-    sale_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    sale_price = models.DecimalField(
+                                     max_digits=6,
+                                     decimal_places=2,
+                                     null=True,
+                                     blank=True
+                                     )
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    game_of_the_month = models.BooleanField(default=False, null=True, blank=True)
+    game_of_the_month = models.BooleanField(
+                                            default=False,
+                                            null=True,
+                                            blank=True)
     number_reviews = models.IntegerField(default=0)
     total_rating = models.IntegerField(default=0)
-    boxart = models.ImageField(null=True, blank=True)
-    product_image = models.ImageField(null=True, blank=True)
-    youtube_video_1 = models.URLField(max_length=1024, null=True, blank=True)
-    youtube_video_2 = models.URLField(max_length=1024, null=True, blank=True)
+    boxart = models.ImageField(blank=True, null=True)
+    product_image = models.ImageField(blank=True, null=True)
+    youtube_video_1 = models.CharField(max_length=50, blank=True, null=True)
+    youtube_video_2 = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -67,17 +79,38 @@ class Product(models.Model):
         else:
             return self.price
 
+
 class CategoryToProduct(models.Model):
-    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(
+                                Product,
+                                null=True,
+                                blank=True,
+                                on_delete=models.SET_NULL
+                                )
+    category = models.ForeignKey(
+                                 Category,
+                                 null=True,
+                                 blank=True,
+                                 on_delete=models.SET_NULL
+                                 )
 
     def __str__(self):
-        return f"{self.product.name} has the following categories: {self.category.name}"
+        return f"Manage {self.category.name}"
 
 
 class MechanicOfProduct(models.Model):
-    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
-    mechanic = models.ForeignKey(Mechanic, null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(
+                                Product,
+                                null=True,
+                                blank=True,
+                                on_delete=models.SET_NULL
+                                )
+    mechanic = models.ForeignKey(
+                                 Mechanic,
+                                 null=True,
+                                 blank=True,
+                                 on_delete=models.SET_NULL
+                                 )
 
     def __str__(self):
-        return f"{self.product.name} has the following mechanics: {self.mechanic.name}"
+        return f"Manage {self.mechanic.name}"
