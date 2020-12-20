@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1>All Reviews for {{ product.name }}</h1>
+<div class="container bg-light">
+    <div class="row">
+        <div class="col s12">
+            {% if all_reviews %}
+                {% for review in all_reviews %}
+                    <div class="row review-row grey-bottom-border">
+                        <div class="col s12">
+                            <h4>{{ review.review_title }}</h4>
+                            <p class="small review-author">By {{ review.user_profile }}</p>
+                            <span class="rating">Rating: {{ review.rating }}/5</span>
+                            <p>{{ review.review_text|truncatechars:100 }}</p>
+                            {% if review.review_text|length > 100 %}
+                                <p class="small review-link"><a href="{% url 'full_review' review.id %}">Read full review</a></p>
+                            {% endif %}
+                            <p class="small">{{ review.date_published }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to {{ product.name }}</a>
+            {% else %}
+                <div class="row">
+                    <div class="col s12">
+                    <p>This product is not yet rated.</p>
+                    <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to {{ product.name }}</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
