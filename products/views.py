@@ -12,11 +12,6 @@ from django.contrib import messages
 def all_products(request):
     """ View to display all products currently stocked """
     products = Product.objects.all()
-    #products_on_sale = Product.objects.filter(on_sale=True).annotate(current_price="sale_price")
-    #products_full_price = Product.objects.filter(on_sale=False).annotate(current_price="price")
-    #products = products.annotate(current_price=Case(
-    #            When(on_sale=True, then=Value("sale_price"), output_field=models.IntegerField()),
-    #            When(on_sale=False, then=Value("price"), output_field=models.IntegerField())))
     
     sort = None
     direction = None
@@ -99,7 +94,7 @@ def product_detail(request, product_id):
     if product.number_reviews > 0:
         average_rating = product.total_rating / product.number_reviews
     on_wishlist = False
-    review_list = Review.objects.filter(product=product)
+    latest_reviews = Review.objects.filter(product=product).order_by("-date_published")[0:2]
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         users_wishlist = Product.objects.filter(wishlist__user_profile=user)
@@ -109,7 +104,7 @@ def product_detail(request, product_id):
     context = {
         "product": product,
         "on_wishlist": on_wishlist,
-        "review_list": review_list,
+        "latest_reviews": latest_reviews,
         "average_rating": average_rating,
     }
     return render(request, "products/product_detail.html", context)
