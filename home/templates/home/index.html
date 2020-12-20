@@ -26,7 +26,7 @@
                         {% endif %}
                         <p>{{ best_seller.description|truncatechars:500 }}</p>
                         <div class="product-btns center-align">
-                            <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn product-btn bg-brown"><i class="fas fa-eye prefix"></i> More Details</a>
+                            <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn details-btn bg-brown"><i class="fas fa-eye prefix"></i> More Details</a>
                             <div class="quantity-field margin-t1 last-btn">
                                 {% if best_seller.inventory > 0 %}
                                 <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     <div class="col margin-t1 center-align">
-                        <a href="{% url 'products' %}">Or Shop All Boardgames <i class="fas fa-caret-square-right prefix"></i></a>
+                        <p><a href="{% url 'products' %}" class="underlined">Or Shop All Boardgames <i class="fas fa-caret-square-right underlined prefix"></i></a></p>
                     </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
         <!--Why Us?-->
         <h2 class="center-align text-brown small-caps bold">Why Boardgame Empire?</h2>
         <div class="row">
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card">
                     <div class="card-content text-brown">
                         <span class="card-title center-align uppercase bold grey-bottom-border">Free Delivery Over €50</span>
@@ -66,18 +66,18 @@
                     </div>
                 </div>
             </div>            
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card">
                     <div class="card-content text-brown">
                         <span class="card-title center-align uppercase bold grey-bottom-border">Earn Loyalty Points</span>
-                        <p><a href="{% url 'account_login' %}">Sign in to</a> (or <a href="{% url 'account_signup' %}">sign up for</a>) a Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
+                        <p><a href="{% url 'account_login' %}" class="underlined">Sign in to</a> (or <a href="{% url 'account_signup' %}" class="underlined">sign up for</a>) a Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
                     </div>
                     <div class="center-align">
                     <a href="{% url 'loyalty' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-piggy-bank prefix text-light"></i> Find Out More</a>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card">
                     <div class="card-content text-brown">
                         <span class="card-title center-align uppercase bold grey-bottom-border">Can't See A Game Listed?</span>
@@ -93,13 +93,8 @@
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.slider');
-        var instances = M.Slider.init(elems, {
-            duration: 700
-        });
-    });
-</script>
+    {{ block.super }}
+    <script src="{% static 'js/home.js' %}"></script>
+
+    {% include 'products/includes/quantity_adjustment_script.html' %}
 {% endblock %}

@@ -76,6 +76,10 @@ footer .row {
     font-variant: small-caps;
 }
 
+.underlined {
+    text-decoration: underline;
+}
+
 
 /* Buttons */
 
@@ -399,6 +403,12 @@ input[type="submit" i] {
     }
 }
 
+@media screen and (min-width: 726px) {
+    .details-btn {
+        width: 100%;
+    }
+}
+
 @media screen and (min-width: 768px) {
     #spinner-overlay img {
         left: 40%;
@@ -428,6 +438,10 @@ input[type="submit" i] {
 
     #spinner-overlay img {
         left: 50%;
+    }
+
+    .details-btn {
+        width: 42%;
     }
 }
 

@@ -92,57 +92,7 @@
         </footer>
 
         {% block postloadjs %}
-            <!--Initialise Materialize Sidenav Menu-->
-            <script type="text/javascript">
-                document.addEventListener('DOMContentLoaded', function() {
-                    const elems = document.querySelectorAll('.sidenav');
-                    const instances = M.Sidenav.init(elems, {
-                        edge: "right"
-                    });
-                });
-            </script>
-            <!--Initialise Materialize Dropdown-->
-            <script type="text/javascript">
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.dropdown-trigger');
-                    var instances = M.Dropdown.init(elems, {
-                        coverTrigger: false,
-                        hover: true
-                    });
-                });
-            </script>
-            <!--Initialise Materialize Dropdown for mobile navigation and top bar icons-->
-            <script type="text/javascript">
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.click-dropdown-trigger');
-                    var instances = M.Dropdown.init(elems, {
-                        coverTrigger: false,
-                        hover: false
-                    });
-                });
-            </script>
-            <!--Initialise Materialize Dropdown with specific options for search dropdown on mobile-->
-            <script type="text/javascript">
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.search-dropdown-trigger');
-                    var instances = M.Dropdown.init(elems, {
-                        coverTrigger: false,
-                        constrainwidth: false,
-                        closeOnClick: false,
-                    });
-                });
-            </script>
-            <script type="text/javascript">
-                const closeBtn = document.querySelector(".message-close-btn")
-                if (closeBtn) {
-                    closeBtn.addEventListener("click", function() {
-                    const message = document.querySelector(".message-container")
-                    message.classList.add("none")
-                    })
-                }
-                
-            </script>
-
+            <script src="{% static 'js/script.js' %}"></script>
         {% endblock %}    
     </body>
 </html>

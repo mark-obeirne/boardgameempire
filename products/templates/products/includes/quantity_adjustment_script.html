@@ -1,30 +1,46 @@
+<!--Increase quantity input value when + button is tapped-->
+
 <script type="text/javascript">
     const increaseQtyBtn = document.querySelector(".qty-increase")
 
     increaseQtyBtn.addEventListener("click", function() {
-        const inputField = increaseQtyBtn.previousElementSibling
-        let inputValue = parseInt(inputField.value)
-        const maxValue = inputField.getAttribute("max")
-        if (inputValue == maxValue) {
-            increaseQtyBtn.classList.add("disabled")
-        } else {
+        const inputField = increaseQtyBtn.previousElementSibling;
+        let inputValue = parseInt(inputField.value);
+        const maxValue = inputField.getAttribute("max");
+        if (inputValue < maxValue) {
             inputValue += 1;
-            inputField.setAttribute("value", inputValue)
+            inputField.value = inputValue.toString();
         }
     })
 </script>
 
+<!--Decrease quantity input value when - button is tapped-->
 <script type="text/javascript">
     const decreaseQtyBtn = document.querySelector(".qty-decrease")
 
     decreaseQtyBtn.addEventListener("click", function() {
-        const inputField = decreaseQtyBtn.nextElementSibling
-        let inputValue = parseInt(inputField.value)
-        if (inputValue == 1) {
-            decreaseQtyBtn.classList.add("disabled")
-        } else {
+        const inputField = decreaseQtyBtn.nextElementSibling;
+        let inputValue = parseInt(inputField.value);
+        if (inputValue > 1) {
             inputValue -= 1;
-            inputField.setAttribute("value", inputValue)
+            inputField.value = inputValue.toString();
+        }
+    })
+</script>
+
+<!--Change quantity value if user tries to enter a number less than 1 or greater than max available-->
+<script type="text/javascript">
+    const quantityInputField = document.querySelector(".product-qty-input")
+
+    quantityInputField.addEventListener("change", function() {
+        let userValue = quantityInputField.value;
+        const maxValue = quantityInputField.getAttribute("max");
+        if (parseInt(userValue) < 1 || userValue == "" ) {
+            userValue = "1";
+            quantityInputField.value = userValue;
+        } else if (parseInt(userValue) > maxValue) {
+            userValue = maxValue.toString();
+            quantityInputField.value = userValue;
         }
     })
 </script>
