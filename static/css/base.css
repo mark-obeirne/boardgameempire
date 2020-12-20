@@ -41,6 +41,14 @@ body {
     padding: 2rem;
 }
 
+.card.padding-2 {
+    padding: 2rem;
+}
+
+.card .margin-t1 {
+    margin-top: 1rem;
+}
+
 footer .row {
     margin-bottom: 0;
 }
@@ -58,6 +66,14 @@ footer .row {
 
 .uppercase {
     text-transform: uppercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.small-caps {
+    font-variant: small-caps;
 }
 
 
@@ -159,7 +175,13 @@ body {
     background-color: #392417;
 }
 
-a.bg-brown:hover{
+a.bg-brown:hover,
+a.bg-brown:focus {
+    background-color: #5D3B26;
+}
+
+.btn.bg-brown:hover,
+.btn.bg-brown:focus {
     background-color: #5D3B26;
 }
 
@@ -171,11 +193,11 @@ a.bg-brown:hover{
     background-color: #f0efef;
 }
 
-.white-text {
+.text-light {
     color: #d5d5d5;
 }
 
-.brown-text {
+.text-brown {
     color: #392417;
 }
 
@@ -183,6 +205,13 @@ a.bg-brown:hover{
     border-bottom: 1px solid #d3d3d3;
 }
 
+input[type="submit" i] {
+    color: #d5d5d5;
+}
+
+.sale-strikethrough {
+    color: #FF0000;
+}
 
 /* Slider */
 
@@ -207,6 +236,10 @@ a.bg-brown:hover{
 
 .slider .indicators .indicator-item {
     background-color: #392417;
+}
+
+.slider .slides li .caption p.text-brown {
+    color: #392417;
 }
 
 
