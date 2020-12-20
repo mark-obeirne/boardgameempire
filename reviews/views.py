@@ -49,3 +49,25 @@ def write_review(request, product_id):
     }
 
     return render(request, "reviews/review.html", context)
+
+
+def all_reviews(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    all_reviews = Review.objects.filter(product=product).order_by("-date_published")
+
+    context = {
+        "product": product,
+        "all_reviews": all_reviews,
+    }
+
+    return render(request, "reviews/all-reviews.html", context)
+
+
+def full_review(request, review_id):
+    full_review = get_object_or_404(Review, pk=review_id)
+
+    context = {
+        "full_review": full_review,
+    }
+
+    return render(request, "reviews/full-review.html", context)
