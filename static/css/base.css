@@ -241,6 +241,24 @@ a.bg-brown:hover{
     width: 100%;
 }
 
+.carousel.carousel-slider .carousel-item p.small {
+    font-size: 1.2rem;
+}
+
+.review-row {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.carousel.carousel-slider .carousel-item p.review-author {
+    margin-left: 1rem;
+}
+
+.card .card-content p.review-link {
+    margin: 1rem;
+}
+
+
 /* Product Displays */
 
 #product-qty-input {

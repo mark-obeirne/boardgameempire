@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>{{ full_review.user_profile}}'s Review of {{ full_review.product.name }}</h1>
+    <div class="container bg-light">
+        <div class="row review-row grey-bottom-border">
+            <div class="col s12 m4">
+                <img src="{{ full_review.product.boxart.url }}" alt="{{ full_review.product.name }}" class="responsive-img">
+            </div>
+            <div class="col s12 m8">
+                <h4>{{ full_review.review_title }}</h4>
+                <span class="rating">Rating: {{ full_review.rating }}/5</span>
+                <p>{{ full_review.review_text }}</p>
+                <p class="small">{{ full_review.date_published }}</p>
+            </div>
+        </div>
+        <div class="center-align">
+            <a href="{% url 'product_detail' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to {{ full_review.product.name }}</a>
+        </div>
+    </div>
+{% endblock %}
