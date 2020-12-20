@@ -3,5 +3,13 @@
 {% load static %}
 
 {% block content %}
-Thank you for your email!
+<h1>Thank You!</h1>
+<div class="container bg-light">
+    <div class="row">
+        <div class="col s12">
+            <p>Thank you for your email. We will be in touch shortly!</p>
+            <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to Shopping</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
