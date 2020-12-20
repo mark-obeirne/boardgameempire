@@ -93,13 +93,8 @@
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.slider');
-        var instances = M.Slider.init(elems, {
-            duration: 700
-        });
-    });
-</script>
+    {{ block.super }}
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% include 'products/includes/quantity_adjustment_script.html' %}
 {% endblock %}
