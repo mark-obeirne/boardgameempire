@@ -230,6 +230,10 @@ input[type="submit" i] {
     color: #FF0000;
 }
 
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #392417;
+}
+
 /* Slider */
 
 .slider-overlay {
@@ -386,9 +390,12 @@ input[type="submit" i] {
 
 /* Review Page */
 
+/*
+Commenting out for the moment as it's only applicable to labels on one page
+Target specifically
 .input-field>label {
     position: relative;
-}
+}*/
 
 #id_review_text {
     height: 20rem;
@@ -397,6 +404,13 @@ input[type="submit" i] {
 #id_rating {
     display: block;
 }
+
+
+/* Labels */
+.input-field>label {
+    color: #392417;
+}
+
 
 
 /* Footer */
