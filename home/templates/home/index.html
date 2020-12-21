@@ -16,29 +16,29 @@
                     <h2 class="center-align text-brown bold small-caps">Featured Best Seller</h2>
                     <div class="col s12 m6 l4 center-align">
                         {% if best_seller.boxart %}
-                        <img src="{{ best_seller.boxart.url }}" class="responsive-img">
+                            <img src="{{ best_seller.boxart.url }}" alt="{{ best_seller.name }} box" class="responsive-img">
                         {% else %}
-                        <p>[IMAGE]</p>
+                            <img src="/media/noimage.png" alt="{{ best_seller.name}}" class="responsive-img">
                         {% endif %}
                     </div>
                     <div class="col s12 m6 l8">
-                        <h3 class="small-caps">{{ best_seller.name }}</h3>
+                        <h3 class="text-brown small-caps">{{ best_seller.name }}</h3>
                         {% if best_seller.on_sale %}
-                            <p><s class="sale-strikethrough">({{ best_seller.price }})</s> {{ best_seller.sale_price }}</p>
+                            <p class="text-brown"><s class="sale-strikethrough">({{ best_seller.price }})</s> {{ best_seller.sale_price }}</p>
                         {% else %}
-                            <p>€{{ best_seller.price }}</p>
+                            <p class="text-brown">€{{ best_seller.price }}</p>
                         {% endif %}
-                        <p>{{ best_seller.description|truncatechars:500 }}</p>
+                        <p>{{ best_seller.description|truncatechars:600 }}</p>
                         <div class="product-btns center-align">
-                            <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn details-btn bg-brown"><i class="fas fa-eye prefix"></i> More Details</a>
+                            <a href="{% url 'product_detail' best_seller.id %}" class="waves-effect waves-light btn details-btn bg-brown text-light"><i class="fas fa-eye prefix"></i> More Details</a>
                             <div class="quantity-field margin-t1 last-btn">
                                 {% if best_seller.inventory > 0 %}
                                 <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
                                     {% csrf_token %}
-                                    <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}"><i class="fas fa-minus-square text-brown"></i></span>
+                                    <span class="qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}"><i class="fas fa-minus-square text-brown"></i></span>
                                     <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
-                                    <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}"><i class="fas fa-plus-square text-brown"></i></span>
-                                    <button class="btn waves-effect waves-light text-light bg-brown" id="add-cart-btn" type="submit" name="action">
+                                    <span class="qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}"><i class="fas fa-plus-square text-brown"></i></span>
+                                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="add-cart-btn" type="submit" name="action">
                                         <i class="fas fa-cart-plus"></i> Add to Cart
                                     </button>
                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -66,7 +66,7 @@
                         <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket! Buuuut if you're anything like us it'll be used for more boardgames!</p>
                     </div>
                     <div class="center-align">
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-store-alt prefix text-light"></i> Start Shopping</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-store-alt prefix text-light"></i> Start Shopping</a>
                     </div>
                 </div>
             </div>            
@@ -77,7 +77,7 @@
                         <p><a href="{% url 'account_login' %}" class="underlined">Sign in to</a> (or <a href="{% url 'account_signup' %}" class="underlined">sign up for</a>) a Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
                     </div>
                     <div class="center-align">
-                    <a href="{% url 'loyalty' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-piggy-bank prefix text-light"></i> Find Out More</a>
+                    <a href="{% url 'loyalty' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-piggy-bank prefix text-light"></i> Find Out More</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                         <p>If we don't stock a boardgame that you're interested in, or it's currently out of stock, please contact us. We'll see if we can get our hands on it for you or when it will be available.</p>
                     </div>
                     <div class="center-align">
-                    <a href="{% url 'contact_us' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn"><i class="fas fa-envelope prefix prefix text-light"></i> Contact Us</a>
+                    <a href="{% url 'contact_us' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-envelope prefix prefix text-light"></i> Contact Us</a>
                     </div>
                 </div>
             </div>
