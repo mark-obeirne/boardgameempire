@@ -80,6 +80,10 @@ footer .row {
     text-decoration: underline;
 }
 
+#product-qty-input {
+    font-size: 2rem;
+}
+
 
 /* Buttons */
 
@@ -104,6 +108,15 @@ footer .row {
 .last-btn {
     margin-bottom: 2rem;
 }
+
+.qty-submit {
+    margin: 0 auto;
+}
+
+.qty-btn {
+    font-size: 2.5rem;
+}
+
 
 /* Images */
 
@@ -198,7 +211,7 @@ a.bg-brown:focus {
 }
 
 .text-light {
-    color: #d5d5d5;
+    color: #f0efef;
 }
 
 .text-brown {
@@ -403,12 +416,6 @@ input[type="submit" i] {
     }
 }
 
-@media screen and (min-width: 726px) {
-    .details-btn {
-        width: 100%;
-    }
-}
-
 @media screen and (min-width: 768px) {
     #spinner-overlay img {
         left: 40%;
@@ -438,10 +445,6 @@ input[type="submit" i] {
 
     #spinner-overlay img {
         left: 50%;
-    }
-
-    .details-btn {
-        width: 42%;
     }
 }
 
