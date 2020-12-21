@@ -15,7 +15,11 @@
                 <div class="col s12 card padding-2">
                     <h2 class="center-align text-brown bold small-caps">Featured Best Seller</h2>
                     <div class="col s12 m6 l4 center-align">
+                        {% if best_seller.boxart %}
                         <img src="{{ best_seller.boxart.url }}" class="responsive-img">
+                        {% else %}
+                        <p>[IMAGE]</p>
+                        {% endif %}
                     </div>
                     <div class="col s12 m6 l8">
                         <h3 class="small-caps">{{ best_seller.name }}</h3>

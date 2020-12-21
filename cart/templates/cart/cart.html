@@ -21,7 +21,11 @@
             {% for item in items_in_cart %}
                 <div class="row grey-bottom-border">
                     <div class="col s12 m2">
+                        {% if item.product.boxart %}
                         <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
+                        {% else %}
+                        <p>[IMAGE]</p>
+                        {% endif %}
                     </div>
                     <div class="col s12 m3">
                         <p>{{ item.product.name }}</p>
