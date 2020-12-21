@@ -10,7 +10,11 @@
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
+                        {% if product.boxart %}
                         <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
+                        {% else %}
+                        <p>[IMAGE]</p>
+                        {% endif %}
                         </div>
                         <div class="card-content">
                             {% include 'products/includes/product-card-content.html' %}
