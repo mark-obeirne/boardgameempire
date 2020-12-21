@@ -9,17 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
    
-// Initialise Materialize Dropdown for larger devices with hover
-
-document.addEventListener('DOMContentLoaded', function() {
-    const elems = document.querySelectorAll('.dropdown-trigger');
-    const instances = M.Dropdown.init(elems, {
-        coverTrigger: false,
-        hover: true
-    });
-});
-
-// Initialise Materialize Dropdown for mobile navigation and top bar icons
+// Initialise Materialize Dropdown
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.click-dropdown-trigger');
     const instances = M.Dropdown.init(elems, {
