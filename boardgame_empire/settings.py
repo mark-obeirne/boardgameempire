@@ -100,8 +100,6 @@ TEMPLATES = [
 
 SITE_ID = 1
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -120,8 +118,8 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        }
 else:
     DATABASES = {
         'default': {
@@ -129,7 +127,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

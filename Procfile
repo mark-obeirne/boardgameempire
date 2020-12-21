@@ -1,1 +1,1 @@
-web: gunicorn boardgame_empire.wsgi:application
+web gunicorn boardgame_empire.wsgi:application
