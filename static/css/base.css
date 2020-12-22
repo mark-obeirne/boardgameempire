@@ -53,6 +53,14 @@ footer .row {
     margin-bottom: 0;
 }
 
+.tabs-content {
+    height: 575px;
+}
+
+.details-panel p {
+    margin: 2.5rem 0rem;
+}
+
 
 /* Fonts */
 
@@ -82,6 +90,11 @@ footer .row {
 
 #product-qty-input {
     font-size: 2rem;
+}
+
+.larger-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
 }
 
 
@@ -232,6 +245,22 @@ input[type="submit" i] {
 
 .dropdown-content li>a, .dropdown-content li>span {
     color: #392417;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: #392417;
+}
+
+.tabs .tab a {
+    color: #392417;
+}
+
+.tabs .indicator {
+    background-color: #392417;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: rgb(57 36 23 / 0.05);
 }
 
 /* Slider */
