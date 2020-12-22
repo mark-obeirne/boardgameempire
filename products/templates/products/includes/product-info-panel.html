@@ -5,11 +5,11 @@
             <li class="tab col s6"><a href="#reviews-panel">Reviews</a></li>
         </ul>
         <div class="details-panel col s12" id="details-panel">
-            <p><i class="fas fa-users prefix"></i> Number of Players: {{ product.min_players }} - {{ product.max_players }}</p>
-            <p><i class="fas fa-smile prefix"></i> Age Suitability: {{ product.min_age }}+</p>
-            <p><i class="fas fa-clock prefix"></i> Typical Playtime: {{ product.playing_time }}</p>
-            <p><i class="fas fa-user-edit prefix"></i> Designer: {{ product.designer }}</p>
-            <p><i class="fas fa-truck-loading prefix"></i> Publisher: {{ product.publisher }}</p>
+            <p><span class="larger-icon"><i class="fas fa-users"></i></span> Number of Players: {{ product.min_players }} - {{ product.max_players }}</p>
+            <p><span class="larger-icon"><i class="fas fa-smile"></i></span> Age Suitability: {{ product.min_age }}+</p>
+            <p><span class="larger-icon"><i class="fas fa-clock"></i></span> Typical Playtime: {{ product.playing_time }}</p>
+            <p><span class="larger-icon"><i class="fas fa-user-edit"></i></span> Designer: {{ product.designer }}</p>
+            <p><span class="larger-icon"><i class="fas fa-truck-loading"></i></span> Publisher: {{ product.publisher }}</p>
         </div>
         <div class="reviews-panel col s12" id="reviews-panel">
             {% if latest_reviews %}
@@ -35,11 +35,11 @@
                     </div>
                 </div>
             {% endif %}
+            {% if user.is_authenticated %}
+                <div class="center-align">
+                    <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Review {{ product.name }}</a>
+                </div>
+            {% endif %}
         </div>
-    </div>
-    <div class="center-align">
-        {% if user.is_authenticated %}
-            <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Review {{ product.name }}</a>
-        {% endif %}
     </div>
 </div>
