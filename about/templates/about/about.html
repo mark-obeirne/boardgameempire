@@ -3,12 +3,12 @@
 {% load static %}
 
 {% block content %}
-<h1>About Us</h1>
-
-<div class="container bg-light">
+<div class="container bg-light text-brown">
+    <h1 class="small-caps bold">About Us</h1>
     <div class="row">
         <div class="col s12 l8">
-            <p>Here at Board Game Empire, we love board games. Whether it's a lengthy session of shaky diplomacy and ultimate betrayal in Game of Thrones with friends, or a swift jovial game of Dixit with family members of all ages, it's time well spent!</p>
+            <p>Here at Board Game Empire, we love board games. Whether it's a lengthy session of shaky diplomacy and ultimate betrayal in Game of Thrones with friends, or a swift jovial game of Dixit with family members of all ages, it's time well spent!</p> 
+            <p>We started Board Game Empire to share this love with others and to enable them to discover a wonderful past time or enhance their collection if they're already a gamer. There are lots of options when looking to buy games, and sometimes it can be overwhelming.</p>
         </div>
         <div class="col s12 l4">
             <img src="/media/blood-rage-4311101_640.jpg" alt="Blood Rage boardgame" class="responsive-img">
@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col s12 l8 push-l4">
-            <p>We started Board Game Empire to share this love with others and to enable them to discover a wonderful past time or enhance their collection if they're already a gamer. There are lots of options when looking to buy games, and sometimes it can be overwhelming. To get a better idea if you'll enjoy a board game, you often have to commit to research across a number of sites. We wanted to make this journey of discovery, giving you more information to make it easier to find games that interest you. And what better way to do that than show you the games either in action or more detailed walkthroughs so that you can see games as they should be seen - being enjoyed!</p>
+            <p>To get a better idea if you'll enjoy a board game, you often have to commit to research across a number of sites. We wanted to make this journey one of joy and discovery, giving you more information to make it easier to find games that interest you. And what better way to do that than show you the games, so that you can see games as they should be seen - being enjoyed!</p>
         </div>
         <div class="col s12 l4 pull-l8">
             <img src="/media/game-340574_640.jpg" alt="Settlers of Catan boardgame" class="responsive-img">
@@ -24,7 +24,8 @@
     </div>
     <div class="row">
         <div class="col s12 l8">
-            <p>You can start shopping right now by browsing our selection of board games. If you already had a game in mind that isn't listed, please get in touch and we'll see what we can do. And to fully benefit from the Board Game Empire experience, <a href="{% url 'account_signup' %}">register for an account</a> and start earning loyalty points on your purchases, which you can use for discounts on future purchases. On top of that, you can add boardgames to your wishlist and potentially snag yourself a bargain in the future!</p>
+            <p>You can start shopping right now by browsing our selection of board games, searching, checking out our <a href="{% url 'game_of_the_month' %}">game of the month</a>, or rolling the dice for a <a href="{% url 'get_random_game' %}">random game</a>. If you already had a game in mind that isn't listed, please get in touch and we'll see what we can do.</p>
+            <p>And to fully benefit from the Board Game Empire experience, <a href="{% url 'account_signup' %}">register for an account</a> and start earning loyalty points on your purchases, which you can use for discounts on future purchases. On top of that, you can add boardgames to your wishlist and potentially snag yourself a bargain in the future!</p>
         </div>
         <div class="col s12 l4">
             <img src="/media/board-game-2237460_1280.jpg" alt="Carcassone boardgame" class="responsive-img">
