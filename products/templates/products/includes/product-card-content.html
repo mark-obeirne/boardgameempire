@@ -68,4 +68,15 @@
             <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
         {% endif %}
     </div>
+    {% if product.youtube_video_1 %}
+        <div class="gameplay-media video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ product.youtube_video_1 }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    {% endif %}
+        {% if product.youtube_video_2 %}
+        <div class="gameplay-media video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ product.youtube_video_2 }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    {% endif %}
+    
 </div>
