@@ -49,12 +49,20 @@ body {
     margin-top: 1rem;
 }
 
+.margin-t1 {
+    margin-top: 1rem;
+}
+
 footer .row {
     margin-bottom: 0;
 }
 
 .tabs-content {
-    height: 575px;
+    height: 665px;
+}
+
+.review-btn {
+    margin-top: 3rem;
 }
 
 .details-panel p {
@@ -375,18 +383,18 @@ input[type="submit" i] {
 }
 
 .out-of-stock {
-    background-color: red;
-    color: white;
+    background-color: #FF0000;
+    color: #FFFFFF;
 }
 
 .limited-stock {
-    background-color: orange;
+    background-color: #FFA500;
     
 }
 
 .available {
-    background-color: green;
-    color: white;
+    background-color: #228B22;
+    color: #FFFFFF;
 }
 
 
@@ -423,12 +431,10 @@ input[type="submit" i] {
 
 /* Review Page */
 
-/*
-Commenting out for the moment as it's only applicable to labels on one page
-Target specifically
-.input-field>label {
+
+label[for="id_rating"] {
     position: relative;
-}*/
+}
 
 #id_review_text {
     height: 20rem;
@@ -436,6 +442,18 @@ Target specifically
 
 #id_rating {
     display: block;
+}
+
+.review-form {
+    margin: 3.5rem 0rem;
+}
+
+#id_review_text {
+    margin-top: 1rem;
+}
+
+.review-form .input-field>label {
+    left: 1rem;
 }
 
 

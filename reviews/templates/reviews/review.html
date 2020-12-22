@@ -2,27 +2,27 @@
 
 {% load static %}
 
-{% block page_header %}
-    Breadcrumbs
-    <h1>My Profile</h1>
-{% endblock %}
-
 {% block content %}
-<div class="container bg-light">
+<div class="container bg-sheer-white text-brown">
     <div class="row">
         <div class="col s12 l6 column-large">
-            <h2>Review {{ product.name }}</h2>
-            <p>Please fill out the form with your thoughts about {{ product.name }}</p>
-            <form action="{% url 'write_review' product.id %}" method="POST">
+            <h2 class="small-caps bold">Review {{ product.name }}</h2>
+            <p>Please fill out the form with your thoughts about <span class="bold">{{ product.name }}</span></p>
+            <form action="{% url 'write_review' product.id %}" method="POST" class="review-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-            </div>
-                <!--Closing div should be here-->
-                <button>Submit Review</button>
+                </div>
+                <!-- Closing div missing from Crispy Forms resulting in broken layout -->
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="submit-review-btn" type="submit" name="action">
+                        <i class="fas fa-edit"></i> Submit Review
+                    </button>
+                    <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn last-btn bg-brown margin-t1"><i class="fas fa-store-alt"></i> Back to {{ product.name }}</a>
+                </div>
             </form>
         </div>
         <div class="col l6 hide-on-med-and-down show-on-large column-large">
-            <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
+            <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
         </div>
     </div>
 </div>
