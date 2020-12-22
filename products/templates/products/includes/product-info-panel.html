@@ -16,14 +16,7 @@
                 {% for review in latest_reviews %}
                     <div class="row review-row grey-bottom-border">
                         <div class="col s12">
-                            <h4>{{ review.review_title }}</h4>
-                            <p class="small review-author">By {{ review.user_profile }}</p>
-                            <span class="rating">Rating: {{ review.rating }}/5</span>
-                            <p>{{ review.review_text|truncatechars:100 }}</p>
-                            {% if review.review_text|length > 100 %}
-                                <p class="small review-link"><a href="{% url 'full_review' review.id %}">Read full review</a></p>
-                            {% endif %}
-                            <p class="small">{{ review.date_published }}</p>
+                            {% include 'reviews/includes/review-content.html' %}
                         </div>
                     </div>
                 {% endfor %}
@@ -36,7 +29,7 @@
                 </div>
             {% endif %}
             {% if user.is_authenticated %}
-                <div class="center-align">
+                <div class="center-align review-btn">
                     <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Review {{ product.name }}</a>
                 </div>
             {% endif %}
