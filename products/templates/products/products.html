@@ -57,7 +57,7 @@
                         {% if product.boxart %}
                             <img src="{{ product.boxart.url }}" alt="{{ product.name }} box" class="responsive-img">
                         {% else %}
-                            <img src="/media/noimage.png" alt="{{ product.name}}" class="responsive-img">
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img">
                         {% endif %}
                     </div>
                     <div class="card-content">
