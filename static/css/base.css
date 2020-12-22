@@ -452,14 +452,21 @@ label[for="id_rating"] {
     margin-top: 1rem;
 }
 
-.review-form .input-field>label {
-    left: 1rem;
-}
-
 
 /* Labels */
 .input-field>label {
     color: #392417;
+}
+
+.review-form .input-field>label,
+.contact-form .input-field>label {
+    left: 1rem;
+}
+
+
+/* Contact Us Page */
+#id_message {
+    height: 20rem;
 }
 
 

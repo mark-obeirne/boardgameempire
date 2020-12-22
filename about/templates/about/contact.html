@@ -3,16 +3,23 @@
 {% load static %}
 
 {% block content %}
-<h1>Contact Us</h1>
-<div class="container bg-light">
+<div class="container bg-light text-brown">
+    <h1 class="small-caps bold">Contact Us</h1>
     <div class="row">
         <div class="col s12">
-            <form action="{% url 'contact_us' %}" method="POST">
+            <form action="{% url 'contact_us' %}" method="POST" class="contact-form">
                 {% csrf_token %}
                 {{ form| crispy }}
-                <button>Send Email</button>
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="submit-review-btn" type="submit" name="action">
+                        <i class="fas fa-envelope"></i> Send Mail
+                    </button>
+                    <a href="/" class="waves-effect waves-light btn last-btn bg-brown margin-t1"><i class="fas fa-store-alt"></i> Back to homepage</a>
+                </div>
             </form>
         </div>
     </div>
+</div>
+<!--Crispy form missing a closing div tag-->
 </div>
 {% endblock %}
