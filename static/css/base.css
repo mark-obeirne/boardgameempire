@@ -383,18 +383,18 @@ input[type="submit" i] {
 }
 
 .out-of-stock {
-    background-color: red;
-    color: white;
+    background-color: #FF0000;
+    color: #FFFFFF;
 }
 
 .limited-stock {
-    background-color: orange;
+    background-color: #FFA500;
     
 }
 
 .available {
-    background-color: green;
-    color: white;
+    background-color: #228B22;
+    color: #FFFFFF;
 }
 
 
