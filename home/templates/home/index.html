@@ -8,7 +8,7 @@
         {% include 'home/includes/homepage-slider.html' %}
     </div>
 
-    <div class="container bg-white">
+    <div class="container bg-white text-brown">
         <!--Featured Best Seller-->
         <div class="best-seller">
             <div class="row">
@@ -18,7 +18,7 @@
                         {% if best_seller.boxart %}
                             <img src="{{ best_seller.boxart.url }}" alt="{{ best_seller.name }} box" class="responsive-img">
                         {% else %}
-                            <img src="/media/noimage.png" alt="{{ best_seller.name}}" class="responsive-img">
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ best_seller.name}}" class="responsive-img">
                         {% endif %}
                     </div>
                     <div class="col s12 m6 l8">
