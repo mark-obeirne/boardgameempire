@@ -431,11 +431,6 @@ input[type="submit" i] {
 
 /* Review Page */
 
-
-label[for="id_rating"] {
-    position: relative;
-}
-
 #id_review_text {
     height: 20rem;
 }
@@ -454,6 +449,7 @@ label[for="id_rating"] {
 
 
 /* Labels */
+
 .input-field>label {
     color: #392417;
 }
@@ -463,8 +459,17 @@ label[for="id_rating"] {
     left: 1rem;
 }
 
+label[for="id_rating"] {
+    position: relative;
+}
+
+label[for="id_default_country"] {
+    display: none;
+}
+
 
 /* Contact Us Page */
+
 #id_message {
     height: 20rem;
 }
