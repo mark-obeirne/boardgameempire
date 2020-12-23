@@ -3,15 +3,15 @@
 {% load static %}
 
 {% block content %}
-<h1>Loyalty Points Programme</h1>
-<div class="container bg-light">
+<div class="container bg-light text-brown">
+    <h1 class="small-caps bold">Loyalty Points Programme</h1>
     <div class="row">
         <div class="col s12 l4">
             <img src="/media/money-2180330_640.jpg" alt="Stacks of coins" class="responsive-img">
         </div>
         <div class="col s12 l8">
             <p>While it's always exciting to get a new boardgame in the post and open it for the very first time - that new boardgame smell - we want you to get even more joy from the purchase of a new boardgame right away!</p>
-            <h2 class="center-align">Collect Points!</h2>
+            <h2 class="center-align small-caps bold">Collect Points!</h2>
             <p>For every €1 you spend, we'll give you 10 loyalty points. New loyalty points are added to your account automatically when you make a purchase and can be used to make future purchases a little bit cheaper.</p>
             
             {% if user.is_authenticated %}
@@ -20,13 +20,13 @@
                 <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
             </div>
             {% else %}
-            <h2 class="center-align">I'm new to Boardgame Empire</h2>
+            <h3 class="center-align small-caps bold">I'm new to Boardgame Empire</h3>
             <p>To start earning loyalty points, simply register for an account.</p>
             <div class="col s12 center-align">
                 <a href="{% url 'account_signup' %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-user-plus prefix"></i> Register</a>
             </div>
 
-            <h2 class="center-align">I already have an account</h2>
+            <h3 class="center-align small-caps bold">I already have an account</h3>
             <p>Log into your account to view your available loyalty points and start shopping to earn even more!</p>
             <div class="col s12 center-align">
                 <a href="{% url 'account_login' %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-user-check prefix"></i> Log In</a>
