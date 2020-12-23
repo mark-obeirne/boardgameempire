@@ -57,8 +57,10 @@
             <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown margin-t1"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
         </div>
     {% else %}
-        <p>Your wishlist is currently empty.</p>
-        <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+        <div class="col s12 center-align">
+            <p>Your wishlist is currently empty.</p>
+            <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+        </div>
     {% endif %}
     </div>
 </div>
