@@ -73,6 +73,14 @@ footer .row {
     margin: 3rem 0rem;
 }
 
+.image-container {
+    max-width: 25rem;
+}
+
+.wishlist-row {
+    margin-bottom: 0;
+}
+
 
 /* Fonts */
 
