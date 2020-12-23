@@ -7,56 +7,56 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
-{% block page_header %}
-    Breadcrumbs
-    <h1>My Profile</h1>
-{% endblock %}
-
 {% block content %}
-    <div class="container bg-light">
+    <div class="container bg-light text-brown">
+        <h1 class="bold small-caps">My Profile</h1>
         <div class="row">
             <div class="col s12 l6 column-large">
-                <h2>User Details</h2>
+                <h2 class="bold small-caps">User Details</h2>
                 <p>Please fill out the form with your information</p>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token%}
                     {{ form|crispy }}
-                    <button>Update Information</button>
+                    <div class="center-align">
+                        <button class="btn waves-effect waves-light text-light bg-brown" id="add-cart-btn" type="submit" name="action">
+                            <i class="fas fa-user-edit"></i> Update Information
+                        </button>
+                    </div>
                 </form>
                 <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
             </div>
             <div class="col s12 l6 column-large">
-                <h2>My Wishlist</h2>
+                <h2 class="bold small-caps">My Wishlist</h2>
                 {% if wishlisted_products %}
                     {% for product in wishlisted_products %}
                     <div class="row valign-wrapper grey-bottom-border">
                         <div class="col s4">
                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                         </div>
-                        <div class="col s4">
+                        <div class="col s4 center-align">
                             {% if product.on_sale %}
-                                <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
+                                <p class="text-brown"><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
                             {% else %}
                                 <p>€{{ product.price }}</p>
                             {% endif %}
                         </div>
                         <div class="col s4">
-                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> Details</a>
+                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
                         </div>
                     </div>
-                    <div class="col s12 center-align">
-                        <a href="{% url 'wishlist' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Manage Wishlist</a>
-                    </div>
                     {% endfor %}
+                    <div class="col s12 center-align grey-bottom-border">
+                        <a href="{% url 'wishlist' %}" class="waves-effect waves-light btn text-light bg-brown last-btn"><i class="fas fa-clipboard-list"></i> Manage Wishlist</a>
+                    </div>
                 {% else %}
                     <div class="col s12 center-align">
                         <p>You haven't added any products to your wishlist yet!</p>
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
                     </div>
                 {% endif %}
             </div>
             <div class="col s12 l6 column-large">
-                <h2>Order History</h2>
+                <h2 class="bold small-caps">Order History</h2>
                 {% if orders %}
                 <p>Click an order number for more information</p>
                 <div class="col s4 m4">
@@ -86,7 +86,7 @@
                 {% else %}
                     <div class="col s12 center-align">
                         <p>There are currently no orders to display.</p>
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
                     </div>
                 {% endif %}
             </div>
