@@ -436,6 +436,10 @@ input[type="submit" i] {
     left: 30%;
 }
 
+.user-input-points {
+    margin-bottom: 0;
+}
+
 
 /* Review Page */
 
@@ -471,7 +475,8 @@ label[for="id_rating"] {
     position: relative;
 }
 
-label[for="id_default_country"] {
+label[for="id_default_country"],
+label[for="id_points_used"] {
     display: none;
 }
 

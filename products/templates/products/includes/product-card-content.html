@@ -1,5 +1,5 @@
 {% if product.on_sale %}
-    <p class="text-brown"><s class="sale-strikethrough">({{ product.price }})</s> {{ product.sale_price }}</p>
+    <p class="text-brown"><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
 {% else %}
     <p class="text-brown">€{{ product.price }}</p>
 {% endif %}

@@ -4,13 +4,9 @@
 
 {% load cart_tools %}
 
-{% block page_header %}
-    Breadcrumbs
-    <h1>Your Shopping Cart</h1>
-{% endblock %}
-
 {% block content %}
-    <div class="container bg-light">
+    <div class="container bg-sheer-white text-brown">
+        <h1 class="small-caps bold">Your Shopping Cart</h1>
         {% if items_in_cart %}
         <div class="row center-align cart-headings">
             <div class="col hide-on-small-only m2"></div>
@@ -22,13 +18,13 @@
                 <div class="row grey-bottom-border">
                     <div class="col s12 m2">
                         {% if item.product.boxart %}
-                        <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
+                            <a href="{% url 'product_detail' item.product.id %}"><img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}'s box" class="responsive-img"></a>
                         {% else %}
-                        <p>[IMAGE]</p>
+                            <a href="{% url 'product_detail' item.product.id %}"><img src="{{ MEDUA_URL }}nomedia.png" alt="{{ product.name }}'s box" class="responsive-img"></a>
                         {% endif %}
                     </div>
                     <div class="col s12 m3">
-                        <p>{{ item.product.name }}</p>
+                        <a href="{% url 'product_detail' item.product.id %}"><p>{{ item.product.name }}</p></a>
                         {% if item.product.on_sale %}
                             <p class="small">{{ item.quantity }} @ €{{ item.product.sale_price }}</p>
                         {% else %}
@@ -74,12 +70,14 @@
                     <p class="bold">€{{ grand_total }}</p>
                 </div>
                 {% if delivery %}
-                    <p>Spend {{ free_delivery_remainder }} more to avail of free delivery</p>
+                    <div class="col s12 center-align">
+                        <p class="small">Spend €{{ free_delivery_remainder }} more to avail of free delivery</p>
+                    </div>
                 {% endif %}
                 <div class="row">
                     <div class="col s12 center-align form-buttons">
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
-                        <a href="{% url 'checkout' %}" class="waves-effect waves-light btn checkout-btn"><i class="far fa-credit-card"></i> Proceed to Checkout</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn bg-brown text-light"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+                        <a href="{% url 'checkout' %}" class="waves-effect waves-light btn checkout-btn bg-brown text-light"><i class="far fa-credit-card"></i> Proceed to Checkout</a>
                     </div>
                 </div>
             </div>

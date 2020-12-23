@@ -13,16 +13,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
-{% block page_header %}
-    Breadcrumbs
-    <h1>Checkout</h1>
-{% endblock %}
-
 {% block content %}
-    <div class="container bg-light">
+    <div class="container bg-sheer-white text-brown">
+        <h1 class="small-caps bold">Checkout</h1>
         <div class="row">
             <div class="col s12 l6">
-                <h2>Customer Information</h2>
+                <h2 class="small-caps bold">Customer Information</h2>
                 <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <fieldset>
@@ -69,23 +65,40 @@
                     <div class="col s12">
                         <fieldset>
                             <legend>{% if user.is_authenticated %}Loyalty Points and {% endif %}Charges</legend>
-                            <div class="col s6">
-                                <p>Order Total:</p>
+                            <div class="row">
+                                <div class="col s6">
+                                    <p>Order Total:</p>    
+                                </div>
+                                <div class="col s6 right-align">
+                                    <p>€{{ total | floatformat:2 }}</p>
+                                </div>
                                 {% if user.is_authenticated %}
-                                    <p>Points Available:</p>
-                                    <p>Loyalty Points to Use:</p>
-                                {% endif %}
-                                <p>Delivery:</p>
-                                <p>Grand Total:</p>
-                            </div>
-                            <div class="col s6">
-                                <p>€{{ total | floatformat:2 }}</p>
-                                {% if user.is_authenticated %}
+                                <div class="col s6">
+                                    <p>Loyalty Points Available:</p>
+                                </div>
+                                <div class="col s6 right-align">
                                     <p class="user-loyalty-points">{{ profile.loyalty_points }}</p>
+                                </div>
+                                <div class="col s7">
+                                    <p class="user-input-points">Use Points:</p>
+                                    <span class="small">(multiples of 50)</span>
+                                </div>
+                                <div class="col s5">
                                     {{ order_form.points_used | as_crispy_field }}
+                                </div>
                                 {% endif %}
-                                <p class="delivery-cost">€{{ delivery | floatformat:2 }}</p>
-                                <p class="grand-total">€{{ grand_total | floatformat:2 }}</p>
+                                <div class="col s6">
+                                    <p>Delivery:</p>
+                                </div>
+                                <div class="col s6 right-align">
+                                    <p class="delivery-cost">€{{ delivery | floatformat:2 }}</p>
+                                </div>
+                                <div class="col s6">
+                                    <p>Grand Total:</p>
+                                </div>
+                                <div class="col s6">
+                                    <p class="grand-total right-align">€{{ grand_total | floatformat:2 }}</p>
+                                </div>
                             </div>
                         </fieldset>
                     </div>
@@ -101,22 +114,22 @@
                         </fieldset>
                     </div>
                     <div class="col s12 form-buttons center-align">
-                        <a href="{% url 'view_cart' %}" class="waves-effect waves-light btn form-buttons"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
-                        <button class="btn waves-effect waves-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
+                        <a href="{% url 'view_cart' %}" class="waves-effect waves-light btn bg-brown text-light form-buttons"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
+                        <button class="btn waves-effect waves-light bg-brown text-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
                         </button>
                     </div>
-                    <div class="col s12 m6 offset-m6">
+                    <div class="col s12">
                         <p class="small">Your card will be charged <span class="grand-total">€{{ grand_total | floatformat:2 }}</span></p>
                         {% if user.is_authenticated %}
                             <p class="small">You will earn {{ points_earned }} loyalty points on this purchase</p>
                         {% else %}
-                            <p class="small">Login or register to earn {{ points_earned }} loyalty points on this purchase</p>
+                            <p class="small"><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to earn {{ points_earned }} loyalty points on this purchase</p>
                         {% endif %}
                     </div>
                 </form>
             </div>
             <div class="col s12 l6 order-column">
-                <h2>Order Summary</h2>
+                <h2 class="small-caps bold">Order Summary</h2>
                 <div class="col s3 m3"></div>
                 <div class="col s6 m6">
                     <strong><p>Item</p></strong>
@@ -125,7 +138,7 @@
                     <strong><p>Item Subtotal</p></strong>
                 </div>
                 {% for item in items_in_cart %}
-                    <div class="row grey-bottom-border">
+                    <div class="row valign-wrapper grey-bottom-border">
                         <div class="col s3 m3">
                             <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
                         </div>
@@ -139,7 +152,7 @@
                         </div>
                         <div class="col s3 m3">
                             {% if item.product.on_sale %}
-                                <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</span>
+                                <p>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</p>
                             {% else %}
                                 <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
                             {% endif %}
