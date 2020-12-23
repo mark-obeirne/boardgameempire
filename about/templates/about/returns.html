@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block content %}
-<h1>Returns Policy</h1>
-<div class="container bg-light">
+<div class="container bg-light text-brown">
+    <h1 class="small-caps bold">Returns Policy</h1>
     <div class="row">
         <div class="col l4">
             <img src="/media/beige-16875_640.jpg" alt="Boxes" class="responsive-img hide-on-small-only">
@@ -14,8 +14,12 @@
             
             <p>To return an item, simply include the dispatch letter in the package and attach the returns label to the front of the package. Please note that items must be returned in a resellable condition and in their original packaging.</p>
 
-            <h2>Damaged or defective items</h2>
-            <p>While we take every care to ensure that our products arrive in perfect condition, accidents can happen. If you find that your items are faulty, incorrect, are missing components or parts, or have been damaged in transit, please contact us immediately and we will arrange for these items to be collected. Please contact us within seven days of the date of delivery, including photos where possible.</p>
+            <h2 class="small-caps bold">Damaged or defective items</h2>
+            <p>While we take every care to ensure that our products arrive in perfect condition, accidents can happen. If you find that your items are faulty, incorrect, are missing components or parts, or have been damaged in transit, please contact us immediately and we will arrange for these items to be collected.</p>
+            <p>Please contact us within seven days of the date of delivery, including photos where possible.</p>
+            <div class="col s12 center-align">
+                <a href="{% url 'contact_us' %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-envelope"></i> Contact Us</a>
+            </div>
         </div>
     </div>
 </div>
