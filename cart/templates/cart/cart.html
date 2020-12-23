@@ -24,7 +24,7 @@
                         {% endif %}
                     </div>
                     <div class="col s12 m3">
-                        <p>{{ item.product.name }}</p>
+                        <a href="{% url 'product_detail' item.product.id %}"><p>{{ item.product.name }}</p></a>
                         {% if item.product.on_sale %}
                             <p class="small">{{ item.quantity }} @ €{{ item.product.sale_price }}</p>
                         {% else %}
