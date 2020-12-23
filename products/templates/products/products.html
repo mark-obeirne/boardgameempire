@@ -55,15 +55,15 @@
                 <div class="card center-align product-card">
                     <div class="card-image">
                         {% if product.boxart %}
-                            <img src="{{ product.boxart.url }}" alt="{{ product.name }} box" class="responsive-img">
+                            <img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img">
                         {% else %}
-                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img">
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}'s box" class="responsive-img">
                         {% endif %}
                     </div>
                     <div class="card-content">
                         <h3 class="card-title small-caps"><a href="{% url 'product_detail' product.id %}" class="text-brown bold">{{ product.name }}</a></h3>
                         {% if product.on_sale %}
-                            <p><s class="sale-strikethrough">{{ product.price }}</s> {{ product.sale_price }}</p>
+                            <p><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
                         {% else %}
                             <p>€{{ product.price }}</p>
                         {% endif %}
