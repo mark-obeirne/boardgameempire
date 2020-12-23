@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block extra_title %}{{ full_review.product.name }} review by {{ full_review.user_profile }}{% endblock %}
+
 {% block content %}
     <div class="container bg-sheer-white text-brown">
         <h1 class="bold small-caps">{{ full_review.user_profile}}'s Review</h1>
