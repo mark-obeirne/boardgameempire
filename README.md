@@ -85,13 +85,16 @@ The Contact Us page contains a form, which will send an email to the Boardgame E
 
 ## Future Features
 ### Sort By Ratings
+Boardgame Empire allows customers to review and rate boardgames. However, there are not enough ratings at this point in time for the ability to sort by rating to be particularly useful. It is planned to enable this functionality in the future, adding another sort option to a fairly extensive list that currently includes: by min or max number of players, by playtime, by age suitability, by price, and alphabetically.  
 
 ### Rate Reviews
-
-### Report Review
+As reviews are user-generated, they may differ drastically in terms of how helpful they are to others. There is currently no functionality to highlight reviews that a customer found helpful, and this is something that we aim to implement in the future. 
 
 ### Multiple Wishlists
-
-### Inhouse YouTube videos
+For the most part, one wishlist should be sufficient for users. However, there may be cases in which customers would like to organise products into various wishlists. For example, if a customer would like a wishlist for present ideas or unique wishlists for different playgroups, we would like to provide them with this ability.
 
 ### Customer Service Chatbot
+Customers are invited to email if they have any queries or issues with their orders. In instances where customers have queries that could be dealt with quickly and in real-time, we would like to investigate the practicality of a chatbot. This, we believe, could improve the user experience and save them time as they would not have to partake in a back-and-forth email chain. 
+
+
+
