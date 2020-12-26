@@ -119,7 +119,11 @@
                 </div>
                 <div class="row"></div>
                     <div class="col s12">
-                        <p class="bold">You earned {{ order.points_earned }} points on this purchase.</p>
+                        {% if user.is_authenticated %}
+                            <p class="bold">You earned {{ order.points_earned }} loyalty points on this purchase.</p>
+                        {% else %}
+                            <p class="bold">You could have earned {{ order.points_earned }} loyalty points on this purchase. <a href="{% url 'account_signup %}">Register for an account</a> or <a href="{% url 'account_login %}">login</a> to earn points and get discounts on future purchases.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
