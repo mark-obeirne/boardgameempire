@@ -10,9 +10,11 @@
         <ul id="theme-dropdown" class="dropdown-content wide-menu">
             <div class="row">
             {% for category in all_categories %}
-                <div class="col m4">
-                    <li class="dropdown-menu-item"><a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a></li>
-                </div>
+                {% if category.is_active %}
+                    <div class="col m4">
+                        <li class="dropdown-menu-item"><a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a></li>
+                    </div>
+                {% endif %}
             {% endfor %}
             </div>
         </ul>
@@ -20,9 +22,11 @@
         <ul id="mechanics-dropdown" class="dropdown-content wide-menu">
             <div class="row">
             {% for mechanic in all_mechanics %}
-                <div class="col m4">
-                    <li class="dropdown-menu-item"><a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a></li>
-                </div>
+                {% if mechanic.is_active %}
+                    <div class="col m4">
+                        <li class="dropdown-menu-item"><a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a></li>
+                    </div>
+                {% endif %}
             {% endfor %}
             </div>
         </ul>
