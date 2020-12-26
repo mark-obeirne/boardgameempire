@@ -36,6 +36,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         "friendly_name",
         "name",
+        "is_active",
     )
 
     ordering = ("friendly_name",)
@@ -45,6 +46,7 @@ class MechanicAdmin(admin.ModelAdmin):
     list_display = (
         "friendly_name",
         "name",
+        "is_active",
     )
 
     ordering = ("friendly_name",)
