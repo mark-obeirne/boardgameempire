@@ -96,5 +96,35 @@ For the most part, one wishlist should be sufficient for users. However, there m
 ### Customer Service Chatbot
 Customers are invited to email if they have any queries or issues with their orders. In instances where customers have queries that could be dealt with quickly and in real-time, we would like to investigate the practicality of a chatbot. This, we believe, could improve the user experience and save them time as they would not have to partake in a back-and-forth email chain. 
 
+## Information Architecture
+### Database Choice
 
+### Data Storage Types
+
+### Database Schema
+
+
+## Skeleton
+### Mobile Wireframes
+ 
+   * Homepage
+   * All Products Page 
+   * Product Details Page
+   * All Reviews Page
+   * Full Review Page
+   * Write Review Page
+   * Wishlist Page
+   * User Profile Page
+   * Cart Page
+   * Checkout Page
+   * Checkout Success Page
+   * About Us Page
+   * Returns Policy
+   * Delivery Information
+   * Loyalty Points Programme
+   * Contact Us Page
+
+### Tablet Wireframes
+
+### Desktop Wireframes
 
