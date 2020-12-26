@@ -504,9 +504,24 @@ label[for="id_points_used"] {
 .social-media-icon {
     display: inline-block;
     font-size: 2rem;
-    padding: .5rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    color: #f0efef;
 }
 
+.social-media-icon:hover {
+    color: #FFFFFF;
+}
+
+footer li > a {
+    color: #f0efef;
+    margin-left: 1rem;
+}
+
+footer li > a:hover {
+    color: #FFFFFF;
+    font-weight: bold;
+}
 
 /* Media Queries */
 
