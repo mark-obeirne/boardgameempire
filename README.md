@@ -71,14 +71,27 @@ For customers who have something particular in mind, Boardgame Empire offers a s
 ### Wishlists
 If a customer stumbles upon a product of interest, it is possible to add it to their wishlist, provided they are logged into their account. This wishlist feature also highlights if a product is on sale, so a user can add a product and wait until the price is right to purchase it. This wishlist can be managed on a product by product basis or the customer can delete the wishlist in its entirity.  
 
+### Loyalty Points Programme
+Customers have a variety of online and brick-and-mortar stores to choose from when purchasing boardgames. In order to encourage customers to return in the future for further purchases, Boardgame Empire offers a Loyalty Point programme. Customers earn points on their purchase, which they can use at checkout on a future purchase for a discount. 
+
+### Order History
+Provided a user has made a purchase from a Boardgame Empire account, they will be able to view the order's details and click into it for more information from their profile page.
 
 ### Reviews
-
-
-
+Once logged in, a user can submit a review of a product and rate it on a scale of 1-5. The most recent reviews are displayed beneath a product on its details page with further reviews available to read on a dedicated page for that product. It has been decided not to limit this to customers who have ordered the product via the store initially in order to build up reviews and ratings, which other customers could find beneficial. 
 
 ### Contact Page
-
+The Contact Us page contains a form, which will send an email to the Boardgame Empire email address with the user's query and provided details. Once the email is sent, the user is directed to a success page and can navigate to the store from there.
 
 ## Future Features
+### Sort By Ratings
 
+### Rate Reviews
+
+### Report Review
+
+### Multiple Wishlists
+
+### Inhouse YouTube videos
+
+### Customer Service Chatbot
