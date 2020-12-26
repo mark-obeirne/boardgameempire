@@ -128,3 +128,44 @@ Customers are invited to email if they have any queries or issues with their ord
 
 ### Desktop Wireframes
 
+## Structure
+The navbar is broken into two rows. On the top row, users have access to a search bar (which unfurls on mobile), a button to be brought to the details of a random game, a user menu (which contains links to the user's profile and sign out functionality if logged in or the registration and sign in links if not), a link to the customer's wishlist, and a link to the customer's cart.
+
+The bottom row meanwhile contains the brand's logo, which brings the user back to the homepage, a link to view all products, two dropdown menus that display the themes and mechanics associated with boardgames featured on the site, a link to see current deals, and a link to see the current game of the month.
+
+
+## Surface
+### Fonts
+
+### Colours
+
+
+## Technologies Used
+### Languages 
+
+### Frameworks
+
+### Tools
+
+
+## Testing
+
+## Meeting User Expectations
+
+## Deployment
+
+
+## Credits
+
+
+## Acknowledgements
+I would like to thank my mentor, Antonio Rodriguez for their support and advice over the past year as part of the Code Institute course and for their help with this project.
+
+I would also like to thank my fellow Code Institute students who provided support, advice, and a second opinion on Slack. I would like to thank Igor of Code Institute for their help with one issue faced during deployment.
+
+Finally, I would like to thank all those who took the time to test this website and provide feedback and suggestions.
+
+## Disclaimer
+This project is for educational purposes only. 
+
+
