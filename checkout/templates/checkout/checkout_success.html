@@ -10,13 +10,8 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
-{% block page_header %}
-    Breadcrumbs
-    <h1>Order Summary</h1>
-{% endblock %}
-
 {% block content %}
-    <div class="container">
+    <div class="container bg-light text-brown">
         <div class="row">
             <div class="col s12 l6">
                 <div class="valign-wrapper">
@@ -24,7 +19,7 @@
                         <i class="fas fa-thumbs-up checkout-thumbs"></i>
                     </div>
                     <div class="col s10">
-                        <strong><span class="flow-text block">Order Number: {{ order.order_number }}</span></strong>
+                        <span class="block bold small-caps">Order Number: {{ order.order_number }}</span>
                         <span class="block">Thank you, {{ order.full_name }}</span>
                         <span class="block">Order Date: {{ order.order_date }}</span>
                     </div>
@@ -38,15 +33,15 @@
                     <p class="flow-text">We hope you have a great time with your purchases and that you'll shop with us again soon!</p>
                     {% endif %}
                     <div class="center-align">
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn bg-brown text-light"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
                         {% if from_profile %}
-                        <a href="{% url 'profile' %}" class="waves-effect waves-light btn"><i class="fas fa-store-alt prefix"></i> Back to Profile</a>
+                        <a href="{% url 'profile' %}" class="waves-effect waves-light btn bg-brown text-light"><i class="fas fa-store-alt prefix"></i> Back to Profile</a>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col s12">
-                    <h2><p>Customer Information</p></h2>
-                    <strong><p>Delivery Details</p></strong>
+                    <h2 class="bold small-caps"><p>Customer Information</p></h2>
+                    <p class="bold small-caps">Delivery Details</p>
                     <span class="block">{{ order.full_name }}</span>
                     <span class="block">{{ order.street_address1 }}</span>
                     {% if street_address2 %}
@@ -61,7 +56,7 @@
                     {% endif %}
                     <span class="block">{{ order.country }}</span>
                     
-                    <strong><p>Billing Details</p></strong>
+                    <p class="bold small-caps">Billing Details</p>
                     <span class="block">{{ order.full_name }}</span>
                     <span class="block">{{ order.street_address1 }}</span>
                     {% if street_address2 %}
@@ -78,16 +73,16 @@
                 </div>
             </div>
             <div class="col s12 l6">
-                <h2>Purchased Items</h2>
+                <h2 class="bold small-caps">Purchased Items</h2>
                 <div class="col s3 m3"></div>
                 <div class="col s6 m6">
-                    <strong><p>Item</p></strong>
+                    <p class="bold">Item</p>
                 </div>
                 <div class="col s3 m3">
-                    <strong><p>Item Subtotal</p></strong>
+                    <p class="bold">Item Subtotal</p>
                 </div>
                 {% for item in order.lineitems.all %}
-                    <div class="row">
+                    <div class="row valign-wrapper">
                         <div class="col s3 m3">
                             <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
                         </div>
@@ -101,7 +96,7 @@
                         </div>
                         <div class="col s3 m3">
                             {% if item.product.on_sale %}
-                                <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</span>
+                                <p>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</p>
                             {% else %}
                                 <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
                             {% endif %}
@@ -114,13 +109,17 @@
                         <p>Delivery:</p>
                         <p>Points Used:</p>
                         <p>Grand Total:</p>
-                        <p>You earned {{ order.points_earned }} points on this purchase.</p>
                     </div>
                     <div class="col s3">
                         <p>€{{ order.order_total }} </p>
                         <p>€{{ order.delivery_cost }} </p>
                         <p>{{ order.points_used }}</p>
                         <p>€{{ order.grand_total }} </p>
+                    </div>
+                </div>
+                <div class="row"></div>
+                    <div class="col s12">
+                        <p class="bold">You earned {{ order.points_earned }} points on this purchase.</p>
                     </div>
                 </div>
             </div>
