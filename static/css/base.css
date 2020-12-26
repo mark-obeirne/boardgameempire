@@ -190,6 +190,9 @@ nav .bottom-nav-row ul a {
     margin-left: 0.5rem;
 }
 
+.bg-logo {
+    max-height: 55px;
+}
 
 /* Search */
 #top-nav-search:focus {
