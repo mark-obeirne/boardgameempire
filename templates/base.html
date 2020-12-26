@@ -48,7 +48,7 @@
         {% include 'includes/mobile-side-nav.html' %}
         
         {% if messages %}
-        <div class="message-container">
+        <div class="message-container grey-bottom-border">
             {% for message in messages %}
                 {% with message.level as level %}
                     {% if level == 40 %}

@@ -214,8 +214,8 @@ nav .input-field input {
     margin-bottom: 0;
 }
 
-.message-close {
-    margin-right: 1rem;
+.message-close-btn:focus {
+    background-color: rgb(239,239,239);
 }
 
 .message {
@@ -227,6 +227,18 @@ nav .input-field input {
     padding: 1rem;
 }
 
+h4.warning,
+h4.error {
+    color: #FF0000;  
+}
+
+h4.success {
+    color: #228B22;
+}
+
+h4.info {
+    color: #FFA500;
+}
 
 /* Colours */
 
