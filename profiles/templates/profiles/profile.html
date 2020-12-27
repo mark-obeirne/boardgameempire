@@ -30,6 +30,9 @@
                     {% for product in wishlisted_products %}
                     <div class="row valign-wrapper grey-bottom-border">
                         <div class="col s4">
+                            <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
+                        </div>
+                        <div class="col s4">
                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                         </div>
                         <div class="col s4 center-align">
@@ -38,9 +41,6 @@
                             {% else %}
                                 <p>€{{ product.price }}</p>
                             {% endif %}
-                        </div>
-                        <div class="col s4">
-                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
                         </div>
                     </div>
                     {% endfor %}
