@@ -136,17 +136,65 @@ The bottom row meanwhile contains the brand's logo, which brings the user back t
 
 ## Surface
 ### Fonts
+Open Sans is used across the site as the most prominent font. It was chosen as it is very legible, even in paragraphs with lots of text, and because it has been optimised for use across web and mobile.
+
+Meanwhile, Roboto was chosen for headings with the small caps font variant applied. This font, it was felt, looked good whether the bold or regular variant was used. While it helps the text stand out, it doesn't feel out of place, and so acts naturally as a heading of any size.
 
 ### Colours
+We wanted to emulate the tabletop feel on the site itself too. A dark brown (#392417) is used to tie in with the colour of wood. It also has good legibility against the chosen background colours (or inverted with white text on brown), and is a little more interesting than black on white.
+
+To make it more obvious that an element can be interacted with, the buttons with this background colour lighten to #5D3B26, which is 10% lighter according to [colorbook.io](colorbook.io).
+
+The green (#cde6d0) chosen as a backdrop is a similar shade to that found on a Monopoly board. It enables the containers and product images to stand out, while ensuring that there isn't too much white space which people may feel could be utilised better. We felt it struck a nice balance. 
+
+Containers have a sheer white shade (#FFFFFF) to them to ensure that the product media and text content stand out. 
+
+Other colours are used more sparingly to add emphasis or to break up elements. A red (#FF0000), orange (#FFA500), and green (#228B22) span indicates the availability of a product. This shade of red is also used to indicate that a product is on sale.
 
 
 ## Technologies Used
 ### Languages 
+HTML & CSS were used for the basic site structure and styling 
+
+JavaScript was used to further enhance the user's experience. For example, it is used to update the customer's grand total in real time if they use loyalty points to discount their purchase, to display a spinner if a page is taking a while to load, and to display modals if a user needs to log in to access a function (such as their wishlist).
+
+Python was used to handle data procured from the database.
 
 ### Frameworks
+Django was used to develop the project, taking advantage of certain in-built elements such as authentication as well as its templating language to display variables and work with data.
+
+Materialize was used to create interactive and visual elements such as the home page's slider, dropdown elements, and the site's general responsive design.
 
 ### Tools
+PIP was used to install and manage software packages.
 
+Git was used to track changes in code during development.
+
+GitHub was used to host the project’s repository.
+
+Trello was used to track work that needed to be done from the outset, which enabled a plan of action to be put in place and helped keep on top of any issues or bugs that occurred.
+
+Balsamiq was used to create the wireframes that the site's layout is based upon.
+
+Coolors was used to help find a suitable palette for the site and to check if colours might work together.
+
+Google Fonts was used to find the fonts that would be suitable as headings and general text content.
+
+Font Awesome was used to find icons for use in buttons across the site.
+
+Gimp 2 was used for image manipulation and to create the brand logo.
+
+Birme was used to resize boxart images so that there was consistency across the site.
+
+TinyPNG was used to compress and optimise image files.
+
+Favicon Converter was used to create the favicon based on the brand logo.
+
+HTML Formatter was used to format HTML files and ensure consistency in spacing.
+
+FreeFormatter CSS Beautifier was used to format the CSS stylesheet.
+
+FreeFormatter JS Beautifier was used to format js files from across the project.
 
 ## Testing
 
@@ -156,6 +204,117 @@ The bottom row meanwhile contains the brand's logo, which brings the user back t
 
 
 ## Credits
+### Media
+[Spinner - Dice](https://www.animatedimages.org/data/media/710/animated-dice-image-0079.gif)
+
+[About Us - Blood Rage image](https://pixabay.com/photos/blood-rage-tabletop-games-4311101/)
+
+[About Us - Carcassone image](https://pixabay.com/illustrations/board-game-board-game-gaming-2237460/)
+
+[About Us - Settlers of Catan image](https://www.catan.com/files/styles/lightboxy/public/gallery/dye_catan_150618_0650.jpg?itok=9RJRSUjI)
+
+[Loyalty Points - Coin stacks](https://pixabay.com/photos/money-money-tower-coins-euro-2180330/)
+
+[Returns Policy - Boxes](https://pixabay.com/photos/beige-box-brown-cardboard-carton-16875/)
+
+[Slider - Browing games](https://azure.wgp-cdn.co.uk/app-table-top-gaming/posts/DSC_4587-38154.jpg)
+
+[Slider - Sales](https://pixabay.com/illustrations/christmas-christmas-tree-backdrop-2892235/)
+
+[Slider - Fireworks](https://cdn.pixabay.com/photo/2015/04/18/07/41/fireworks-728413_960_720.jpg)
+
+[Logo - Meeple](https://icon-icons.com/icon/meeple/38522)
+
+[Logo - King piece](https://pixabay.com/vectors/chess-king-meeple-black-white-36306/)
+
+[Catan box](https://www.catan.com/files/styles/lightboxy/public/packshots/catan.png?itok=rXKqsgv9)
+
+[Carcassone box](https://images.zmangames.com/filer_public/1c/2a/1c2a5c1e-ddeb-4ab5-abf0-3bef57388498/zm7810_box_front_520px.png)
+
+[Pandemic box](https://images.zmangames.com/filer_public/98/0c/980c04bc-781a-4de7-8034-6ff6f054d7b7/zm7101_box_front_520px.png)
+
+[Dominion box](https://shop.jjcards.com/assets/images/board%20games/rio%20grande/dominion%202nd%20ed%20box.jpg)
+
+[7 Wonders box](https://i5.walmartimages.com/asr/b5434e0e-4a0e-4773-be7b-28ab2950deda_1.506a961d88efb5ed3c0cbc9286719969.jpeg)
+
+[Agricola box](https://www.sheknows.com/wp-content/uploads/2018/08/81wAmibxHxL._SL1500__p7qbt3.jpeg)
+
+[Ticket to Ride box](https://cogsthebrainshop.ie/wp-content/uploads/2013/11/TICKET-TO-RIDE-1.jpg)
+
+[Puerto Rico box](https://i5.walmartimages.com/asr/1d57f65d-549f-47bd-8b27-312305effafb.064321e76fc1716c923d10af3d181b1f.jpeg)
+
+[Small World box](https://i5.walmartimages.com/asr/c449c6ec-cae1-4b3c-8010-f74390d56abd_1.9d0a7645e3cd8d776b8a1396f03b524b.jpeg)
+
+[Power Grid box](https://www.amazon.co.uk/Rio-Grande-Games-RGG559-Power/dp/B07HM7WZT9/ref=asc_df_B07HM7WZT9/?tag=googshopuk-21&linkCode=df0&hvadid=310873739176&hvpos=&hvnetw=g&hvrand=15417965510703906747&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1007850&hvtargid=pla-598926208048&psc=1)
+
+[Citadels box](https://images.zmangames.com/filer_public/47/d3/47d3d75c-4520-4e17-963f-a5b31c908e30/wr02_box-front.png)
+
+[King of Tokyo box](https://crystal-cdn3.crystalcommerce.com/photos/685779/KingOfTokyo_3Dbox.jpg)
+
+[Love Letter box](https://cdn.shopify.com/s/files/1/1402/8033/products/llc_boxclam_520px_480x480.jpg?v=1581486768)
+
+[Ticket to Ride Europe box](https://www.thetoyshop.com/medias/537034-Primary-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wxODYyNTEwfGltYWdlL3BuZ3xpbWFnZXMvaDczL2hkNC85MTYzNDQ2MjIyODc4LnBuZ3wxN2MyZmE1ODQzY2VjNjJjMGRkZTliYjAzNGU0MmM3NzViNDRkOTZjODdjOTQ0M2E2MTk1MTgyYzJiMDUwZGRi)
+
+[Race for the Galaxy box](https://images-na.ssl-images-amazon.com/images/I/91yTKe2ES4L._AC_SL1500_.jpg)
+
+[Dixit box](https://cdn.shopify.com/s/files/1/0405/0381/products/916_54d9f2479d31a1.88716786_Dixit_20board_20game_large_3dc6c23d-cea3-4503-9cb3-a2f4fab33c9c_grande.jpg?v=1605264406)
+
+[Stone Age box](https://images.zmangames.com/filer_public/a1/ae/a1ae3e5c-0948-4257-a2f0-c10717613ad6/zm7260_box_front_520px.png)
+
+[Arkham Horror box](https://www.magicmadhouse.co.uk/images/arkham-horror-third-edition-p293489-288714_medium.jpg)
+
+[Codenames box](https://target.scene7.com/is/image/Target/GUEST_b8f62a26-e254-4cc9-bfd7-3c49dbc61561?wid=488&hei=488&fmt=pjpeg)
+
+[Splendor box](https://images-na.ssl-images-amazon.com/images/I/613n3Gky43L._AC_SX425_.jpg)
+
+[Lords of Waterdeep box](https://c1-ebgames.eb-cdn.com.au/merchandising/images/packshots/c0630425331148809ec22cdc0de03c7f_Large.jpg)
+
+[Munchkin box](https://cogsthebrainshop.ie/wp-content/uploads/2017/10/munchkin-card-game.jpg)
+
+[Bohanza box](https://images-na.ssl-images-amazon.com/images/I/81zdBXeGWlL._AC_SL1500_.jpg)
+
+[Forbidden Island box](https://www.gamesworld.com.au/wp-content/uploads/2015/10/FORBIDDEN-ISLAND-1.jpg)
+
+[Lost Cities box](https://www.kosmosgames.co.uk/wp-content/uploads/2018/04/691821_LC_Card_Game_3DBox.jpg)
+
+[The Resistance box](https://cdn.shopify.com/s/files/1/0405/0381/products/3604_560ac185ae59b3.01320100_The_20Resistance_20board_20game_large_9ab15d8c-496e-4b67-922e-6b705422d147_grande.png?v=1605264373)
+
+[Battlestar Galactica box](https://images-na.ssl-images-amazon.com/images/I/71Le6zwW48L._AC_SX425_.jpg)
+
+[Hanabi box](https://i2.wp.com/www.enigmaticevents.com/wp-content/uploads/2018/02/HanabiSdJ_Bild01_Cover3D_sRGB-600x600.jpg?fit=600%2C600&ssl=1)
+
+[Terra Mystica box](https://images.zmangames.com/filer_public/7f/a2/7fa211a0-f16b-4608-acb6-775cc03f0869/zm7244_box_front_520px.png)
+
+[Dominion Intrigue box](https://cdn11.bigcommerce.com/s-9im8f1/images/stencil/1280x1280/products/5632/7048/91UusJQyiML._AC_SL1500___03727.1590441095.jpg?c=2)
+
+[Betrayal at the House on the Hill box](https://www.board-game.co.uk/wp-content/uploads/2019/11/ZBG-HAS266330000_FRONT.jpg)
+
+[Dead of Winter box](https://images-cdn.fantasyflightgames.com/filer_public/5f/6d/5f6db8c3-4f25-45ec-86af-849fc3af723b/ph1000_box_right.png)
+
+[Alhambra box](https://images-na.ssl-images-amazon.com/images/I/814OJBe4jUL._SL1290_.jpg)
+
+[Coup box](https://www.board-game.co.uk/wp-content/uploads/2019/11/ZBG-IBCCOU1_FRONT-1.jpg)
+
+[Galaxy Trucker box](https://cf.geekdo-images.com/gLFt1Kif5Cfag505_COYYw__opengraph/img/_RmgylCHR4AMj7WPBvdXP_tKPzc=/fit-in/1200x630/filters:strip_icc()/pic3926631.jpg)
+
+[Eclipse box](https://cdn.shopify.com/s/files/1/0405/0381/products/553_54da436c225c76.48995041_Eclipse_20board_20game_large_5357113f-c268-4862-9b04-f264c2338edf_1024x1024.jpg?v=1575931863)
+
+[Shadows Over Camelot box](https://m.media-amazon.com/images/I/61CMyHW1O7L._AC_.jpg)
+
+[Robo Rally box](https://images-na.ssl-images-amazon.com/images/I/71gQvFMP%2BLL._AC_SX466_.jpg)
+
+[BANG! box](https://www.google.com/url?sa=i&url=https%3A%2F%2Fboardgamemanuals.fandom.com%2Fwiki%2FBANG!&psig=AOvVaw149i6l7Q0_5OpaYL8L8Zan&ust=1608583203994000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOj6yeK13e0CFQAAAAAdAAAAABAD)
+
+[Hive box](https://www.boardgamebarrister.com/wp-content/uploads/2015/12/HiveBox.png)
+
+[La Havre box](https://i.pinimg.com/originals/c4/f8/39/c4f839222d62013afe6f37eb10e6101b.jpg)
+
+[Cosmic Encounter box](https://images-cdn.fantasyflightgames.com/filer_public/b8/f5/b8f5cf47-226f-43f4-a8d5-40c09260f1d2/ce01_42ae_box_left.png)
+
+[Star Realms box](https://opinionatedgamers.files.wordpress.com/2015/05/starrealms.png)
+
+[Patchwork box](https://m.media-amazon.com/images/I/91SHanVV2ZL._AC_SS350_.jpg)
+
 
 
 ## Acknowledgements
