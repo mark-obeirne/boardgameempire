@@ -194,6 +194,35 @@ footer .row {
 }
 
 
+/* Allauth Styling */
+#id_remember {
+    position: relative;
+    opacity: 1;
+}
+
+label[for="id_remember"] {
+    position: relative;
+}
+
+.login .input-field input[type=text]:focus,
+.login .input-field input[type=password]:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+}
+
+#signup_form .input-field input[type=text]:focus,
+#signup_form .input-field input[type=password]:focus,
+#signup_form .input-field input[type=email]:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+} 
+
+.password_reset .input-field input[type=email]:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+}
+
+
 /* Nav Menu */
 
 .navbar-fixed {
@@ -230,12 +259,22 @@ nav .bottom-nav-row ul a {
 }
 
 /* Search */
+
 #top-nav-search:focus {
     border-bottom: 1px solid #FFFFFF;
     box-shadow: 0 1px 0 0 #FFFFFF;
 }
 
-nav .input-field input {
+#mobile-top-nav-search:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+}
+
+input#mobile-top-nav-search {
+    color: #392417;
+}
+
+input#top-nav-search {
     color: #FFFFFF;
 }
 
