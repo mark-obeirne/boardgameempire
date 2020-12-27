@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@400;700&display=swap');
+
 /* General Site Styles */
 
 :root {
@@ -6,6 +8,7 @@
 
 body {
   font-size: 1.6rem;
+  font-family: 'Open Sans', sans-serif;
 }
 
 html,
@@ -102,6 +105,7 @@ footer .row {
 
 .small-caps {
     font-variant: small-caps;
+    font-family: 'Roboto', serif;
 }
 
 .underlined {
@@ -335,6 +339,11 @@ input[type="submit" i] {
 
 .slider .slides li .caption p.text-brown {
     color: #392417;
+}
+
+/* Home Page */
+.site-benefits {
+    padding: 2rem 0rem;
 }
 
 
