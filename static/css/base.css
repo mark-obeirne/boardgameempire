@@ -653,6 +653,12 @@ footer li > a:hover {
 
 /* Media Queries */
 
+@media screen and (min-width: 542px) {
+    .checkout-btn {
+        margin-top: 0rem;
+    }
+}
+
 @media screen and (min-width: 600px) {
     .product-card {
         min-height: 550px;
@@ -680,10 +686,6 @@ footer li > a:hover {
 
     .col.order-column {
         padding-left: 2rem;
-    }
-
-    .checkout-btn {
-        margin-top: 0rem;
     }
 
     .row .col.l6.column-large {
