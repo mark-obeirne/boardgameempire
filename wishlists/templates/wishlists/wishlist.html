@@ -49,14 +49,32 @@
             </div>
         {% endfor %}
         <div class="col s12 center-align">
-            <form class="form" method="POST" action="{% url 'delete_wishlist' %}">
-            {% csrf_token %}
-                <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="delete-wishlist-btn" type="submit" name="action">
-                    <i class="fas fa-trash-alt"></i> Delete Wishlist
-                </button>
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form>
+            <span class="waves-effect waves-light btn text-light bg-brown margin-t1 delete-wishlist">
+                <i class="fas fa-trash-alt"></i> Delete Wishlist
+            </span>
             <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown margin-t1"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
+        </div>
+        <div id="delete-wishlist-modal" class="none">
+            <div class="container modal-container">
+                <div class="row valign-wrapper modal-header">
+                    <div class="col s10">
+                        <h4 class="small-caps bold"><i class="fas fa-exclamation-triangle"></i> Delete wishlist?</h4>
+                    </div>
+                    <div class="col s2 right-align message-close">
+                        <button type="button" class="modal-close-btn" data-dismiss="message" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <form class="form" method="POST" action="{% url 'delete_wishlist' %}">
+                {% csrf_token %}
+                    <p>Are you sure you would like to delete this wishlist? This action is irreversible.</p>
+                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="delete-wishlist-btn" type="submit" name="action">
+                        <i class="fas fa-trash-alt"></i> Delete Wishlist
+                    </button>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            </div>
         </div>
     {% else %}
         <div class="col s12 center-align">
@@ -66,4 +84,10 @@
     {% endif %}
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    <script src="{% static 'wishlists/js/script.js' %}"></script>
 {% endblock %}

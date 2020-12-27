@@ -588,6 +588,35 @@ label[for="id_points_used"] {
 }
 
 
+/* Wishlist Page */
+
+#delete-wishlist-modal {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #d3d3d3;
+    opacity: 0.9;
+    z-index: 999;
+}
+
+.modal-container {
+    margin-top: 20rem;
+    border: 5px solid #d3d3d3;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.modal-header {
+    background-color: #392417;
+    color: #FFFFFF;
+}
+
+.modal-close-btn:focus {
+    background-color: rgb(239,239,239);
+}
+
 
 /* Footer */
 
