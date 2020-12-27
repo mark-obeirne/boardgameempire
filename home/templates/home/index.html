@@ -8,7 +8,7 @@
         {% include 'home/includes/homepage-slider.html' %}
     </div>
 
-    <div class="container bg-white text-brown">
+    <div class="container text-brown">
         <!--Featured Best Seller-->
         <div class="best-seller">
             <div class="row">
@@ -57,38 +57,40 @@
         </div>
         
         <!--Why Us?-->
-        <h2 class="center-align text-brown small-caps bold">Why Boardgame Empire?</h2>
-        <div class="row">
-            <div class="col s12 l4">
-                <div class="card">
-                    <div class="card-content text-brown">
-                        <span class="card-title center-align uppercase bold grey-bottom-border">Free Delivery Over €50</span>
-                        <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket! Buuuut if you're anything like us it'll be used for more boardgames!</p>
+        <div class="bg-sheer-white site-benefits">
+            <h2 class="center-align text-brown small-caps bold">Why Boardgame Empire?</h2>
+            <div class="row">
+                <div class="col s12 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title center-align uppercase bold grey-bottom-border">Free Delivery Over €50</span>
+                            <p>Spend €50 and get your shiny new boardgames delivered to you for free. That's money kept in your pocket! Buuuut if you're anything like us it'll be used for more boardgames!</p>
+                        </div>
+                        <div class="center-align">
+                            <a href="{% url 'products' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-store-alt prefix text-light"></i> Start Shopping</a>
+                        </div>
                     </div>
-                    <div class="center-align">
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-store-alt prefix text-light"></i> Start Shopping</a>
+                </div>            
+                <div class="col s12 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title center-align uppercase bold grey-bottom-border">Earn Loyalty Points</span>
+                            <p><a href="{% url 'account_login' %}" class="underlined">Sign in to</a> (or <a href="{% url 'account_signup' %}" class="underlined">sign up for</a>) a Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
+                        </div>
+                        <div class="center-align">
+                        <a href="{% url 'loyalty' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-piggy-bank prefix text-light"></i> Find Out More</a>
+                        </div>
                     </div>
                 </div>
-            </div>            
-            <div class="col s12 l4">
-                <div class="card">
-                    <div class="card-content text-brown">
-                        <span class="card-title center-align uppercase bold grey-bottom-border">Earn Loyalty Points</span>
-                        <p><a href="{% url 'account_login' %}" class="underlined">Sign in to</a> (or <a href="{% url 'account_signup' %}" class="underlined">sign up for</a>) a Boardgame Empire account and earn loyalty points on your purchase which can be used as a discount on future purchases. What a treat!</p>
-                    </div>
-                    <div class="center-align">
-                    <a href="{% url 'loyalty' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-piggy-bank prefix text-light"></i> Find Out More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 l4">
-                <div class="card">
-                    <div class="card-content text-brown">
-                        <span class="card-title center-align uppercase bold grey-bottom-border">Can't See A Game Listed?</span>
-                        <p>If we don't stock a boardgame that you're interested in, or it's currently out of stock, please contact us. We'll see if we can get our hands on it for you or when it will be available.</p>
-                    </div>
-                    <div class="center-align">
-                    <a href="{% url 'contact_us' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-envelope prefix prefix text-light"></i> Contact Us</a>
+                <div class="col s12 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title center-align uppercase bold grey-bottom-border">Can't See A Game Listed?</span>
+                            <p>If we don't stock a boardgame that you're interested in, or it's currently out of stock, please contact us. We'll see if we can get our hands on it for you or when it will be available.</p>
+                        </div>
+                        <div class="center-align">
+                        <a href="{% url 'contact_us' %}" class="waves-effect waves-light btn product-btn bg-brown last-btn text-light"><i class="fas fa-envelope prefix prefix text-light"></i> Contact Us</a>
+                        </div>
                     </div>
                 </div>
             </div>

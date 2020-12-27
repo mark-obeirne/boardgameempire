@@ -6,7 +6,7 @@
     <ul class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
         <li><a href="{% url 'products' %}">All Boardgames</a></li>
-        <li><a href="#" class="click-dropdown-trigger" data-target="theme-dropdown">Boardgames by Theme</a></li>
+        <li><a href="#" class="click-dropdown-trigger" data-target="theme-dropdown">Shop by Theme</a></li>
         <ul id="theme-dropdown" class="dropdown-content wide-menu">
             <div class="row">
             {% for category in all_categories %}
@@ -18,7 +18,7 @@
             {% endfor %}
             </div>
         </ul>
-        <li><a href="#" class="click-dropdown-trigger" data-target="mechanics-dropdown">Boardgames by Mechanic</a></li>
+        <li><a href="#" class="click-dropdown-trigger" data-target="mechanics-dropdown">Shop by Mechanic</a></li>
         <ul id="mechanics-dropdown" class="dropdown-content wide-menu">
             <div class="row">
             {% for mechanic in all_mechanics %}
