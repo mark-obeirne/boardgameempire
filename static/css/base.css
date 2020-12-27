@@ -519,6 +519,12 @@ input[type="submit" i] {
     padding-top: 1rem;
 }
 
+.form .cart-qty-input {
+    margin: 0;
+    text-align: center;
+    border: none;
+}
+
 
 /* Checkout Page */
 
