@@ -17,8 +17,8 @@
             <div class="col hide-on-small-only m3"><span class="bold">Item Subtotal</span></div>
         </div>
             {% for item in items_in_cart %}
-                <div class="row grey-bottom-border">
-                    <div class="col s12 m2">
+                <div class="row valign-wrapper">
+                    <div class="col hide-on-small-only m2">
                         {% if item.product.boxart %}
                             <a href="{% url 'product_detail' item.product.id %}"><img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}'s box" class="responsive-img"></a>
                         {% else %}
@@ -36,16 +36,18 @@
                     <div class="col s12 m4">
                         <form class="form" method="POST" action="{% url 'update_cart' item.product_id %}">
                             {% csrf_token %}
-                            <div class="input-field center-align">
-                                <span class="hide-on-large-only qty-btn qty-decrease" data-product-id="{{ product.id }}" id="decrease-qty_{{ product.id }}"><i class="fas fa-minus-square"></i></span>
-                                <input class="product-qty-input narrow-input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ product.inventory }}" data-item_id="{{ product.id }}" id="product-qty-input">
-                                <span class="hide-on-large-only qty-btn qty-increase" data-product-id="{{ product.id }}" id="increase-qty_{{ product.id }}"><i class="fas fa-plus-square"></i></span>
+                            <div class="row qty-input-row">
+                                <div class="col s4 right-align">
+                                    <span class="qty-btn cart-qty-decrease" data-product-id="{{ product.id }}" id="decrease-qty_{{ item.product.id }}"><i class="fas fa-minus-square text-brown"></i></span>
+                                </div>
+                                <div class="col s4">
+                                    <input class="cart-qty-input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.inventory }}" data-item_id="{{ item.product.id }}" id="product-qty-input_{{ item.product.id }}">
+                                </div>
+                                <div class="col s4 left-align">
+                                    <span class="qty-btn cart-qty-increase" data-product-id="{{ product.id }}" id="increase-qty_{{ item.product.id }}"><i class="fas fa-plus-square text-brown"></i></span>
+                                </div>
                             </div>
                         </form>
-                        <div class="col s12 center-align">
-                            <a href="#" class="update-qty small">Update Quantity</a> | 
-                            <a href="#" class="remove-item small" id="remove_{{ item.product_id }}">Remove Item</a>
-                        </div>
                     </div>
                     <div class="col s12 m3 center-align">
                         {% if item.product.on_sale %}
@@ -55,6 +57,12 @@
                         {% endif %}
                     </div>
                 </div>
+                <div class="row grey-bottom-border">
+                    <div class="col s12 center-align">
+                            <a href="#" class="update-qty small">Update Quantity</a> | 
+                            <a href="#" class="remove-item small" id="remove_{{ item.product_id }}">Remove Item</a>
+                        </div>
+                    </div>
             {% endfor %}
             <div class="row">
                 <div class="col s8 m5 offset-m2">
@@ -97,40 +105,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    
-    <script type="text/javascript">
-        const updateItemBtns = document.querySelectorAll(".update-qty")
-        updateItemBtns.forEach(updateBtn => updateBtn.addEventListener("click", updateItem))
-
-        function updateItem(e) {
-            console.log("You wish to update")
-            console.log(this)
-            console.log(this.previousElementSibling)
-            const itemForm = this.previousElementSibling
-            itemForm.submit();
-
-        }
-    </script>
-
-    <script type="text/javascript">
-        const removeItemBtns = document.querySelectorAll(".remove-item")
-        removeItemBtns.forEach(removeBtn => removeBtn.addEventListener("click", removeItem))
-
-        function removeItem(e) {
-            const csrfToken = "{{ csrf_token }}"
-            console.log("Removing")
-            console.log(this) 
-            const productId = this.getAttribute("id").split("_")[1]
-            const url = `/cart/remove/${productId}/`
-            const data = {"csrfmiddlewaretoken": csrfToken}
-            console.log(csrfToken)
-
-            const request = new XMLHttpRequest();
-            request.open("POST", url, true);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            request.setRequestHeader('X-CSRFToken', csrfToken);
-            request.send(data)
-            location.reload()
-        } 
-    </script>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

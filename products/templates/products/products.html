@@ -11,14 +11,6 @@
             <div class="col s12">
                 <p>Showing {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
             </div>
-            <!--Button to display available filters-->
-            <div class="col s12">
-                <a href="#" class="waves-effect waves-light btn bg-brown text-light">Filters</a>
-            </div>
-        <!--If current filters
-            <div class="col s8">
-            Current Filters:
-        </div>-->
         </div>
         <div class="row">
             <div class="input-field browser-default col s6">
@@ -76,11 +68,9 @@
                                 {% if product.inventory > 0 %}
                                 <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
                                     {% csrf_token %}
-                                    <span class="qty-btn qty-decrease" data-product-id="{{ product.id }}" id="decrease-qty_{{ product.id }}"><i class="fas fa-minus-square text-brown"></i></span>
-                                    <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ product.inventory }}" data-item_id="{{ product.id }}" id="product-qty-input">
-                                    <span class="qty-btn qty-increase" data-product-id="{{ product.id }}" id="increase-qty_{{ product.id }}"><i class="fas fa-plus-square text-brown"></i></span>
-                                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="add-cart-btn" type="submit" name="action">
-                                        <i class="fas fa-cart-plus"></i> Add to Cart
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" type="submit" name="action">
+                                        <i class="fas fa-cart-plus"></i> Quick Add to Cart
                                     </button>
                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                 </form>
@@ -100,6 +90,7 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    <!-- Initialise Materialize Select menu-->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             const elems = document.querySelectorAll('select');
@@ -107,27 +98,5 @@
         });
     </script>
 
-    <script type="text/javascript">
-        const selectDropdown = document.querySelectorAll(".sort-select-dropdown")
-        selectDropdown.forEach(dropdown => dropdown.addEventListener("change", function() {
-            const chosenSorting = this.value;
-            console.log(chosenSorting)
-            const currentUrl = new URL(window.location);
-
-            if (chosenSorting != "reset") {
-                const sort = chosenSorting.split("-")[0]
-                const direction = chosenSorting.split("-")[1]
-                
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
-
-                window.location.replace(currentUrl);
-            } else {
-                currentUrl.searchParams.set("sort");
-                currentUrl.searchParams.set("direction");
-
-                window.location.replace(currentUrl);
-            }
-        }))
-    </script>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

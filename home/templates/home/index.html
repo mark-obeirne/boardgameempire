@@ -35,12 +35,25 @@
                                 {% if best_seller.inventory > 0 %}
                                 <form class="form" method="POST" action="{% url 'add_to_cart' best_seller.id %}">
                                     {% csrf_token %}
-                                    <span class="qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}"><i class="fas fa-minus-square text-brown"></i></span>
-                                    <input class="product-qty-input narrow-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
-                                    <span class="qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}"><i class="fas fa-plus-square text-brown"></i></span>
-                                    <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="add-cart-btn" type="submit" name="action">
-                                        <i class="fas fa-cart-plus"></i> Add to Cart
-                                    </button>
+                                    <div class="row qty-input-row">
+                                        <div class="col s4 l4 offset-l1 right-align">
+                                            <span class="qty-btn qty-decrease" data-product-id="{{ best_seller.id }}" id="decrease-qty_{{ best_seller.id }}"><i class="fas fa-minus-square text-brown"></i></span>
+                                        </div>
+                                        <div class="col s4 l2">
+                                            <input class="product-qty-input" type="number" name="quantity" value="1" min="1" max="{{ best_seller.inventory }}" data-item_id="{{ best_seller.id }}" id="product-qty-input">
+                                        </div>
+                                        <div class="col s4 left-align">
+                                            <span class="qty-btn qty-increase" data-product-id="{{ best_seller.id }}" id="increase-qty_{{ best_seller.id }}"><i class="fas fa-plus-square text-brown"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="add-cart-btn" type="submit" name="action">
+                                                <i class="fas fa-cart-plus"></i> Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                 </form>
                                 {% else %}
@@ -101,6 +114,7 @@
 {% block postloadjs %}
     {{ block.super }}
     <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 
-    {% include 'products/includes/quantity_adjustment_script.html' %}
+    
 {% endblock %}
