@@ -11,9 +11,12 @@ class Review(models.Model):
         (4, 4),
         (5, 5),
     )
-    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(
+        Product, null=True, blank=True, on_delete=models.SET_NULL)
     review_title = models.CharField(max_length=100)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name="reviews")
+    user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.SET_NULL,
+        null=True, blank=True, related_name="reviews")
     date_published = models.DateTimeField(auto_now_add=True)
     review_text = models.TextField()
     rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES)
