@@ -6,18 +6,22 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 def about_us(request):
+    """ Display the About Us page """
     return render(request, "about/about.html")
 
 
 def loyalty(request):
+    """ Display details of the Loyalty Points Programme """
     return render(request, "about/loyalty.html")
 
 
 def returns(request):
+    """ Display details of company's returns policy """
     return render(request, "about/returns.html")
 
 
 def contact_us(request):
+    """ Display contact us form and handle sending of email on POST request """
     form = ContactForm()
 
     if request.method == "POST":
@@ -27,13 +31,20 @@ def contact_us(request):
             from_email = form.cleaned_data["from_email"]
             message = form.cleaned_data["message"]
             try:
-                send_mail(subject, message, from_email, ["boardgameempireshop@gmail.com"])
+                send_mail(subject,
+                          message,
+                          from_email,
+                          ["boardgameempireshop@gmail.com"]
+                          )
                 messages.success(request, "Email sent!")
             except BadHeaderError:
                 return HttpResponse("Invalid header found.")
             return redirect("contact_success")
         else:
-            messages.error(request, "Sorry, couldn't send your email. Please ensure form is valid")
+            messages.error(request,
+                           "Sorry, couldn't send your email. "
+                           "Please ensure form is valid"
+                           )
 
     context = {
         "form": form,
