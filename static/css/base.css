@@ -163,6 +163,31 @@ footer .row {
 }
 
 
+/* Forms */
+#checkout-form fieldset .input-field input[type=text]:focus,
+#checkout-form fieldset .input-field input[type=email]:focus,
+#checkout-form fieldset .input-field input[type=number]:focus {
+  border-bottom: 1px solid #392417;
+  box-shadow: 0 1px 0 0 #392417;
+}
+
+#checkout-form [type="checkbox"].filled-in:checked+span:not(.lever):after {
+    border: 1px solid #392417;
+    background-color: #392417;
+}
+
+#profile-update-form .input-field input[type=email]:focus,
+#profile-update-form .input-field input[type=text]:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+}
+
+.contact-form .input-field input[type=email]:focus,
+.contact-form .input-field input[type=text]:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+}
+
 /* Nav Menu */
 
 .navbar-fixed {
