@@ -1,18 +1,21 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from .models import Product, Category, Mechanic
 from profiles.models import UserProfile
-from wishlists.models import Wishlist
 from reviews.models import Review
-from django.db.models import Q, Case, When, Value
+from django.db.models import Q
 from django.db.models.functions import Lower, Coalesce
-from django.db import models
 from django.contrib import messages
 
 
 def all_products(request):
-    """ View to display all products currently stocked """
+    """
+    Display all products currently stocked and take any user selected sort and
+    direction into account when sorting
+    """
+
     products = Product.objects.all()
-    
+
+    # Set variables to None to handle basic behaviour without user input
     sort = None
     direction = None
     query = None
@@ -24,29 +27,30 @@ def all_products(request):
     if "sort" in request.GET:
         sortkey = request.GET["sort"]
         sort = sortkey
-        print(sortkey)
         if sortkey == "name":
             sortkey = "lower_name"
             products = products.annotate(lower_name=Lower("name"))
 
         if sortkey == "price":
-            print("Yes, it's price")
+            """
+            Return first non-null value so that sale and regular priced
+            products can be sorted together
+            """
             sortkey = Coalesce("sale_price", "price")
-            print("Coalescing")
 
         if "direction" in request.GET:
             direction = request.GET["direction"]
             if direction == "desc":
                 if sortkey == Coalesce("sale_price", "price"):
+                    # Must be handled separately to avoid error
                     pass
                 else:
                     sortkey = f"-{sortkey}"
 
         if sortkey == Coalesce("sale_price", "price") and direction == "desc":
-            print("Trying to reverse Coalescing")
+            # Reverse ordering of Coalesce if direction is descending
             products = products.order_by(Coalesce("sale_price", "price"))
             products = products.reverse()
-            print(products)
         else:
             products = products.order_by(sortkey)
 
@@ -55,7 +59,10 @@ def all_products(request):
         if not query:
             messages.error(request, "You did not enter a search term")
             return redirect(reverse('products'))
-        queries = Q(name__icontains=query) | Q(designer__icontains=query) | Q(publisher__icontains=query) 
+        queries = Q(
+            name__icontains=query) | Q(
+                designer__icontains=query) | Q(
+                    publisher__icontains=query)
         products = products.filter(queries)
 
     if "category" in request.GET:
@@ -88,13 +95,19 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ Return details of an individual product """
+    """
+    Return details of an individual product and determine if product is on
+    user's wishlist (if user is logged in)
+    """
     product = get_object_or_404(Product, pk=product_id)
     average_rating = 0
+    on_wishlist = False
+    latest_reviews = Review.objects.filter(
+        product=product).order_by("-date_published")[0:2]
+
     if product.number_reviews > 0:
         average_rating = product.total_rating / product.number_reviews
-    on_wishlist = False
-    latest_reviews = Review.objects.filter(product=product).order_by("-date_published")[0:2]
+
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         users_wishlist = Product.objects.filter(wishlist__user_profile=user)
@@ -111,9 +124,14 @@ def product_detail(request, product_id):
 
 
 def get_random_game(request):
-    """ Return details of a random product """
+    """
+    Return details of a random product and determine if product is on user's
+    wishlist (if user is logged in)
+    """
+
     product = Product.objects.order_by("?")[0]
     on_wishlist = False
+
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         users_wishlist = Product.objects.filter(wishlist__user_profile=user)
