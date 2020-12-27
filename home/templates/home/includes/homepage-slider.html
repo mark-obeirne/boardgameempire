@@ -10,7 +10,7 @@
                 Shop the range
             </a>
         </div>
-        <img src="/media/DSC_4587-38154.png" alt="People browsing through boardgames" class="responsive-img">
+        <img src="{{ MEDIA_URL}}DSC_4587-38154.png" alt="People browsing through boardgames" class="responsive-img">
     </li>
     <li>
         <!--Sales Spotlight Panel-->
@@ -20,7 +20,7 @@
             <p class="text-brown">Christmas is coming! Pick up the perfect gift at a discounted price.</p>
             <a href="{% url 'get_deals' %}" class="waves-effect waves-light btn bg-brown"><i class="fas fa-store-alt text-light prefix"></i> See our deals</a>
         </div>
-        <img src="/media/christmas-1280.png" alt="Christmas background">
+        <img src="{{ MEDIA_URL}}christmas-1280.png" alt="Christmas background">
     </li>
     <li>
         <!--Game of the Month Spotlight Panel-->
@@ -31,6 +31,6 @@
             <p class="text-brown">The perfect game to break out for New Years.</p>
             <a class="waves-effect waves-light btn bg-brown" href="{% url 'game_of_the_month' %}"><i class="fas fa-store-alt text-light prefix"></i> See more!</a>
         </div>
-        <img src="/media/fireworks-728413.jpg" alt="Fireworks">
+        <img src="{{ MEDIA_URL}}fireworks-728413.jpg" alt="Fireworks">
     </li>
 </ul>
