@@ -173,8 +173,12 @@ if (messageCloseBtn) {
         // Remove selected product from cart
         
         function removeItem(e) {
-            const csrfToken = "{{ csrf_token }}"
+            const csrfToken = document.querySelector("input[type=hidden]").value
+            console.log(csrfToken)
+            console.log(this)
             const productId = this.getAttribute("id").split("_")[1]
+            console.log(productId)
+            
             const url = `/cart/remove/${productId}/`
             const data = {"csrfmiddlewaretoken": csrfToken}
 
