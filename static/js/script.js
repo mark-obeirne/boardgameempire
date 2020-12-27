@@ -55,6 +55,11 @@ if (messageCloseBtn) {
     const cartDecreaseQtyBtns = document.querySelectorAll(".cart-qty-decrease")
     const cartQuantityInputFields = document.querySelectorAll(".cart-qty-input")  
 
+    // Select all update quantity buttons on user's cart page
+    const updateItemBtns = document.querySelectorAll(".update-qty")
+
+    // Select all remove item buttons on user's cart page
+    const removeItemBtns = document.querySelectorAll(".remove-item")
 
 // Functions
 
@@ -157,7 +162,33 @@ if (messageCloseBtn) {
             }
         }
 
+        // Update product quantity in cart when user updates quantity on cart page 
+        function updateCart() {
+            const updateCartBtn = this;
+            const productForm = updateCartBtn.parentElement.parentElement.previousElementSibling.children[2].firstElementChild;
+            productForm.submit();
+        }
 
+
+        // Remove selected product from cart
+        
+        function removeItem(e) {
+            const csrfToken = "{{ csrf_token }}"
+            const productId = this.getAttribute("id").split("_")[1]
+            const url = `/cart/remove/${productId}/`
+            const data = {"csrfmiddlewaretoken": csrfToken}
+
+            const request = new XMLHttpRequest();
+            request.open("POST", url, true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            request.setRequestHeader('X-CSRFToken', csrfToken);
+            request.send(data)
+            location.reload()
+        } 
+
+
+
+       
 // Event Listeners
 
     // Increase quantity input value when "+" button is clicked on Product Detail page
@@ -177,20 +208,36 @@ if (messageCloseBtn) {
         quantityInputField.addEventListener("change", updateQty)
     }
 
+
     // Update sorting mechanic and direction on products/deals pages
     if (selectDropdown) {
         selectDropdown.forEach(dropdown => dropdown.addEventListener("change", updateSortDirection)
     )}
+
 
     // Listen for quantity adjustment of each product on cart page
     if (cartIncreaseQtyBtns) {
         cartIncreaseQtyBtns.forEach(btn => btn.addEventListener("click", increaseCartQty))
     }
 
+
     if (cartDecreaseQtyBtns) {
         cartDecreaseQtyBtns.forEach(btn => btn.addEventListener("click", decreaseCartQty))
     }
 
+
     if (cartQuantityInputFields) {
         cartQuantityInputFields.forEach(field => field.addEventListener("change", updateCartQty))
+    }
+
+
+    // Update product quantity in cart when user updates quantity on cart page 
+    if (updateItemBtns) {
+        updateItemBtns.forEach(updateBtn => updateBtn.addEventListener("click", updateCart))
+    }
+
+
+    // Remove selected product from cart
+    if (removeItemBtns) {
+        removeItemBtns.forEach(removeBtn => removeBtn.addEventListener("click", removeItem))
     }

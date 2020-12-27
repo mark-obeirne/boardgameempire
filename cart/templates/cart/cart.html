@@ -105,36 +105,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-        const updateItemBtns = document.querySelectorAll(".update-qty")
-        updateItemBtns.forEach(updateBtn => updateBtn.addEventListener("click", updateItem))
-
-        function updateItem(e) {
-            const updateCartBtn = this;
-            const productForm = updateCartBtn.parentElement.parentElement.previousElementSibling.children[2].firstElementChild;
-            productForm.submit();
-        }
-    </script>
-
-    <script type="text/javascript">
-        const removeItemBtns = document.querySelectorAll(".remove-item")
-        removeItemBtns.forEach(removeBtn => removeBtn.addEventListener("click", removeItem))
-
-        function removeItem(e) {
-            const csrfToken = "{{ csrf_token }}"
-            console.log("Removing")
-            console.log(this) 
-            const productId = this.getAttribute("id").split("_")[1]
-            const url = `/cart/remove/${productId}/`
-            const data = {"csrfmiddlewaretoken": csrfToken}
-            console.log(csrfToken)
-
-            const request = new XMLHttpRequest();
-            request.open("POST", url, true);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            request.setRequestHeader('X-CSRFToken', csrfToken);
-            request.send(data)
-            location.reload()
-        } 
-    </script>
+    <script scr="{% static 'js/script.js' %}"></script>
 {% endblock %}
