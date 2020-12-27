@@ -10,12 +10,13 @@
 {% block extra_title %}Customer Profile{% endblock %}
 
 {% block content %}
-    <div class="container bg-light text-brown">
+    <div class="container bg-sheer-white text-brown">
         <h1 class="bold small-caps">My Profile</h1>
         <div class="row">
             <div class="col s12 l6 column-large">
                 <h2 class="bold small-caps">User Details</h2>
-                <p>Please fill out the form with your information</p>
+                <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
+                <p class="small">Please fill out the form with your information</p>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token%}
                     {{ form|crispy }}
@@ -25,7 +26,6 @@
                         </button>
                     </div>
                 </form>
-                <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
             </div>
             <div class="col s12 l6 column-large">
                 <h2 class="bold small-caps">My Wishlist</h2>
@@ -53,7 +53,7 @@
                 {% else %}
                     <div class="col s12 center-align">
                         <p>You haven't added any products to your wishlist yet!</p>
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+                        <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown last-btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
                     </div>
                 {% endif %}
             </div>
