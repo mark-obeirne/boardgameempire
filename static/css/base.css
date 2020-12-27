@@ -188,6 +188,12 @@ footer .row {
     box-shadow: 0 1px 0 0 #392417;
 }
 
+.review-form .input-field input[type=text]:focus {
+    border-bottom: 1px solid #392417;
+    box-shadow: 0 1px 0 0 #392417;
+}
+
+
 /* Nav Menu */
 
 .navbar-fixed {
