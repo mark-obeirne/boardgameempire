@@ -5,13 +5,15 @@
 {% block extra_title %}Contact Us{% endblock %}
 
 {% block content %}
-<div class="container bg-light text-brown">
+<div class="container bg-sheer-white text-brown">
     <h1 class="small-caps bold">Contact Us</h1>
     <div class="row">
         <div class="col s12">
             <form action="{% url 'contact_us' %}" method="POST" class="contact-form">
                 {% csrf_token %}
                 {{ form| crispy }}
+                <!--Crispy form missing a closing div tag-->
+                </div>
                 <div class="center-align">
                     <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="submit-review-btn" type="submit" name="action">
                         <i class="fas fa-envelope"></i> Send Mail
@@ -21,7 +23,5 @@
             </form>
         </div>
     </div>
-</div>
-<!--Crispy form missing a closing div tag-->
 </div>
 {% endblock %}

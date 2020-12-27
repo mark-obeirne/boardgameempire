@@ -2,11 +2,6 @@
 
 {% load static %}
 
-{% block corejs %}
-    {{ block.super }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-{% endblock %}
-
 {% block extra_title %}Customer Profile{% endblock %}
 
 {% block content %}
@@ -14,6 +9,7 @@
         <h1 class="bold small-caps">My Profile</h1>
         <div class="row">
             <div class="col s12 l6 column-large">
+                <!--User Details-->
                 <h2 class="bold small-caps">User Details</h2>
                 <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
                 <p class="small">Please fill out the form with your information</p>
@@ -28,10 +24,14 @@
                 </form>
             </div>
             <div class="col s12 l6 column-large">
+                <!--User Wishlist-->
                 <h2 class="bold small-caps">My Wishlist</h2>
                 {% if wishlisted_products %}
                     {% for product in wishlisted_products %}
                     <div class="row valign-wrapper grey-bottom-border">
+                        <div class="col s4">
+                            <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
+                        </div>
                         <div class="col s4">
                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                         </div>
@@ -41,9 +41,6 @@
                             {% else %}
                                 <p>€{{ product.price }}</p>
                             {% endif %}
-                        </div>
-                        <div class="col s4">
-                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
                         </div>
                     </div>
                     {% endfor %}
@@ -58,6 +55,7 @@
                 {% endif %}
             </div>
             <div class="col s12 l6 column-large">
+                <!--User Order History-->
                 <h2 class="bold small-caps">Order History</h2>
                 {% if orders %}
                 <p>Click an order number for more information</p>

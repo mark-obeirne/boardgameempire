@@ -10,10 +10,14 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile(request):
-    """ Display the user's profile """
+    """
+    Display the user's profile if they have saved details previously and handle
+    updates to details via POST request
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
     wishlist, created = Wishlist.objects.get_or_create(user_profile=profile)
-    wishlisted_products = Product.objects.filter(wishlist__user_profile=profile)
+    wishlisted_products = Product.objects.filter(
+        wishlist__user_profile=profile)
 
     if request.method == "POST":
         form = UserProfileForm(request.POST, instance=profile)
@@ -21,7 +25,9 @@ def profile(request):
             form.save()
             messages.success(request, "Profile updated successfully")
         else:
-            messages.error(request, "Failed to update profile. Please ensure form is valid")
+            messages.error(
+                request,
+                "Failed to update profile. Please ensure form is valid")
     else:
         form = UserProfileForm(instance=profile)
 
@@ -38,6 +44,10 @@ def profile(request):
 
 
 def order_history(request, order_number):
+    """
+    Display details of an individual order and indicate that user is accessing
+    page from their profile
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     context = {

@@ -9,6 +9,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def write_review(request, product_id):
+    """
+    Render form for user to submit review of a selected product and handle
+    submission of review
+    """
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm()
     user_profile = UserProfile.objects.get(user=request.user)
@@ -19,7 +23,6 @@ def write_review(request, product_id):
             "review_text": request.POST["review_text"],
             "rating": int(request.POST["rating"])
         }
-        print(form_data)
 
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -41,7 +44,9 @@ def write_review(request, product_id):
             messages.success(request, "Thank you for your review")
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, "Sorry, we couldn't submit your review. Please ensure the form is filled out correctly.")
+            messages.error(request,
+                           "Sorry, we couldn't submit your review."
+                           "Please ensure the form is filled out correctly.")
 
     context = {
         "product": product,
@@ -52,8 +57,12 @@ def write_review(request, product_id):
 
 
 def all_reviews(request, product_id):
+    """
+    Display all reviews for a selected product
+    """
     product = get_object_or_404(Product, pk=product_id)
-    all_reviews = Review.objects.filter(product=product).order_by("-date_published")
+    all_reviews = Review.objects.filter(
+        product=product).order_by("-date_published")
 
     context = {
         "product": product,
@@ -64,6 +73,9 @@ def all_reviews(request, product_id):
 
 
 def full_review(request, review_id):
+    """
+    Show individual review in full for a selected product
+    """
     full_review = get_object_or_404(Review, pk=review_id)
 
     context = {

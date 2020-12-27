@@ -1,9 +1,11 @@
 <div class="row">
     <div class="col s12">
+        <!--Materialize Tabs-->
         <ul class="tabs more-info-panel">
             <li class="tab col s6"><a href="#details-panel">Details</a></li>
             <li class="tab col s6"><a href="#reviews-panel">Reviews</a></li>
         </ul>
+        <!--Details tab-->
         <div class="details-panel col s12" id="details-panel">
             <p><span class="larger-icon"><i class="fas fa-users"></i></span> Number of Players: {{ product.min_players }} - {{ product.max_players }}</p>
             <p><span class="larger-icon"><i class="fas fa-smile"></i></span> Age Suitability: {{ product.min_age }}+</p>
@@ -11,6 +13,7 @@
             <p><span class="larger-icon"><i class="fas fa-user-edit"></i></span> Designer: {{ product.designer }}</p>
             <p><span class="larger-icon"><i class="fas fa-truck-loading"></i></span> Publisher: {{ product.publisher }}</p>
         </div>
+        <!--Reviews tab-->
         <div class="reviews-panel col s12" id="reviews-panel">
             {% if latest_reviews %}
                 {% for review in latest_reviews %}
