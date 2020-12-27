@@ -49,6 +49,11 @@ if (messageCloseBtn) {
 
     // Sort Dropdown Menu 
     const selectDropdown = document.querySelectorAll(".sort-select-dropdown")
+    
+    // Cart page - quantity adjustment buttons and input fields
+    const cartIncreaseQtyBtns = document.querySelectorAll(".cart-qty-increase")
+    const cartDecreaseQtyBtns = document.querySelectorAll(".cart-qty-decrease")
+    const cartQuantityInputFields = document.querySelectorAll(".cart-qty-input")  
 
 
 // Functions
@@ -114,6 +119,44 @@ if (messageCloseBtn) {
         }
 
 
+        // Handle quantity adjustment on Cart page
+        // Increase quantity in cart input field
+        function increaseCartQty() {
+            const clickedBtn = this
+            const productInputField = clickedBtn.parentElement.previousElementSibling.firstElementChild
+            let inputValue = parseInt(productInputField.value);
+            const maxValue = productInputField.getAttribute("max");
+            if (inputValue < maxValue) {
+                inputValue += 1;
+                productInputField.value = inputValue.toString();
+            }
+        }
+
+        // Decrease quantity in cart input field
+        function decreaseCartQty() {
+            const clickedBtn = this
+            const productInputField = clickedBtn.parentElement.nextElementSibling.firstElementChild
+            let inputValue = parseInt(productInputField.value);
+            if (inputValue > 1) {
+                inputValue -= 1;
+                productInputField.value = inputValue.toString();
+            }
+        }
+
+        // Update cart input field value if user tries to manually enter too many or too few
+        function updateCartQty() {
+            const selectedInputField = this;
+            let userValue = selectedInputField.value;
+            const maxValue = selectedInputField.getAttribute("max");
+            if (parseInt(userValue) < 1 || userValue == "" ) {
+                userValue = "1";
+                selectedInputField.value = userValue;
+            } else if (parseInt(userValue) > maxValue) {
+                userValue = maxValue.toString();
+                selectedInputField.value = userValue;
+            }
+        }
+
 
 // Event Listeners
 
@@ -138,3 +181,16 @@ if (messageCloseBtn) {
     if (selectDropdown) {
         selectDropdown.forEach(dropdown => dropdown.addEventListener("change", updateSortDirection)
     )}
+
+    // Listen for quantity adjustment of each product on cart page
+    if (cartIncreaseQtyBtns) {
+        cartIncreaseQtyBtns.forEach(btn => btn.addEventListener("click", increaseCartQty))
+    }
+
+    if (cartDecreaseQtyBtns) {
+        cartDecreaseQtyBtns.forEach(btn => btn.addEventListener("click", decreaseCartQty))
+    }
+
+    if (cartQuantityInputFields) {
+        cartQuantityInputFields.forEach(field => field.addEventListener("change", updateCartQty))
+    }
