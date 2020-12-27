@@ -175,9 +175,13 @@ def get_deals(request):
 
 
 def game_of_the_month(request):
+    """
+    Find product marked game of the month and determine if it's on the user's
+    wishlist (if user is logged in)
+    """
     product = Product.objects.filter(game_of_the_month=True)[0]
-    print(product)
     on_wishlist = False
+
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         users_wishlist = Product.objects.filter(wishlist__user_profile=user)
