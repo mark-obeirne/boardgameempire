@@ -195,13 +195,13 @@ footer .row {
 
 
 /* Allauth Styling */
-#id_remember {
-    position: relative;
-    opacity: 1;
-}
+    /* 
+    Hide remember me checkbox on login page as it is misaligned and functionality
+    contained within remember me word
+    */
 
-label[for="id_remember"] {
-    position: relative;
+#div_id_remember {
+    display: none;
 }
 
 .login .input-field input[type=text]:focus,
