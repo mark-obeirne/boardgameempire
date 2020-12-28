@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const billingCheckbox = document.querySelector("#same-billing-shipping")
     const pointsToUse = document.querySelector("#id_points_used")
+    const inputFields = document.querySelectorAll(".input-field")
 
 // Functions
 
@@ -114,12 +115,19 @@ document.addEventListener('DOMContentLoaded', function() {
     billingCheckbox.addEventListener("change", toggleBillingDetails)
 
     // Check loyalty points entered are valid if user enters number manually
-    pointsToUse.addEventListener("change", checkValidPointsUsed)
+    if (pointsToUse) {
+        pointsToUse.addEventListener("change", checkValidPointsUsed)
+    }
 
     // Update grand total as user opts to use loyalty points
     if (pointsToUse) {
-        pointsToUse.addEventListener("change", updateGrandTotal)}
+        pointsToUse.addEventListener("change", updateGrandTotal)
+    }
 
-    
     // Update points available to use number select limits
-    document.addEventListener('DOMContentLoaded', setPointsAvailable)
+    if (pointsToUse) {
+        document.addEventListener('DOMContentLoaded', setPointsAvailable)
+    }
+
+    // Update billing details as delivery details filled in
+    inputFields.forEach(inputField => inputField.addEventListener("change", autofillBilling))
