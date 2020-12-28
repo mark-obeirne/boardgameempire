@@ -33,7 +33,7 @@
             {% endif %}
             {% if user.is_authenticated %}
                 <div class="center-align review-btn">
-                    <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Review {{ product.name }}</a>
+                    <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-edit"></i> Write Review</a>
                 </div>
             {% endif %}
         </div>
