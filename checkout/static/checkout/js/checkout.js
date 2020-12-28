@@ -94,20 +94,22 @@ document.addEventListener('DOMContentLoaded', function() {
             if (userEnteredPoints < 0) {
                 pointsToUse.value = 0;
             } else if (userEnteredPoints > pointsAvailable) {
-                // Check if pointsAvailable is divisible by 50 and remove remainder to use a multiple of 50 if not
-                const remainder = pointsAvailable % 50
-                if (remainder) {
-                    pointsToUse.value = pointsAvailable - remainder
+                // Check if user enters a points value greater than what is available
+                if (pointsAvailable === 0) {
+                    pointsToUse.value = 0;
+                } else {
+                    // Check if pointsAvailable is divisible by 50 and remove remainder to use a multiple of 50 if not
+                    const remainder = pointsAvailable % 50
+                    if (remainder) {
+                        pointsToUse.value = pointsAvailable - remainder
+                    }
                 }
-            }
-            
-            // Check if entered points value is divisible by 50 and remove remainder if not
-            if (userEnteredPoints % 50 != 0) {
+            } else if (userEnteredPoints % 50 != 0) {
                 const excessPoints = userEnteredPoints % 50
                 pointsToUse.value = userEnteredPoints - excessPoints
             }
+        }           
 
-        }
 
 // Event Listeners
     

@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="center-align">
-            <a href="{% url 'all_reviews' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-arrow-circle-left"></i> Back to all reviews</a>
-            <a href="{% url 'product_detail' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to {{ full_review.product.name }}</a>
+            <a href="{% url 'all_reviews' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-arrow-circle-left"></i> Back to Reviews</a>
+            <a href="{% url 'product_detail' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to Product</a>
         </div>
     </div>
 {% endblock %}
