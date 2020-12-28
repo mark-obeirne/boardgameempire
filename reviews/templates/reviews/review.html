@@ -24,7 +24,11 @@
             </form>
         </div>
         <div class="col l6 hide-on-med-and-down show-on-large column-large">
-            <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
+            {% if product.boxart %}
+                <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
+            {% else %}
+                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img">
+            {% endif %}
         </div>
     </div>
 </div>

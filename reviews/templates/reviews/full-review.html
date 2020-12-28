@@ -9,7 +9,11 @@
         <h1 class="bold small-caps">{{ full_review.user_profile}}'s Review</h1>
         <div class="row review-row grey-bottom-border">
             <div class="col s12 m4">
-                <a href="{% url 'product_detail' full_review.product.id %}"><img src="{{ full_review.product.boxart.url }}" alt="{{ full_review.product.name }}" class="responsive-img"></a>
+                {% if full_review.product.boxart %}
+                    <a href="{% url 'product_detail' full_review.product.id %}"><img src="{{ full_review.product.boxart.url }}" alt="{{ full_review.product.name }}" class="responsive-img"></a>
+                {% else %}
+                    <a href="{% url 'product_detail' full_review.product.id %}"><img src="{{ MEDIA_URL }}noimage.png" alt="{{ full_review.product.name}}" class="responsive-img"></a>
+                {% endif %}
             </div>
             <div class="col s12 m8">
                 <h4>{{ full_review.review_title }}</h4>
