@@ -166,10 +166,12 @@ def get_deals(request):
         products = products.order_by(sortkey)
 
     current_sorting = f"price-{direction}"
+    number_of_results = len(products)
 
     context = {
         "products": products,
         "current_sorting": current_sorting,
+        "number_of_results": number_of_results,
     }
 
     return render(request, "products/deals.html", context)
