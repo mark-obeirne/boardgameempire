@@ -534,6 +534,10 @@ input[type="submit" i] {
     border: none;
 }
 
+ .cart-subtotal {
+     padding-bottom: 2rem;
+ }
+
 
 /* Checkout Page */
 

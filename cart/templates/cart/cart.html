@@ -10,11 +10,11 @@
     <div class="container bg-sheer-white text-brown">
         <h1 class="small-caps bold">Your Shopping Cart</h1>
         {% if items_in_cart %}
-        <div class="row center-align cart-headings">
+        <div class="row cart-headings center-align">
             <div class="col hide-on-small-only m2"></div>
-            <div class="col hide-on-small-only m3"><span class="bold">Product</span></div>
-            <div class="col hide-on-small-only m4"><span class="bold">Quantity</span></div>
-            <div class="col hide-on-small-only m3"><span class="bold">Item Subtotal</span></div>
+            <div class="col s4 m3"><span class="bold">Product</span></div>
+            <div class="col s4 m4"><span class="bold">Quantity</span></div>
+            <div class="col s4 m3"><span class="bold">Subtotal</span></div>
         </div>
             {% for item in items_in_cart %}
                 <div class="row valign-wrapper">
@@ -51,9 +51,9 @@
                     </div>
                     <div class="col s12 m3 center-align">
                         {% if item.product.on_sale %}
-                            <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</span>
+                            <p class="cart-subtotal">€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</p>
                         {% else %}
-                            <span class="show-on-small hide-on-med-and-up subtotal">Item Subtotal: </span><span>€{{ item.product.price | calculate_subtotal:item.quantity }}</span>
+                            <p class="cart-subtotal">€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
                         {% endif %}
                     </div>
                 </div>
