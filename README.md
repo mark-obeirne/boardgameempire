@@ -44,7 +44,7 @@ In recent years, boardgame designers have turned to Kickstarter to help get thei
 ## Aim of the Site
 Discovering boardgames, and what one might enjoy, can be a tricky endeavour. It often requires cross-site research and time spent digging through rule books, reviews, and forums...
 
-The aim of Boardgame Empire is to make this process a little more streamlined. On each product page, customers are presented with YouTube videos, which show the game in action. One will typically be a playthrough among a group so customers get an impression of how it plays and how enjoyable it is. The other acts as an explanation of the game, its setup, rules, and mechanics, just in case they're going to shoulder the responsibility of explaining it to their group. 
+The aim of Boardgame Empire is to make this process a little more streamlined and enjoyable. On each product page, customers are presented with YouTube videos, which show the game in action. One will typically be a playthrough among a group so customers get an impression of how it plays and how enjoyable it is. The other acts as an explanation of the game, its setup, rules, and mechanics, just in case they're going to shoulder the responsibility of explaining it to their group. 
 
 While customers are presented with ways to find specific products - searching, browsing by theme or mechanics of interest, or browsing generally - we make an effort to help customers find games that may be of interest. Each month, Boardgame Empire highlights a game of the month, occasionally features certain publishers or designers, showcases the most popular game on the site, and offers a navigation option to check out a random game. Rather than being a chore, we want to make the experience one of joy and discovery. 
 
