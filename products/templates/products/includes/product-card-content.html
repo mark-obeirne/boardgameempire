@@ -51,9 +51,8 @@
         {% endif %}
         </div>
     {% else %}
-        <a href="#" class="waves-effect waves-light btn bg-brown text-light wishlist-logged-out"><i class="far fa-heart"></i> Add to Wishlist</a>
+        <p class="small"><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to add {{ product.name }} to your wishlist</p>
     {% endif %}
-    
     <div class="quantity-field margin-t1 last-btn">
         {% if product.inventory > 0 %}
         <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
