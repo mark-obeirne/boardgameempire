@@ -49,9 +49,9 @@
                     <div class="card center-align product-card">
                         <div class="card-image">
                             {% if product.boxart %}
-                                <img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img">
+                                <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img"></a>
                             {% else %}
-                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}'s box" class="responsive-img">
+                                <a href="{% url 'product_detail' product.id %}"><img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}'s box" class="responsive-img"></a>
                             {% endif %}
                         </div>
                         <div class="card-content">
