@@ -10,59 +10,15 @@
 {% block extra_title %}Deals{% endblock %}
 
 {% block content %}
-    <div class="row hide-on-med-and-up">
-        <!--Button to display available filters on mobile-->
-        <div class="col s4">
-            <a href="#" class="waves-effect waves-light btn">Filters</a>
-        </div>
-        <div class="input-field browser-default col s8">
-            <!--Sort selection dropdown-->
-            <select id="mobile-sort-select-dropdown" name="mobile-sort-select-dropdown" class="sort-select-dropdown">
-                <option value="reset" disabled {% if current_sorting == "None-None" %}selected{% endif %}>Sort By</option>
-                <optgroup label="Alphabetically">
-                    <option value="name-asc" {% if current_sorting == "name-asc" %}selected{% endif %}>Name (A-Z)</option>
-                    <option value="name-desc" {% if current_sorting == "name-desc" %}selected{% endif %}>Name (Z-A)</option>
-                </optgroup>
-                <optgroup label="By Price">
-                    <option value="sale_price-asc" {% if current_sorting == "sale_price-asc" %}selected{% endif %}>Price (Low to High)</option>
-                    <option value="sale_price-desc" {% if current_sorting == "sale_price-desc" %}selected{% endif %}>Price (High to Low)</option>
-                </optgroup>
-                <optgroup label="Min Players">
-                    <option value="min_players-asc" {% if current_sorting == "min_players-asc" %}selected{% endif %}>Min Players (Low to High)</option>
-                    <option value="min_players-desc" {% if current_sorting == "min_players-desc" %}selected{% endif %}>Min Players (High to Low)</option>
-                </optgroup>
-                <optgroup label="Max Players">
-                    <option value="max_players-desc" {% if current_sorting == "max_players-desc" %}selected{% endif %}>Max Players (High to Low)</option>
-                    <option value="max_players-asc" {% if current_sorting == "max_players-asc" %}selected{% endif %}>Max Players (Low to High)</option>
-                </optgroup>
-                <optgroup label="Playtime">
-                    <option value="playing_time-asc" {% if current_sorting == "playing_time-asc" %}selected{% endif %}>Playtime (Shortest to Longest)</option>
-                    <option value="playing_time-desc" {% if current_sorting == "playing_time-desc" %}selected{% endif %}>Playtime (Longest to Shortest)</option>
-                </optgroup>
-            </select>
-            <label for="mobile-sort-select-dropdown">{% if current_sorting != "None-None" %}Currently Sorting By: {% else %}Select Product Sorting{% endif %}</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 hide-on-med-and-up">
-            Current Filters:
-        </div>
-    </div>
-    <div class="row">
-        <!--Filters panel-->
-        <div class="fixed filter-panel col hide-on-small-only m2">
-                <h2>Filters</h2>
-                <h3>Min Players</h3>
-                <h3>Max Players</h3>
-                <h3>Min Age</h3>
-                <h3>Typical Playtime</h3>
-                <h3>User Rating</h3>
-                <h3>Price</h3>
-        </div>
-        <div class="col s12 m4 push-m2">
-                <p>Showing x-x of ___ results{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
+    <div class="container bg-sheer-white text-brown">
+        <h1 class="text-brown small-caps bold">All Boardgames</h1>
+        <div class="row">
+            <div class="col s12">
+                <p>Showing {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
             </div>
-        <div class="input-field col hide-on-small-only m6 push-m2">
+        </div>
+        <div class="row">
+            <div class="input-field browser-default col s6">
             <!--Sort selection dropdown-->
             <select id="sort-select-dropdown" name="sort-select-dropdown" class="sort-select-dropdown">
                 <option value="reset" disabled {% if current_sorting == "None-None" %}selected{% endif %}>Sort By</option>
@@ -71,8 +27,8 @@
                     <option value="name-desc" {% if current_sorting == "name-desc" %}selected{% endif %}>Name (Z-A)</option>
                 </optgroup>
                 <optgroup label="By Price">
-                    <option value="sale_price-asc" {% if current_sorting == "sale_price-asc" %}selected{% endif %}>Price (Low to High)</option>
-                    <option value="sale_price-desc" {% if current_sorting == "sale_price-desc" %}selected{% endif %}>Price (High to Low)</option>
+                    <option value="price-asc" {% if current_sorting == "price-asc" %}selected{% endif %}>Price (Low to High)</option>
+                    <option value="price-desc" {% if current_sorting == "price-desc" %}selected{% endif %}>Price (High to Low)</option>
                 </optgroup>
                 <optgroup label="Min Players">
                     <option value="min_players-asc" {% if current_sorting == "min_players-asc" %}selected{% endif %}>Min Players (Low to High)</option>
@@ -88,41 +44,58 @@
                 </optgroup>
             </select>
             <label for="sort-select-dropdown">{% if current_sorting != "None-None" %}Currently Sorting By: {% else %}Select Product Sorting{% endif %}</label>
+            </div>
         </div>
-        <div class="products-panel">
-            <!--Products-->
-            {% for product in products %}
-            <div class="col s12 m8 push-m2 l5 push-l2">
-                <div class="card center-align">
-                    <div class="card-image">
-                        <img src="{{ product.boxart.url }}" class="responsive-img">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">{{ product.name }}</h3>
-                        {% if product.on_sale %}
-                            <p><s>{{ product.price }}</s> {{ product.sale_price }}</p>
-                        {% else %}
-                            <p>€{{ product.price }}</p>
-                        {% endif %}
-                        <p>{{ product.rating }}</p>
-                        <div class="card-action">
-                            <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn"><i class="fas fa-eye prefix"></i> More Details</a>
-                            {% if product.inventory > 0 %}
-                                <a href="#" class="waves-effect waves-light btn">Add to Cart</a>
+        <div class="row">
+            <div class="products-panel col s12">
+                <!--Products-->
+                {% for product in products %}
+                <div class="col s12 m6 l4">
+                    <div class="card center-align product-card">
+                        <div class="card-image">
+                            {% if product.boxart %}
+                                <img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img">
                             {% else %}
-                                <a href="#" class="waves-effect waves-light btn disabled">Out of Stock</a>
+                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}'s box" class="responsive-img">
                             {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title small-caps"><a href="{% url 'product_detail' product.id %}" class="text-brown bold">{{ product.name }}</a></h3>
+                            {% if product.on_sale %}
+                                <p><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
+                            {% else %}
+                                <p>€{{ product.price }}</p>
+                            {% endif %}
+                            <p>{{ product.rating }}</p>
+                            <div class="product-action-btns margin-t1">
+                                <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn details-btn bg-brown text-light"><i class="fas fa-eye prefix"></i> More Details</a>
+                                <div class="quantity-field margin-t1 last-btn">
+                                    {% if product.inventory > 0 %}
+                                    <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" type="submit" name="action">
+                                            <i class="fas fa-cart-plus"></i> Quick Add to Cart
+                                        </button>
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
+                                    {% else %}
+                                        <a href="#" class="waves-effect waves-light btn disabled"><i class="fas fa-frown prefix"></i> Out of Stock</a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
+    <!-- Initialise Materialize Select menu-->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             const elems = document.querySelectorAll('select');
@@ -130,27 +103,5 @@
         });
     </script>
 
-    <script type="text/javascript">
-        const selectDropdown = document.querySelectorAll(".sort-select-dropdown")
-        selectDropdown.forEach(dropdown => dropdown.addEventListener("change", function() {
-            const chosenSorting = this.value;
-            console.log(chosenSorting)
-            const currentUrl = new URL(window.location);
-
-            if (chosenSorting != "reset") {
-                const sort = chosenSorting.split("-")[0]
-                const direction = chosenSorting.split("-")[1]
-                
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
-
-                window.location.replace(currentUrl);
-            } else {
-                currentUrl.searchParams.set("sort");
-                currentUrl.searchParams.set("direction");
-
-                window.location.replace(currentUrl);
-            }
-        }))
-    </script>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
