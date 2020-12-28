@@ -31,7 +31,7 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
 
-    orders = profile.orders.all()
+    orders = profile.orders.all().order_by("-order_date")
 
     context = {
         "profile": profile,
