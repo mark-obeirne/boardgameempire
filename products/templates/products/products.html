@@ -12,6 +12,7 @@
                 <p>Showing {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
             </div>
         </div>
+        {% if products %}
         <div class="row">
             <div class="input-field browser-default col s12 m6">
             <!--Sort selection dropdown-->
@@ -41,6 +42,9 @@
             </select>
             </div>
         </div>
+        {% else %}
+        <p>Sorry, we couldn't find any products matching your query. Please <a href="{% url 'contact_us' %}">contact us</a> and we'll see if we can order it for you.</p>
+        {% endif %}
         <div class="row">
             <div class="products-panel col s12">
                 <!--Products-->
