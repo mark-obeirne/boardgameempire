@@ -147,7 +147,7 @@ def get_random_game(request):
 
 def get_deals(request):
     """ Return products currently on sale """
-    
+
     products = Product.objects.filter(on_sale=True).order_by("sale_price")
     sort = "sale_price"
     direction = "asc"
