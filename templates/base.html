@@ -46,7 +46,7 @@
             </nav>
         </div>
         {% include 'includes/mobile-side-nav.html' %}
-        
+        <!--Display messages-->
         {% if messages %}
         <div class="message-container grey-bottom-border">
             {% for message in messages %}
@@ -70,7 +70,8 @@
 
         {% block content %}
         {% endblock %}
-
+        
+        <!--Footer-->
         <footer>
             <div class="row bg-brown valign-wrapper">
                 <div class="col s7">

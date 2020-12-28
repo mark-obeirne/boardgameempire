@@ -1,3 +1,5 @@
+// Display confirmation modal for deleting wishlist
+
 const deleteWishlistBtn = document.querySelector(".delete-wishlist")
 const modalCloseBtn = document.querySelector(".modal-close-btn")
 

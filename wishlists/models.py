@@ -4,7 +4,13 @@ from profiles.models import UserProfile
 
 
 class Wishlist(models.Model):
-    user_profile = models.ForeignKey('profiles.UserProfile', on_delete=models.CASCADE, null=False, blank=False, related_name="wishlist")
+    user_profile = models.ForeignKey(
+        'profiles.UserProfile',
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="wishlist"
+        )
     products = models.ManyToManyField('products.Product')
 
     def __str__(self):
