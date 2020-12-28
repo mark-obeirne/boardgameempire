@@ -30,7 +30,11 @@
                     {% for product in wishlisted_products %}
                     <div class="row valign-wrapper grey-bottom-border">
                         <div class="col s4">
-                            <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
+                            {% if product.boxart %}
+                                <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
+                            {% else %}
+                                <a href="{% url 'product_detail' product.id %}"><img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img"></a>
+                            {% endif %}
                         </div>
                         <div class="col s4">
                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
