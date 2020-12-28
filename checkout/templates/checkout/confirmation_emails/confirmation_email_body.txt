@@ -1,6 +1,6 @@
 Thank you for your order, {{ order.full_name }}
 
-Your order number is {{ order.order_number }} and the total cost was {{ order.grand_total }}. We'll start prepping your order for delivery now! 
+Your order number is {{ order.order_number }} and the total cost was €{{ order.grand_total }}. We'll start prepping your order for delivery now! 
 
 This email contains a summary of your order. Please retain this confirmation for your records and if you have any issues with any part of your order, please contact us at {{ contact_email }} and include your order number.
 
@@ -9,9 +9,9 @@ Order Date: {{ order.order_date }}
 {% for item in order.lineitems.all %}
 Item: {{ item.product.name }}
 {% if item.product.on_sale %}
-    Quantity & Price Each: {{ item.quantity }} @ €{{ item.product.sale_price }}
+    {{ item.quantity }} @ €{{ item.product.sale_price }}
 {% else %}
-    Quantity & Price Each: {{ item.quantity }} @ €{{ item.product.price }}
+    {{ item.quantity }} @ €{{ item.product.price }}
 {% endif %}
 {% endfor %}
 
