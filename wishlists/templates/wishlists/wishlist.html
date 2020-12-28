@@ -35,9 +35,9 @@
                 <div class="row">
                     <div class="col s12 center-align form-buttons">
                         <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
-                        <form class="form remove-wishlist-product" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
+                        <form class="form inline-block" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
                             {% csrf_token %}
-                            <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="remove-wishlist-btn" type="submit" name="action">
+                            <button class="btn waves-effect waves-light text-light bg-brown inline-block" id="remove-wishlist-btn_{{product.id}}" type="submit" name="action">
                                 <i class="fas fa-heart"></i> <span class="hide-on-small-only">Remove from Wishlist</span><span class="hide-on-med-and-up">Remove</span>
                             </button>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
