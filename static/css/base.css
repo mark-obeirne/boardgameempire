@@ -419,6 +419,15 @@ input[type="submit" i] {
 
 /* Products Page */
 
+.input-field>.sort-label {
+    position: relative;
+}
+
+#sort-select-dropdown {
+    padding: 0;
+    color: #392417;
+}
+
 .filter-panel {
     background-color: white;
     width: 100%;
