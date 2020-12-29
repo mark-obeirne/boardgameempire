@@ -119,3 +119,12 @@ This site was tested as a guest customer and as a customer logged into a registe
 7. Add the maximum quantity to cart and, when page reloads, attempt to add more to cart. Ensure that page reloads with an error message informing user that they're trying to add too many products to their cart. 
 8. Click on details and reviews tab headings
 9. If logged in, click Write Review button in reviews tab and ensure that correct page loads
+
+### Wishlist
+1. Add multiple products to wishlist
+2. Navigate to wishlist page
+3. Click Details button and ensure relevant page loads
+4. Click Remove From Wishlist and ensure page refreshes with product removed
+5. Click Delete Wishlist button and ensure modal pops up to confirm deletion
+6. Cancel request by clicking x in top right of modal
+7. Confirm request by clicking delete wishlist button and ensure that page reloads with a blank wishlist
