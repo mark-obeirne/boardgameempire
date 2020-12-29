@@ -53,10 +53,18 @@ Boardgame Empire's primary target market is boardgame enthusiasts. We hope to en
 
 ### User Stories
 #### Customers
+* As a newcomer to boardgames, I would like to be able to have easy access to relevant information about a product so that I can easily determine if it is something that would be of interest to me.
 
+* As someone with a growing collection of boardgames, I would like to be able to discover new boardgames without having to do research across a number of websites, so that I can grow my collection further.
+
+* As a boardgame enthusiast, I would like to be able to add boardgames to a wishlist, so that I can plan my purchases and keep an eye out for bargains.
 
 #### Site Owners
+* As a business,  we would like to offer a loyalty scheme so that people are more likely to return to make a purchase in the future.
 
+* As the site owner, we would like to make it easy for customers to find a product that interests them, regardless of their familiarity.
+
+* As a business, we would like to showcase boardgames in their best light - being played - so that we can share the joy of tabletop gaming with customers. 
 
 ## Site Features
 ### Slider
