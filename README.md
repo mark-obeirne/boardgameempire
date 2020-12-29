@@ -252,6 +252,7 @@ Materialize was used to create interactive and visual elements such as the home 
 [FreeFormatter JS Beautifier](https://www.freeformatter.com/javascript-beautifier.html) was used to format js files from across the project.
 
 ## Testing
+The testing process, issues encountered, and any known issues can be found in the [testing.md](https://github.com/mark-obeirne/boardgameempire/blob/master/testing.md) file.
 
 ## Meeting User Expectations
 
