@@ -2,7 +2,7 @@
 ## Code Institute - Milestone 4 Project
 ### Live Heroku Link: https://boardgameempire.herokuapp.com/
 
-![Boardgame Empire](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/responsive-site-img.png)
+![Boardgame Empire](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/responsive-site-img.PNG)
 
 ## Table of Contents
 * [Summary](#summary)
@@ -194,7 +194,7 @@ Open Sans is used across the site as the most prominent font. It was chosen as i
 Meanwhile, Roboto was chosen for headings with the small caps font variant applied. This font, it was felt, looked good whether the bold or regular variant was used. While it helps the text stand out, it doesn't feel out of place, and so acts naturally as a heading of any size.
 
 ### Colours
-![Boardgame Empire Colours](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/colours-used-coolors.png)
+![Boardgame Empire Colours](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/colours-used-coolors.PNG)
 
 We wanted to emulate the tabletop feel on the site itself too. A dark brown (#392417) is used to tie in with the colour of wood. It also has good legibility against the chosen background colours (or inverted with white text on brown), and is a little more interesting than black on white.
 
@@ -221,35 +221,35 @@ Django was used to develop the project, taking advantage of certain in-built ele
 Materialize was used to create interactive and visual elements such as the home page's slider, dropdown elements, and the site's general responsive design.
 
 ### Tools
-PIP was used to install and manage software packages.
+[PIP](https://pip.pypa.io/en/stable/) was used to install and manage software packages.
 
-Git was used to track changes in code during development.
+[Git](https://git-scm.com/) was used to track changes in code during development.
 
-GitHub was used to host the project’s repository.
+[GitHub](https://github.com/) was used to host the project’s repository.
 
-Trello was used to track work that needed to be done from the outset, which enabled a plan of action to be put in place and helped keep on top of any issues or bugs that occurred.
+[Trello](https://trello.com/) was used to track work that needed to be done from the outset, which enabled a plan of action to be put in place and helped keep on top of any issues or bugs that occurred.
 
-Balsamiq was used to create the wireframes that the site's layout is based upon.
+[Balsamiq](https://balsamiq.com/) was used to create the wireframes that the site's layout is based upon.
 
-Coolors was used to help find a suitable palette for the site and to check if colours might work together.
+[Coolors](https://coolors.co/) was used to help find a suitable palette for the site and to check if colours might work together.
 
-Google Fonts was used to find the fonts that would be suitable as headings and general text content.
+[Google Fonts](https://fonts.google.com/) was used to find the fonts that would be suitable as headings and general text content.
 
-Font Awesome was used to find icons for use in buttons across the site.
+[Font Awesome](https://fontawesome.com/) was used to find icons for use in buttons across the site.
 
-Gimp 2 was used for image manipulation and to create the brand logo.
+[GNU Image Manipulation Program](https://www.gimp.org/)  was used for image manipulation and to create the brand logo.
 
-Birme was used to resize boxart images so that there was consistency across the site.
+[Birme](https://www.birme.net/) was used to resize boxart images so that there was consistency across the site.
 
-TinyPNG was used to compress and optimise image files.
+[TinyPNG](https://tinypng.com/) was used to compress and optimise image files.
 
-Favicon Converter was used to create the favicon based on the brand logo.
+[Favicon Converter](https://favicon.io/favicon-converter/) was used to create the favicon based on the brand logo.
 
-HTML Formatter was used to format HTML files and ensure consistency in spacing.
+[HTML Formatter](https://www.freeformatter.com/html-formatter.html) was used to format HTML files and ensure consistency in spacing.
 
-FreeFormatter CSS Beautifier was used to format the CSS stylesheet.
+[FreeFormatter CSS Beautifier](https://www.freeformatter.com/css-beautifier.html) was used to format the CSS stylesheet.
 
-FreeFormatter JS Beautifier was used to format js files from across the project.
+[FreeFormatter JS Beautifier](https://www.freeformatter.com/javascript-beautifier.html) was used to format js files from across the project.
 
 ## Testing
 
