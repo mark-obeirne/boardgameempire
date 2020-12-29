@@ -108,3 +108,14 @@ This site was tested as a guest customer and as a customer logged into a registe
 8. Select Max Players (High to Low) from dropdown and ensure that products are ordered correctly
 9. Select Playtime (Shortest to Longest) from dropdown and ensure that products are ordered correctly
 10. Select Playtime (Longest to Shortest) from dropdown and ensure that products are ordered correctly
+
+### Product Details
+1. If logged in, click Add to Wishlist / Remove from Wishlist and ensure relevant action is taken
+2. If logged out, click on login and register links and ensure appropriate pages are displayed
+3. Click on +/- buttons and ensure that quantity field updates accordingly
+4. Manually enter a negative value into quantity field and ensure that it resets to 1
+5. Manually enter a value higher than the max available and ensure that it resets to the max available
+6. Click add to cart button and ensure appropriate quantity and total is added to cart, and message displayed on page refresh to indicate how many items are in user's cart
+7. Add the maximum quantity to cart and, when page reloads, attempt to add more to cart. Ensure that page reloads with an error message informing user that they're trying to add too many products to their cart. 
+8. Click on details and reviews tab headings
+9. If logged in, click Write Review button in reviews tab and ensure that correct page loads
