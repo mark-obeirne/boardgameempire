@@ -48,7 +48,7 @@ iPhone 8 Mobile
 ### Manual Testing Process
 This site was tested as a guest customer and as a customer logged into a registered account.
 
-### Navigation Link
+### Navigation Links
 1. Click on the site's logo and ensure homepage is loaded
 2. Click on dice icon and ensure that random product pages are rendered
 3. Click on the user icon
@@ -64,4 +64,11 @@ This site was tested as a guest customer and as a customer logged into a registe
 5. If user is logged in, ensure that wishlist icon is visible
     * Click on icon and ensure that user is brought to wishlist page
     * If wishlist is empty, ensure that user is advised that their wishlist is empty and has a button to bring them to products page
+6. Click on home link and ensure homepage is loaded
+7. Click on all products and ensure that products page is loaded
+8. Click on shop by theme and test links in dropdown menu to ensure that products displayed are filtered
+9. Click on shop by mechanic and test links in dropdown menu to ensure that products displayed are filtered
+10. Click on deals and ensure that all products listed are on sale
+11. Click on game of the month and ensure that dedicated GOTM page loads
 
+### Search
