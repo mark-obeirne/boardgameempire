@@ -72,3 +72,7 @@ This site was tested as a guest customer and as a customer logged into a registe
 11. Click on game of the month and ensure that dedicated GOTM page loads
 
 ### Search
+1. Search without entering a query and ensure user is redirected to products page and shown a message to tell them that they did not enter a query
+2. Search for a product and ensure that products page loads with filtered results
+3. Search for a publisher or designer and ensure that products page loads with filtered results
+4. Search for a product that doesn't exist, and ensure that customer is presented with a message to advise them that there were no matching products and that they can contact the site
