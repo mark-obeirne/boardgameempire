@@ -148,6 +148,24 @@ This site was tested as a guest customer and as a customer logged into a registe
 
 ### Checkout
 #### Unregistered Users
-
+1. Ensure that login or register text is displayed beneath pay securely button to tell user about loyalty points and links to correct pages
 
 #### Registered Users
+1. If user has filled out profile details, ensure that relevant fields are prefilled
+2. Click up and down arrow next to use points field and ensure that user can't get past min or max values
+3. Manually enter negative value and ensure points value gets reset to 0
+4. Manually enter more points than currently available and ensure that field gets reset to max valid value (i.e. divisible by 50)
+5. Manually enter a number that is not divisible by 50 and ensure that field updates to a value that is divisible by 50
+6. Ensure that grand total value in Loyalty Points and Charges section and beneath pay securely button updates to reflect points used (with every 50 points worth €0.10)
+
+#### Common testing
+1. Attempt to checkout without filling in fields and ensure that validation kicks in
+2. Uncheck billing details same as delivery details box and ensure billing details section appears with blank fields
+3. Check box again and ensure billing details section is hidden
+4. With checkbox ticked, checkout and ensure that billing and delivery details match in order summary
+5. Enter an invalid card number and ensure error message appears to prompt user
+6. Enter an expiry date in the past and ensure error message is shown
+7. Enter too short a CCV and ensure error message is displayed
+8. Click Back to Cart button and ensure cart page is displayed
+9. Click Pay Securely and check that spinner is shown and, once order is processed, that customer is redirected to order summary screen
+
