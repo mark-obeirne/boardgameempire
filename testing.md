@@ -128,3 +128,17 @@ This site was tested as a guest customer and as a customer logged into a registe
 5. Click Delete Wishlist button and ensure modal pops up to confirm deletion
 6. Cancel request by clicking x in top right of modal
 7. Confirm request by clicking delete wishlist button and ensure that page reloads with a blank wishlist
+
+### Profile
+1. Add/change details in user details section and click Update Information
+    * Page should reload and save details regardless of what fields were filled out as they are optional
+2. If there are items in wishlist, click Manage Wishlist button and ensure correct page loads
+3. If customer has completed orders, click on order number and ensure relevant page appears with correct order details
+
+### Cart
+1. Click on +/- buttons and ensure that quantity field updates accordingly
+2. Manually enter a negative value into quantity field and ensure that it resets to 1
+3. Manually enter a value higher than the max available and ensure that it resets to the max available
+4. Adjust quantity and click Update Quantity link and ensure page refreshes, updates cart quantity and displays a success message
+5. Click Remove Item and ensure page refreshes with product removed
+6. Click Proceed to Checkout button and ensure Checkout page displays
