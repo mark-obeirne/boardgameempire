@@ -35,11 +35,14 @@ Dell Laptop
 * Microsoft Edge
 * Mozilla Firefox
 
+Desktop PC with 3440*1440 Monitor
+* Google Chrome
+
 Samsung Galaxy S10 Mobile
 * Google Chrome
 * Firefox
 
-iPhone 8 Mobile
+iPhone XR Mobile
 * Google Chrome
 * Safari
 
@@ -142,3 +145,9 @@ This site was tested as a guest customer and as a customer logged into a registe
 4. Adjust quantity and click Update Quantity link and ensure page refreshes, updates cart quantity and displays a success message
 5. Click Remove Item and ensure page refreshes with product removed
 6. Click Proceed to Checkout button and ensure Checkout page displays
+
+### Checkout
+#### Unregistered Users
+
+
+#### Registered Users
