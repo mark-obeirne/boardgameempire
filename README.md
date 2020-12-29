@@ -107,26 +107,71 @@ Customers are invited to email if they have any queries or issues with their ord
 ## Skeleton
 ### Mobile Wireframes
  
-   * Homepage
-   * All Products Page 
-   * Product Details Page
-   * All Reviews Page
-   * Full Review Page
-   * Write Review Page
-   * Wishlist Page
-   * User Profile Page
-   * Cart Page
-   * Checkout Page
-   * Checkout Success Page
-   * About Us Page
-   * Returns Policy
-   * Delivery Information
-   * Loyalty Points Programme
-   * Contact Us Page
+   * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-mobile.png)
+   * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-mobile.png) 
+   * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-mobile.png)
+   * [All Reviews Page]()
+   * [Full Review Page]()
+   * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-mobile.png)
+   * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-mobile.png)
+   * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-mobile.png)
+   * [Cart Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/cart-mobile.png)
+   * [Checkout Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/checkout-mobile.png)
+   * [Checkout Success Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/checkout-success-mobile.png)
+   * [About Us Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/about-us-mobile.png)
+   * [Returns Policy](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/returns-policy-mobile.png)
+   * [Loyalty Points Programme](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/loyalty-points-mobile.png)
+   * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/contact-mobile.png)
 
 ### Tablet Wireframes
+   * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-tablet.png)
+   * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-tablet.png) 
+   * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-tablet.png)
+   * [All Reviews Page]()
+   * [Full Review Page]()
+   * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-tablet.png)
+   * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-tablet.png)
+   * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-tablet.png)
+   * [Cart Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/cart-tablet.png)
+   * [Checkout Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/checkout-tablet.png)
+   * [Checkout Success Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/checkout-success-tablet.png)
+   * [About Us Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/about-us-tablet.png)
+   * [Returns Policy](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/returns-policy-tablet.png)
+   * [Loyalty Points Programme](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/loyalty-points-tablet.png)
+   * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/contact-tablet.png)
 
 ### Desktop Wireframes
+   * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-desktop.png)
+   * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-desktop.png) 
+   * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-desktop.png)
+   * [All Reviews Page]()
+   * [Full Review Page]()
+   * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-desktop.png)
+   * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-desktop.png)
+   * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-desktop.png)
+   * [Cart Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/cart-desktop.png)
+   * [Checkout Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/checkout-desktop.png)
+   * [Checkout Success Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/checkout-success-desktop.png)
+   * [About Us Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/about-us-desktop.png)
+   * [Returns Policy](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/returns-policy-desktop.png)
+   * [Loyalty Points Programme](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/loyalty-points-desktop.png)
+   * [Contact Us Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/contact-desktop.png)
+
+### Changes from Wireframes
+#### Homepage
+The featured best seller card includes the product's description. The wishlist functionality has been moved exclusively within the product detail pages.
+
+#### Product Listings
+Rather than displaying box images beside a product's details, it was decided to show them at the top of the product card for flow and for better use of space. 
+
+#### Product Detail
+While the product's boxart image is displayed to the side of the product's details on tablets and desktops, this is no longer a slider that cycles through media. The associated YouTube videos are instead displayed beneath the action buttons to give user's added context. These videos sit within a responsive Materialize video container. The flow on desktop works much better in practice than initially laid out.
+
+#### Wishlist
+Rather than displaying product details and cart functionality, the wishlist page is now used solely to display the product's image, name, and current price. This enables users to keep an eye on a product's price without having too much information on show, while providing them with an easy way to click through to a product's page for further action.
+
+#### Cart (Mobile)
+The mobile page remove's the product's image to use the available space better. The product's name, quantity adjustment buttons, and the item's subtotal are then displayed in a single row.  
 
 ## Structure
 The navbar is broken into two rows. On the top row, users have access to a search bar (which unfurls on mobile), a button to be brought to the details of a random game, a user menu (which contains links to the user's profile and sign out functionality if logged in or the registration and sign in links if not), a link to the customer's wishlist, and a link to the customer's cart.
