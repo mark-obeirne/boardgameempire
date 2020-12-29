@@ -2,7 +2,7 @@
 ## Code Institute - Milestone 4 Project
 ### Live Heroku Link: https://boardgameempire.herokuapp.com/
 
-[Responsive Site Image]
+![Boardgame Empire](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/responsive-site-img.png)
 
 ## Table of Contents
 * [Summary](#summary)
@@ -194,11 +194,13 @@ Open Sans is used across the site as the most prominent font. It was chosen as i
 Meanwhile, Roboto was chosen for headings with the small caps font variant applied. This font, it was felt, looked good whether the bold or regular variant was used. While it helps the text stand out, it doesn't feel out of place, and so acts naturally as a heading of any size.
 
 ### Colours
+![Boardgame Empire Colours](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/colours-used-coolors.png)
+
 We wanted to emulate the tabletop feel on the site itself too. A dark brown (#392417) is used to tie in with the colour of wood. It also has good legibility against the chosen background colours (or inverted with white text on brown), and is a little more interesting than black on white.
 
 To make it more obvious that an element can be interacted with, the buttons with this background colour lighten to #5D3B26, which is 10% lighter according to [colorbook.io](colorbook.io).
 
-The green (#cde6d0) chosen as a backdrop is a similar shade to that found on a Monopoly board. It enables the containers and product images to stand out, while ensuring that there isn't too much white space which people may feel could be utilised better. We felt it struck a nice balance. 
+The green (#CDE6D0) chosen as a backdrop is a similar shade to that found on a Monopoly board. It enables the containers and product images to stand out, while ensuring that there isn't too much white space which people may feel could be utilised better. We felt it struck a nice balance. 
 
 Containers have a sheer white shade (#FFFFFF) to them to ensure that the product media and text content stand out. 
 
