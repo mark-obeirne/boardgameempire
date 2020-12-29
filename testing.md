@@ -72,6 +72,7 @@ This site was tested as a guest customer and as a customer logged into a registe
 11. Click on game of the month and ensure that dedicated GOTM page loads
 
 ### Search
+1. On mobile, ensure that the search panel unfolds when the magnifying glass is tapped
 1. Search without entering a query and ensure user is redirected to products page and shown a message to tell them that they did not enter a query
 2. Search for a product and ensure that products page loads with filtered results
 3. Search for a publisher or designer and ensure that products page loads with filtered results
@@ -82,6 +83,9 @@ This site was tested as a guest customer and as a customer logged into a registe
 2. Click on Returns Policy and ensure that the correct page loads
 3. Click on Loyalty Points Program and ensure that the correct page loads
 4. Click on Contact Us and ensure that the correct page loads with the contact form
+5. Click on Facebook icon and ensure that page opens in new tab
+6. Click on Twitter icon and ensure that page opens in new tab
+7. Click on Instagram icon and ensure that page opens in new tab
 
 ### Contact form
 1. Attempt to submit form without all fields filled out and ensure that user is told that the field is required
@@ -89,3 +93,18 @@ This site was tested as a guest customer and as a customer logged into a registe
 3. Click on send mail button with all fields filled out correctly and ensure that user is redirected to a success page
 4. Check Boardgame Empire email address and ensure that message is delivered correctly
 
+### All Products / Search page
+1. Click More Details button for a product and ensure correct product detail page is loaded
+2. Click Quick Add to Cart button a ensure that page reloads, cart quantity and total increases correctly, and message displays that product is added to cart
+
+### Sort functionality
+1. Select Name (A-Z) from dropdown and ensure that products are ordered correctly
+2. Select Name (Z-A) from dropdown and ensure that products are ordered correctly
+3. Select Price (Low to High) from dropdown and ensure that products are ordered correctly (including sale items)
+4. Select Price (High to Low) from dropdown and ensure that products are ordered correctly (including sale items)
+5. Select Min Players (Low to High) from dropdown and ensure that products are ordered correctly
+6. Select Min Players (High to Low) from dropdown and ensure that products are ordered correctly
+7. Select Max Players (Low to High) from dropdown and ensure that products are ordered correctly
+8. Select Max Players (High to Low) from dropdown and ensure that products are ordered correctly
+9. Select Playtime (Shortest to Longest) from dropdown and ensure that products are ordered correctly
+10. Select Playtime (Longest to Shortest) from dropdown and ensure that products are ordered correctly
