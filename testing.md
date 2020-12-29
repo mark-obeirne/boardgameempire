@@ -76,3 +76,16 @@ This site was tested as a guest customer and as a customer logged into a registe
 2. Search for a product and ensure that products page loads with filtered results
 3. Search for a publisher or designer and ensure that products page loads with filtered results
 4. Search for a product that doesn't exist, and ensure that customer is presented with a message to advise them that there were no matching products and that they can contact the site
+
+### Footer Links
+1. Click on About Us and ensure that the correct page loads
+2. Click on Returns Policy and ensure that the correct page loads
+3. Click on Loyalty Points Program and ensure that the correct page loads
+4. Click on Contact Us and ensure that the correct page loads with the contact form
+
+### Contact form
+1. Attempt to submit form without all fields filled out and ensure that user is told that the field is required
+2. Attempt to submit form without a valid email address supplied and ensure that user is told that this field needs to be corrected
+3. Click on send mail button with all fields filled out correctly and ensure that user is redirected to a success page
+4. Check Boardgame Empire email address and ensure that message is delivered correctly
+
