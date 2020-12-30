@@ -9,7 +9,6 @@ from django.contrib import messages
 
 def view_cart(request):
     """ View items currently in cart """
-    cart = request.session.get("cart", {})
     return render(request, "cart/cart.html")
 
 
