@@ -237,6 +237,13 @@ nav .bottom-nav-row ul a {
     font-size: 1.6rem;
 }
 
+.dropdown-content li.theme-dropdown.dropdown-menu-item,
+.dropdown-content li.mechanic-dropdown.dropdown-menu-item {
+    width: 33%;
+    display: inline-block;
+    clear: none;
+}
+
 #search-dropdown {
     width: 100% !important;
     left: 0 !important;
