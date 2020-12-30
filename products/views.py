@@ -71,6 +71,8 @@ def all_products(request):
         category = categories.filter(name=category)
         for entry in category:
             products = products.filter(category=entry.pk)
+        query = categories.filter(
+            name=query).order_by("friendly_name")[0].friendly_name
 
     if "mechanic" in request.GET:
         mechanic = request.GET["mechanic"]
@@ -78,6 +80,8 @@ def all_products(request):
         mechanic = mechanics.filter(name=mechanic)
         for entry in mechanic:
             products = products.filter(mechanic=entry.pk)
+        query = mechanics.filter(
+            name=query).order_by("friendly_name")[0].friendly_name
 
     current_sorting = f"{sort}-{direction}"
     number_of_results = len(products)

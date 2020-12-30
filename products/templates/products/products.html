@@ -6,10 +6,10 @@
 
 {% block content %}
     <div class="container bg-sheer-white text-brown">
-        <h1 class="text-brown small-caps bold">All Boardgames</h1>
+        <h1 class="small-caps bold">All Boardgames</h1>
         <div class="row">
             <div class="col s12">
-                <p>Showing {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <strong>{{ query }}</strong>{% endif %}</p>
+                <p>Showing {{ number_of_results }} {% if number_of_results == 1 %}result{% else %}results{% endif %}{% if query %} for <span class="bold">"{{ query }}"</span>{% endif %}</p>
             </div>
         </div>
         {% if products %}

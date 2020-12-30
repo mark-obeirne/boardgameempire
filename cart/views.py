@@ -9,8 +9,6 @@ from django.contrib import messages
 
 def view_cart(request):
     """ View items currently in cart """
-    cart = request.session.get("cart", {})
-    print(cart)
     return render(request, "cart/cart.html")
 
 
@@ -66,7 +64,7 @@ def update_cart(request, product_id):
     cart[product_id] = new_quantity
     messages.success(
         request,
-        f"Cart updated. You now have {cart[product_id]}x {product.name}"
+        f"Cart updated. You now have {cart[product_id]}x {product.name} "
         f"in your cart")
     request.session["cart"] = cart
     return redirect(reverse("view_cart"))

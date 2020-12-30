@@ -5,8 +5,9 @@
 {% block extra_title %}Game of the Month{% endblock %}
 
 {% block content %}
-    <div class="container bg-sheer-white">
-        <div class="row product-panel text-brown">
+    <div class="container bg-sheer-white text-brown">
+        <h1 class="small-caps bold center-align">Game of the Month</h1>
+        <div class="row product-panel">
             <div class="col s12 m6 l4 center-align">
                 {% if product.boxart %}
                     <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
