@@ -12,6 +12,7 @@
         {% for product in wishlisted_products %}
             <div class="row valign-wrapper wishlist-row grey-bottom-border">
                 <div class="col s4">
+                    <!--Product Details-->
                     <div class="image-container">
                         {% if product.boxart %}
                             <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img"></a>
@@ -33,6 +34,7 @@
             </div>
             <div class="row valign-wrapper grey-bottom-border">
                 <div class="row">
+                    <!--Action Buttons-->
                     <div class="col s12 center-align form-buttons">
                         <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
                         <form class="form inline-block" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
@@ -47,6 +49,7 @@
             </div>
         {% endfor %}
         <div class="col s12 center-align">
+            <!--Navigation Buttons-->
             <a href="{% url 'profile' %}" class="waves-effect waves-light btn text-light bg-brown margin-t1"><i class="fas fa-user"></i> To User Profile</a>
             <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown margin-t1"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
             <span class="waves-effect waves-light btn text-light bg-brown margin-t1 delete-wishlist">
