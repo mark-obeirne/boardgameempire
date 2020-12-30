@@ -265,7 +265,7 @@ nav .bottom-nav-row ul a {
     box-shadow: 0 1px 0 0 #FFFFFF;
 }
 
-#mobile-top-nav-search:focus {
+#mobile-top-nav-search {
     border-bottom: 1px solid #392417;
     box-shadow: 0 1px 0 0 #392417;
 }
