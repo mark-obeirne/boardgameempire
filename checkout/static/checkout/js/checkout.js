@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const billingCheckbox = document.querySelector("#same-billing-shipping")
     const pointsToUse = document.querySelector("#id_points_used")
-    const inputFields = document.querySelectorAll(".input-field")
+    const inputFields = document.querySelectorAll(".delivery-input-field")
 
 // Functions
 
