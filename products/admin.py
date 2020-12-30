@@ -1,6 +1,7 @@
-from django.db import models
 from django.contrib import admin
-from .models import Category, Mechanic, Product, CategoryToProduct, MechanicOfProduct
+from .models import (
+    Category, Mechanic, Product, CategoryToProduct, MechanicOfProduct
+    )
 
 admin.site.site_header = "Boardgame Empire Admin"
 admin.site.site_title = "Boardgame Empire Admin Area"
