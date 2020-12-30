@@ -14,9 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.click-dropdown-trigger');
     const instances = M.Dropdown.init(elems, {
         coverTrigger: false,
-        hover: false
+        hover: false,
+        closeOnClick: false,
     });
 });
+// cwar082 outlined that closeOnClick to false should rectify wrong menu option being selected on iOS:
+// https://stackoverflow.com/questions/61985187/materialize-css-side-nav-dropdown-wrong-links-on-ios-safari
 
 // Initialise Materialize Dropdown with specific options for search dropdown on mobile
 document.addEventListener('DOMContentLoaded', function() {
