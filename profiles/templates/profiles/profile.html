@@ -64,13 +64,13 @@
                 {% if orders %}
                 <p class="small">Click an order number for more information</p>
                 <div class="col s4 m4">
-                    <strong><p>Order Number</p></strong>
+                    <p class="bold">Order Number</p>
                 </div>
                 <div class="col s4 m4">
-                    <strong><p>Date</p></strong>
+                    <p class="bold">Date</p>
                 </div>
                 <div class="col s4 m4">
-                    <strong><p>Total</p></strong>
+                    <p class="bold">Total</p>
                 </div>
                 <div class="col s12">
                 {% for order in orders %}
@@ -102,7 +102,7 @@
     {{ block.super }}
 
     <!--Initialise Materialize select dropdown-->
-    <script type="text/javascript">
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems, {});
