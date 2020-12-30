@@ -23,6 +23,7 @@
                 <h2 class="small-caps bold">Customer Information</h2>
                 <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
+                    <!--Customer Details-->
                     <fieldset>
                         <legend>Customer Details</legend>
                         {{ order_form.full_name | as_crispy_field }}
@@ -38,6 +39,7 @@
                         {{ order_form.country | as_crispy_field }}
                     </fieldset>
                     <div class="col s12 m6">
+                        <!--Checkboxes-->
                         <p>
                             <label>
                                 <input type="checkbox" class="filled-in" checked="checked" name="same-billing-shipping" id="same-billing-shipping"/>
@@ -55,6 +57,7 @@
                     </div>
                     <div class="col s12">
                         <fieldset class="billing-details none">
+                            <!--Billing Details-->
                             <legend>Billing Details</legend>
                             {{ order_form.billing_full_name | as_crispy_field }}
                             {{ order_form.billing_street_address1 | as_crispy_field }}
@@ -66,6 +69,7 @@
                     </div>
                     <div class="col s12">
                         <fieldset>
+                            <!--Charges-->
                             <legend>{% if user.is_authenticated %}Loyalty Points and {% endif %}Charges</legend>
                             <div class="row">
                                 <div class="col s6">
@@ -131,6 +135,7 @@
                 </form>
             </div>
             <div class="col s12 l6 order-column">
+                <!--Order Summary-->
                 <h2 class="small-caps bold">Order Summary</h2>
                 <div class="col s3 m3"></div>
                 <div class="col s6 m6">
@@ -139,6 +144,7 @@
                 <div class="col s3 m3">
                     <p class="bold">Item Subtotal</p>
                 </div>
+                <!--Products-->
                 {% for item in items_in_cart %}
                     <div class="row valign-wrapper grey-bottom-border">
                         <div class="col s3 m3">

@@ -22,7 +22,10 @@ class OrderAdmin(admin.ModelAdmin):
               "billing_street_address2", "billing_town_or_city",
               "billing_county_or_state", "billing_country",)
 
-    list_display = ("order_number", "order_date", "full_name", "order_total", "delivery_cost", "grand_total", "points_earned", "points_used",)
+    list_display = (
+        "order_number", "order_date", "full_name", "order_total",
+        "delivery_cost", "grand_total", "points_earned", "points_used",
+        )
 
     ordering = ("-order_date",)
 
