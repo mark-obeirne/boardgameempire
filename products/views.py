@@ -156,10 +156,10 @@ def get_deals(request):
     """ Return products currently on sale """
 
     products = Product.objects.filter(on_sale=True).order_by("sale_price")
-    direction = "asc"
 
     if "sort" in request.GET:
         sortkey = request.GET["sort"]
+        sort = sortkey
         if "sortkey" == "name":
             sortkey = "lower_name"
             products = products.annotate(lower_name=Lower("name"))
@@ -169,8 +169,11 @@ def get_deals(request):
             if direction == "desc":
                 sortkey = f"-{sortkey}"
         products = products.order_by(sortkey)
+    else:
+        sort = "price"
+        direction = "asc"
 
-    current_sorting = f"price-{direction}"
+    current_sorting = f"{sort}-{direction}"
     number_of_results = len(products)
 
     context = {
