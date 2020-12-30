@@ -7,7 +7,7 @@ This email contains a summary of your order. Please retain this confirmation for
 Order Date: {{ order.order_date }}
 
 {% for item in order.lineitems.all %}
-Item: {{ item.product.name }}
+{{ item.product.name }}
 {% if item.product.on_sale %}
     {{ item.quantity }} @ €{{ item.product.sale_price }}
 {% else %}
@@ -21,23 +21,24 @@ Loyalty Points Used: {{ order.points_used }}
 Grand Total: €{{ order.grand_total }} 
 
 {% if order.points_earned %}
-    You earned {{ order.points_earned }} loyalty points on this purchase.
+You earned {{ order.points_earned }} loyalty points on this purchase.
 {% endif %}
 
 Your order will be shipped to:
 {{ order.full_name }}
 {{ order.street_address1 }}
 {% if order.street_address2 %}
-    {{ order.street_address2 }}
+{{ order.street_address2 }}
 {% endif %}
 {{ order.town_or_city }}
 {% if order.county_or_state%}
-    {{ order.county_or_state }}
+{{ order.county_or_state }}
 {% endif %}
 {% if order.postcode %}
-    {{ order.postcode }}
+{{ order.postcode }}
 {% endif %}
 {{ order.country }}
 
 Thank you for shopping with us. We hope that you enjoy your purchase and that we'll see you again!
+
 The Boardgame Empire Team.
