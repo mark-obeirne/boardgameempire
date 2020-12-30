@@ -29,7 +29,6 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart
-        print(cart)
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
@@ -49,7 +48,7 @@ class StripeWH_Handler:
         order_exists = False
         attempt = 1
         while attempt <= 5:
-            print(attempt)
+            # Check if order already exists
             try:
                 order = Order.objects.get(
                     billing_full_name__iexact=billing_details.name,
@@ -77,22 +76,30 @@ class StripeWH_Handler:
                 time.sleep(1)
 
         if order_exists:
-            print("order exists")
             self._send_order_confirmation_email(order)
             self._update_product_inventory(order, cart)
             self._update_product_quantity_sold(order, cart)
-            return HttpResponse(content=f"Webhook received: {event['type']} | SUCCESS: Order exists in the database", status=200)
+            return HttpResponse(
+                content=f"Webhook received: {event['type']} | SUCCESS: Order "
+                "exists in the database", status=200)
         else:
             order = None
             try:
+                # Create order if it does not exist
                 order = Order.objects.create(
                     user_profile=profile,
                     billing_full_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
                     billing_town_or_city__iexact=billing_details.address.city,
-                    billing_street_address1__iexact=billing_details.address.line1,
-                    billing_street_address2__iexact=billing_details.address.line2,
-                    billing_county_or_state__iexact=billing_details.address.state,
+                    billing_street_address1__iexact=(
+                        billing_details.address.line1
+                        ),
+                    billing_street_address2__iexact=(
+                        billing_details.address.line2
+                        ),
+                    billing_county_or_state__iexact=(
+                        billing_details.address.state
+                    ),
                     billing_country__iexact=billing_details.address.country,
                     grand_total=grand_total,
                     original_cart=cart,
@@ -108,7 +115,9 @@ class StripeWH_Handler:
                 for product_id, quantity in json.loads(cart).items():
                     product = Product.objects.get(id=product_id)
                     if profile:
-                        lineitem_points_earned = ceil((product.price * quantity) * 10)
+                        lineitem_points_earned = ceil(
+                            (product.price * quantity) * 10
+                            )
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
@@ -127,13 +136,16 @@ class StripeWH_Handler:
             except Exception as e:
                 if order:
                     order.delete()
-                    return HttpResponse(content=f"Webhook received: {event['type']} | ERROR: {e}", status=500)
+                    return HttpResponse(
+                        content=f"Webhook received: {event['type']} | ERROR: "
+                        f"{e}", status=500)
 
         self._send_order_confirmation_email(order)
         self._update_product_inventory(order, cart)
         self._update_product_quantity_sold(order, cart)
         return HttpResponse(
-            content=f"Webhook received: {event['type']} | SUCCESS: Created order in webhook",
+            content=f"Webhook received: {event['type']} | SUCCESS: Created "
+            "order in webhook",
             status=200
         )
 
@@ -164,7 +176,10 @@ class StripeWH_Handler:
             product.save()
 
     def _update_product_quantity_sold(self, order, cart):
-        """ Update product's overall quantity sold based on quantity sold in transaction """
+        """
+        Update product's overall quantity sold based on quantity sold in
+        transaction
+        """
         for product_id, quantity in json.loads(cart).items():
             product = Product.objects.get(id=product_id)
             product.quantity_sold += quantity
