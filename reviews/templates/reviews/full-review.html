@@ -9,6 +9,7 @@
         <h1 class="bold small-caps">{{ full_review.user_profile}}'s Review</h1>
         <div class="row review-row grey-bottom-border">
             <div class="col s12 m4">
+                <!--Product Image-->
                 {% if full_review.product.boxart %}
                     <a href="{% url 'product_detail' full_review.product.id %}"><img src="{{ full_review.product.boxart.url }}" alt="{{ full_review.product.name }}" class="responsive-img"></a>
                 {% else %}
@@ -16,6 +17,7 @@
                 {% endif %}
             </div>
             <div class="col s12 m8">
+                <!--Review Details-->
                 <h4>{{ full_review.review_title }}</h4>
                 <span class="rating">Rating: {{ full_review.rating }}/5</span>
                 <p>{{ full_review.review_text }}</p>
@@ -23,6 +25,7 @@
             </div>
         </div>
         <div class="center-align">
+            <!--Action Buttons-->
             <a href="{% url 'all_reviews' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-arrow-circle-left"></i> Back to Reviews</a>
             <a href="{% url 'product_detail' full_review.product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt prefix"></i> Back to Product</a>
         </div>

@@ -1,15 +1,15 @@
+// Get Stripe Public Key, Client Secret, and create an instance of Stripe
 const stripePublicKey = document.querySelector("#id_stripe_public_key").textContent.slice(1, -1);
 const clientSecret = document.querySelector("#id_client_secret").textContent.slice(1, -1);
-console.log(stripePublicKey)
-console.log(clientSecret)
-const stripe = Stripe(stripePublicKey)
+const stripe = Stripe(stripePublicKey);
 const elements = stripe.elements();
 
+// Set style
 const style = {
     base: {
-        color: '#000',
+        color: '#392417',
         fontWeight: 500,
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontFamily: '"Open Sans", sans-serif',
         fontSize: '16px',
         fontSmoothing: 'antialiased',
         ':-webkit-autofill': {
@@ -23,10 +23,11 @@ const style = {
             iconColor: '#DC3545',
             color: '#DC3545',
     },
-}
+};
 
+// Create and mount card element
 const card = elements.create("card", {style: style});
-card.mount("#card-element")
+card.mount("#card-element");
 
 // Display errors after user enters card details if necessary 
 card.addEventListener("change", function(e) {
@@ -42,49 +43,42 @@ card.addEventListener("change", function(e) {
     } else {
         errorDiv.textContent = "";
     }
-})
+});
 
 // Handle form submission
-
-
-const form = document.querySelector("#checkout-form")
+const form = document.querySelector("#checkout-form");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
     let postData;
-    const submitBtn = document.querySelector("#checkout-button")
-    const spinnerOverlay = document.querySelector("#spinner-overlay")
+    const submitBtn = document.querySelector("#checkout-button");
+    const spinnerOverlay = document.querySelector("#spinner-overlay");
     card.update({"disabled": true});
     submitBtn.setAttribute("disabled", true);
-    spinnerOverlay.classList.remove("none")
+    spinnerOverlay.classList.remove("none");
     
     const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
-    const giftPurchase = document.querySelector("#gift_purchase").checked
-    const pointsId = document.querySelector("#id_points_used")
+    const giftPurchase = document.querySelector("#gift_purchase").checked;
+    const pointsId = document.querySelector("#id_points_used");
     
     if (pointsId) {
-        const pointsUsed = pointsId.value
-        console.log(pointsUsed)
-        console.log(giftPurchase)
+        const pointsUsed = pointsId.value;
         postData = {
             "csrfmiddlewaretoken": csrfToken,
             "client_secret": clientSecret,
             "gift_purchase": giftPurchase,
             "points_used": pointsUsed
-        }
+        };
     } else {
-        console.log(giftPurchase)
         postData = {
             "csrfmiddlewaretoken": csrfToken,
             "client_secret": clientSecret,
             "gift_purchase": giftPurchase
-        }
-        console.log(postData)
+        };
     }
     const url = "/checkout/cache_checkout_data/";
 
     $.post(url, postData).done(function () {
-        console.log("received response")
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -113,14 +107,14 @@ form.addEventListener("submit", function(e) {
                 },
         }).then(function(result) {
             if (result.error) {
-                var errorDiv = document.getElementById('card-errors');
-                var html = `
+                let errorDiv = document.getElementById('card-errors');
+                let html = `
                     <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
                     </span>
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
-                spinner-overlay.classList.add("none")
+                spinnerOverlay.classList.add("none");
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {

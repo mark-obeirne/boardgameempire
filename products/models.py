@@ -35,7 +35,7 @@ class Mechanic(models.Model):
 
 
 class Product(models.Model):
-    sku = models.CharField(max_length=254, blank=True, null=True)
+    sku = models.CharField(max_length=254, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
     min_players = models.IntegerField(null=False, blank=False)
@@ -67,10 +67,10 @@ class Product(models.Model):
                                             blank=True)
     number_reviews = models.IntegerField(default=0)
     total_rating = models.IntegerField(default=0)
-    boxart = models.ImageField(blank=True, null=True)
-    product_image = models.ImageField(blank=True, null=True)
-    youtube_video_1 = models.CharField(max_length=50, blank=True, null=True)
-    youtube_video_2 = models.CharField(max_length=50, blank=True, null=True)
+    boxart = models.ImageField(blank=True)
+    product_image = models.ImageField(blank=True)
+    youtube_video_1 = models.CharField(max_length=50, blank=True)
+    youtube_video_2 = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.name

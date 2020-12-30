@@ -70,6 +70,7 @@
                                 <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn details-btn bg-brown text-light"><i class="fas fa-eye prefix"></i> More Details</a>
                                 <div class="quantity-field margin-t1 last-btn">
                                     {% if product.inventory > 0 %}
+                                    <!--Add to Cart-->
                                     <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="quantity" value="1">

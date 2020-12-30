@@ -1,8 +1,8 @@
 // Initialise Materialize Slider
 
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.slider');
-    var instances = M.Slider.init(elems, {
+    let elems = document.querySelectorAll('.slider');
+    let instances = M.Slider.init(elems, {
         duration: 700
     });
 });
