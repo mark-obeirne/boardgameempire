@@ -214,6 +214,9 @@ The 'Shop by Theme' and 'Shop by Mechanic' menus show and hide by tapping the me
 ### Crispy forms
 On some pages (listed below), Crispy Forms has not rendered the form correctly and ommitted a closing div for a row. This resulted in the footer being displayed inside the container. A closing div has been manually added to the affected pages and noted in a comment. These pages have passed validation, but the extra div has been highlighted by Gitpod. 
 
-#### Affected Pages:
+#### Examples of Affected Pages:
 * contact.html
 * review.html
+* login.html
+* signup.html
+* password_reset.html
