@@ -166,6 +166,10 @@ This site was tested as a guest customer and as a customer logged into a registe
 7. Enter too short a CCV and ensure error message is displayed
 8. Click Back to Cart button and ensure cart page is displayed
 9. Click Pay Securely and check that spinner is shown and, once order is processed, that customer is redirected to order summary screen
-9. Uncheck billing details same as delivery details box and enter different details. Upon checkout, ensure that these details are saved correctly.
+10. Uncheck billing details same as delivery details box and enter different details. Upon checkout, ensure that these details are saved correctly.
 
 ### Review
+1. Click on Write Review button in product details tab and ensure that page loads with form rendered
+2. Attempt to submit review without filling out all fields and ensure that field required is highlighted
+3. Fill out form and submit review to check that success message is displayed and user is redirected to product page
+4. Attempt to write another review for the same product and ensure that product detail page loads with an error message
