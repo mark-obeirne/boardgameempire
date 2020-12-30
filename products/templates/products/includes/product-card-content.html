@@ -22,6 +22,7 @@
         Available
     </span>
 {% endif %}
+<!--Display average review rating-->
 {% if average_rating %}
     <p class="small">Average Rating: {{ average_rating | floatformat:1 }}/5</p>
 {% else %}
@@ -54,6 +55,7 @@
         <p class="small"><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to add {{ product.name }} to your wishlist</p>
     {% endif %}
     <div class="quantity-field margin-t1 last-btn">
+        <!--Add to cart-->
         {% if product.inventory > 0 %}
         <form class="form" method="POST" action="{% url 'add_to_cart' product.id %}">
             {% csrf_token %}
