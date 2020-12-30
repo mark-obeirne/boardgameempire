@@ -1,7 +1,7 @@
 // Materialize Initialisation
 document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, {});
+        let elems = document.querySelectorAll('select');
+        let instances = M.FormSelect.init(elems, {});
     });
 
 
