@@ -50,7 +50,8 @@ def all_products(request):
                     sortkey = f"-{sortkey}"
 
         if sortkey == Coalesce("sale_price", "price") and direction == "desc":
-            # Reverse ordering of Coalesce if direction is descending
+            # Reverse ordering of products if using Coalesce and direction is
+            # descending
             products = products.order_by(Coalesce("sale_price", "price"))
             products = products.reverse()
         else:
@@ -155,12 +156,10 @@ def get_deals(request):
     """ Return products currently on sale """
 
     products = Product.objects.filter(on_sale=True).order_by("sale_price")
-    sort = "sale_price"
     direction = "asc"
 
     if "sort" in request.GET:
         sortkey = request.GET["sort"]
-        sort = sortkey
         if "sortkey" == "name":
             sortkey = "lower_name"
             products = products.annotate(lower_name=Lower("name"))
