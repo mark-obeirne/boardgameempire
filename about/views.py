@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 
 
 def about_us(request):
