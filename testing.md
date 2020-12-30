@@ -173,3 +173,40 @@ This site was tested as a guest customer and as a customer logged into a registe
 2. Attempt to submit review without filling out all fields and ensure that field required is highlighted
 3. Fill out form and submit review to check that success message is displayed and user is redirected to product page
 4. Attempt to write another review for the same product and ensure that product detail page loads with an error message
+
+## Issues Encountered and Resolutions
+### iOS Dropdown issues
+Materialize's dropdown menus have caused some issues when navigating the site on iOS devices. The sort menu and navigation menus would select the wrong option, resulting in products not appearing as the user had selected or the incorrect theme or mechanic being selected.
+
+To rectify this, the browser-default class is applied to select dropdown menus. In addition, closeOnClick was set to false within the Materialize initialisation options, as [recommended by cwar082](https://stackoverflow.com/questions/61985187/materialize-css-side-nav-dropdown-wrong-links-on-ios-safari).
+
+### Sorting By Price
+Initially, both the regular price and sale price fields were filled out for products. However, when sorting by price, only the product's regular price was taken into account. 
+
+The ordering of the sale price and regular price fields were subsequently reordered so that Coalesce could be used to sort by price (and take sale price into account when sorting), as the null fields (i.e. sale price if product is not on sale) are ignored. This was an approach that was [suggested by PatrikAkerstrand](https://stackoverflow.com/questions/8120953/order-by-with-columns-that-are-sometimes-empty) with tweaking required to ensure it fit the needs of the site.
+
+While this approach worked for sorting price from lowest to highest and ensured that sale and regularly priced products intertwined, sorting from highest to lowest required an additional step. An if statement was written to check if sortkey is Coalesce("sale_price", "price") and direction is descending, and the products queryset is reversed if so.
+
+### Materialize Tabs
+Product details were originally displayed using a card format on mobile and a stacked card layout on larger devices. However, this resulted in issues with the details and reviews tab. 
+
+In the end, a custom layout using divs was designed to display product images above its details on mobile and alongside details on larger devices. 
+
+### Checkout - Gift Purchase
+The checkout page features a checkbox that allows users to specify that the product is a gift. However, the value of the checkbox was being posted to the view as "on" rather than "True", so this had to be manually converted. In addition, gift_purchase had to be included in the form's fields in forms.py as it was ommitted originally.
+
+### Billing Details Same As Delivery Details
+Custom JavaScript was written to handle autofilling the user's billing details if the user indicated that they matched delivery details. As the function targeted all input fields, it overwrote the different billing information when the user tried to fill these fields out.
+
+In order to fix this, the OrderForm class was updated to specify which fields related to delivery fields. This list was then used to check fields and apply a class of "delivery-input-field" to those that applied, which were subsequently targetted by the function.
+
+### Loyalty Points
+The first attempt at giving the customer the ability to use loyalty points earned as a discount against a purchase checked the value of the grand total and updated the value as points were used. However, it was noticed that this resulted in a cumulative effect where the discount would jump from €0.10 to €0.30 and keep this trend up as more points were applied.
+
+A cart total was added beneath the order summary to both give the user more information and to act as a base value, which ensured that a global variable did not have to be set and used to check if the points being used were increasing or decreasing, as suggested [here](https://stackoverflow.com/questions/49971457/input-type-number-how-to-detect-if-value-was-incremented-or-decremented).
+
+The loyalty points functionality also had to be updated to handle manual user input. 50 loyalty points are worth €0.10, so for convenience, the input selector is set to increment by 50. We had to ensure that users could not set negative loyalty points, more loyalty points than they currently have, and that the value entered is divisible by 50. 
+
+## Any known issues
+### Mobile sidenav menu
+The 'Shop by Theme' and 'Shop by Mechanic' menus show and hide by tapping the menu header. However, it requires a slightly longer press to close rather than a simple tap as you would to open. Holding the menu option for too long results in a user menu opening to ask if the user would like to open in a new tab. This is something that we would like to explore further, as the slightly longer press isn't the most intuitive.
