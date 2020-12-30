@@ -106,11 +106,14 @@ Customers are invited to email if they have any queries or issues with their ord
 
 ## Information Architecture
 ### Database Choice
+While this project was in development, it utilised the SQLite3 database, but once deployed to Heroku, a PostgresSQL database was used.
 
-### Data Storage Types
+### Schema Design
+Looking at the requirements of the project and the site that was planned, it was determined that five main models were required along with six subsidiary models. 
 
-### Database Schema
+The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models that act to support and work in tandem with these included OrderLineItem, Mechanics (and MechanicOfProduct to act as a model to connect Products to Mechanics), Categories (and CategoryToProduct to act as a model to connect Products to Categories/Themes), and WishlistLineItem. 
 
+![https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/db-schema.png]
 
 ## Skeleton
 ### Mobile Wireframes
@@ -228,6 +231,8 @@ Materialize was used to create interactive and visual elements such as the home 
 [GitHub](https://github.com/) was used to host the project’s repository.
 
 [Trello](https://trello.com/) was used to track work that needed to be done from the outset, which enabled a plan of action to be put in place and helped keep on top of any issues or bugs that occurred.
+
+[DB Designer](https://www.dbdesigner.net/) was used to design the schema that this site would utilise for its database.
 
 [Balsamiq](https://balsamiq.com/) was used to create the wireframes that the site's layout is based upon.
 
