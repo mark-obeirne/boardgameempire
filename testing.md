@@ -216,3 +216,4 @@ On some pages (listed below), Crispy Forms has not rendered the form correctly a
 
 #### Affected Pages:
 * contact.html
+* review.html
