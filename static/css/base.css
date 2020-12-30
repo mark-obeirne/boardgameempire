@@ -535,10 +535,17 @@ input[type="submit" i] {
     border: none;
 }
 
- .cart-subtotal {
+.cart-subtotal {
      padding-bottom: 2rem;
  }
 
+.cart-row {
+    margin-bottom: 0;
+}
+
+.container .cart-actions {
+    padding-bottom: 2rem;
+}
 
 /* Checkout Page */
 
