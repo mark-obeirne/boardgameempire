@@ -168,4 +168,5 @@ This site was tested as a guest customer and as a customer logged into a registe
 7. Enter too short a CCV and ensure error message is displayed
 8. Click Back to Cart button and ensure cart page is displayed
 9. Click Pay Securely and check that spinner is shown and, once order is processed, that customer is redirected to order summary screen
+9. Uncheck billing details same as delivery details box and enter different details. Upon checkout, ensure that these details are saved correctly.
 
