@@ -46,8 +46,6 @@ iPhone XR Mobile
 * Google Chrome
 * Safari
 
-[Add Mike and Dermot devices]
-
 ### Manual Testing Process
 This site was tested as a guest customer and as a customer logged into a registered account.
 
@@ -170,3 +168,4 @@ This site was tested as a guest customer and as a customer logged into a registe
 9. Click Pay Securely and check that spinner is shown and, once order is processed, that customer is redirected to order summary screen
 9. Uncheck billing details same as delivery details box and enter different details. Upon checkout, ensure that these details are saved correctly.
 
+### Review
