@@ -16,6 +16,13 @@ def write_review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm()
     user_profile = UserProfile.objects.get(user=request.user)
+    all_reviews = list(Review.objects.filter(
+        product=product))
+    for review in all_reviews:
+        if user_profile == review.user_profile:
+            messages.error(request,
+                           f"You have already reviewed {product.name}")
+            return redirect('product_detail', product.id)
 
     if request.method == "POST":
         form_data = {
