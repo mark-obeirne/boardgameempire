@@ -286,6 +286,7 @@ input#top-nav-search {
 
 .message-header {
     margin-bottom: 0;
+    padding-right: 1.5rem;
 }
 
 .message-close-btn:focus {
