@@ -56,21 +56,17 @@
                         <span class="block">{{ order.postcode }}</span>
                     {% endif %}
                     <span class="block">{{ order.country }}</span>
-                    
                     <p class="bold small-caps">Billing Details</p>
-                    <span class="block">{{ order.full_name }}</span>
-                    <span class="block">{{ order.street_address1 }}</span>
-                    {% if street_address2 %}
-                        <span class="block">{{ order.street_address2 }}</span>
+                    <span class="block">{{ order.billing_full_name }}</span>
+                    <span class="block">{{ order.billing_street_address1 }}</span>
+                    {% if billing_street_address2 %}
+                        <span class="block">{{ order.billing_street_address2 }}</span>
                     {% endif %}
-                    <span class="block">{{ order.town_or_city }}</span>
-                    {% if county_or_state %}
-                        <span class="block">{{ order.county_or_state }}</span>
+                    <span class="block">{{ order.billing_town_or_city }}</span>
+                    {% if billing_county_or_state %}
+                        <span class="block">{{ order.billing_county_or_state }}</span>
                     {% endif %}
-                    {% if postcode %}
-                        <span class="block">{{ order.postcode }}</span>
-                    {% endif %}
-                    <span class="block">{{ order.country }}</span>
+                    <span class="block">{{ order.billing_country }}</span>
                 </div>
             </div>
             <div class="col s12 l6">
