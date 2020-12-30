@@ -37,6 +37,8 @@ def all_products(request):
             products can be sorted together
             """
             sortkey = Coalesce("sale_price", "price")
+            # Coalesce approach recommeded by PatrikAkerstrand:
+            # https://stackoverflow.com/questions/8120953/order-by-with-columns-that-are-sometimes-empty
 
         if "direction" in request.GET:
             direction = request.GET["direction"]
