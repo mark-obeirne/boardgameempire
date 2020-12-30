@@ -1,3 +1,4 @@
+/* Stripe Element styling */
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
@@ -14,7 +15,7 @@
 }
 
 .error {
-    color: red;
+    color: #FF0000;
 }
 
 .checkout-thumbs {
