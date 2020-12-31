@@ -101,6 +101,9 @@ As reviews are user-generated, they may differ drastically in terms of how helpf
 ### Multiple Wishlists
 For the most part, one wishlist should be sufficient for users. However, there may be cases in which customers would like to organise products into various wishlists. For example, if a customer would like a wishlist for present ideas or unique wishlists for different playgroups, we would like to provide them with this ability.
 
+### 404 Page
+We would like to create a fun and interactive 404 page, in case customers get lost, stumble upon a link that no longer exists, or go hunting in search of easter eggs. This would also help them find their way back to the homepage.
+
 ### Customer Service Chatbot
 Customers are invited to email if they have any queries or issues with their orders. In instances where customers have queries that could be dealt with quickly and in real-time, we would like to investigate the practicality of a chatbot. This, we believe, could improve the user experience and save them time as they would not have to partake in a back-and-forth email chain. 
 
@@ -260,6 +263,32 @@ Materialize was used to create interactive and visual elements such as the home 
 The testing process, issues encountered, and any known issues can be found in the [testing.md](https://github.com/mark-obeirne/boardgameempire/blob/master/testing.md) file.
 
 ## Meeting User Expectations
+
+> As a newcomer to boardgames, I would like to be able to have easy access to relevant information about a product so that I can easily determine if it is something that would be of interest to me.
+
+In order to give users as much information as possible, in an interesting way, each product page features a details tab that includes information such as how many players it is suitable for, how long a game typically takes, and what age group it is suitable for. We have also included YouTube videos so that customers get to see the game being played and enjoyed, which may help them gauge how it will go down in their group.
+
+> As someone with a growing collection of boardgames, I would like to be able to discover new boardgames without having to do research across a number of websites, so that I can grow my collection further.
+
+For customers who know what they are looking for, we offer a search feature. For those who are more open to suggestion, we offer a random game button, cast a spotlight on a game of the month, and typically feature publishers, designers, or interesting products in the homepage slider.
+
+> As a boardgame enthusiast, I would like to be able to add boardgames to a wishlist, so that I can plan my purchases and keep an eye out for bargains.
+
+A wishlist was a fundamental offering as part of the site. This is something that we have not seen very frequently, but always appreciate when it is offered. Our wishlist shows the product's current price, so bargin hunters can keep an eye out for a deal, and it is very convenient to add or remove products. 
+
+#### Site Owners
+> As a business,  we would like to offer a loyalty scheme so that people are more likely to return to make a purchase in the future.
+
+We felt it was important to offer customers an added incentive to return as some online retailers (such as Amazon) can be difficult to compete with on price alone. Our loyalty points program is mentioned across the site, whether a user is logged in or not, and offers customers a discount on future purchases. 
+
+> As the site owner, we would like to make it easy for customers to find a product that interests them, regardless of their familiarity.
+
+As mentioned previously, we offer a number of ways for customers to find products, whether that's by searching, browsing, or taking a journey of discovery.
+
+> As a business, we would like to showcase boardgames in their best light - being played - so that we can share the joy of tabletop gaming with customers. 
+
+One of the ways that we got friends into some newer boardgames was through the use of YouTube videos. Not only can this showcase how fun a game is, but it gives people an introduction to rules, mechanics, and strategies at their own pace rather than having to take everything in on the night. There is now a wealth of content on YouTube dedicated to the playing of games, so we tapped into this on each product detail card to show our products in action. 
+
 
 ## Deployment
 ### Local Deployment
