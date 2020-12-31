@@ -2,7 +2,7 @@
     <li><a href="/">Home</a></li>
     <li><a href="{% url 'products' %}">All Boardgames</a></li>
     <li>
-        <a href="#" class="click-dropdown-trigger theme-trigger" data-target="mobile-theme-dropdown">Boardgames by Theme</a>
+        <a href="#" class="click-dropdown-trigger theme-trigger" data-target="mobile-theme-dropdown">Shop by Theme</a>
         <ul id="mobile-theme-dropdown" class="dropdown-content">
             <li class="dropdown-menu-item"><a href="" class="close-theme-trigger"><span class="close-nav-dropdown">Close Menu</span></a></li>
             {% for category in all_categories %}
@@ -13,7 +13,7 @@
         </ul>
     </li>
     <li>
-        <a href="#" class="click-dropdown-trigger mechanic-trigger" data-target="mobile-mechanic-dropdown">Boardgames by Mechanic</a>
+        <a href="#" class="click-dropdown-trigger mechanic-trigger" data-target="mobile-mechanic-dropdown">Shop by Mechanic</a>
         <ul id="mobile-mechanic-dropdown" class="dropdown-content">
             <li class="dropdown-menu-item"><a href="" class="close-mechanic-trigger"><span class="close-nav-dropdown">Close Menu</span></a></li>
             {% for mechanic in all_mechanics %}
