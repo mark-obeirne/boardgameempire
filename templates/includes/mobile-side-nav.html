@@ -2,8 +2,9 @@
     <li><a href="/">Home</a></li>
     <li><a href="{% url 'products' %}">All Boardgames</a></li>
     <li>
-        <a href="#" class="click-dropdown-trigger" data-target="mobile-theme-dropdown">Boardgames by Theme</a>
+        <a href="#" class="click-dropdown-trigger theme-trigger" data-target="mobile-theme-dropdown">Boardgames by Theme</a>
         <ul id="mobile-theme-dropdown" class="dropdown-content">
+            <li class="dropdown-menu-item"><a href="" class="close-theme-trigger"><span class="close-nav-dropdown">Close Menu</span></a></li>
             {% for category in all_categories %}
             {% if category.is_active %}
             <li class="dropdown-menu-item"><a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a></li>
@@ -12,8 +13,9 @@
         </ul>
     </li>
     <li>
-        <a href="#" class="click-dropdown-trigger" data-target="mobile-mechanic-dropdown">Boardgames by Mechanic</a>
+        <a href="#" class="click-dropdown-trigger mechanic-trigger" data-target="mobile-mechanic-dropdown">Boardgames by Mechanic</a>
         <ul id="mobile-mechanic-dropdown" class="dropdown-content">
+            <li class="dropdown-menu-item"><a href="" class="close-mechanic-trigger"><span class="close-nav-dropdown">Close Menu</span></a></li>
             {% for mechanic in all_mechanics %}
             {% if mechanic.is_active %}
             <li class="dropdown-menu-item"><a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a></li>
