@@ -1,59 +1,56 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block extra_title %}My Wishlist{% endblock %}
-
 {% block content %}
 <div class="container bg-sheer-white text-brown">
     <h1 class="small-caps bold">My Wishlist</h1>
     <div class="row">
-    {% if wishlisted_products %}
+        {% if wishlisted_products %}
         {% for product in wishlisted_products %}
-            <div class="row valign-wrapper wishlist-row grey-bottom-border">
-                <div class="col s4">
-                    <!--Product Details-->
-                    <div class="image-container">
-                        {% if product.boxart %}
-                            <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img"></a>
-                        {% else %}
-                            <a href="{% url 'product_detail' product.id %}"><img src="{{ MEDUA_URL }}nomedia.png" alt="{{ product.name }}'s box" class="responsive-img"></a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col s4">
-                    <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
-                </div>
-                <div class="col s4 center-align">
-                    {% if product.on_sale %}
-                        <p class="text-brown"><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
+        <div class="row valign-wrapper wishlist-row grey-bottom-border">
+            <div class="col s4">
+                <!--Product Details-->
+                <div class="image-container">
+                    {% if product.boxart %}
+                    <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}'s box" class="responsive-img"></a>
                     {% else %}
-                        <p>€{{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}"><img src="{{ MEDUA_URL }}nomedia.png" alt="{{ product.name }}'s box" class="responsive-img"></a>
                     {% endif %}
                 </div>
             </div>
-            <div class="row valign-wrapper grey-bottom-border">
-                <div class="row">
-                    <!--Action Buttons-->
-                    <div class="col s12 center-align form-buttons">
-                        <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
-                        <form class="form inline-block" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
-                            {% csrf_token %}
-                            <button class="btn waves-effect waves-light text-light bg-brown inline-block" id="remove-wishlist-btn_{{product.id}}" type="submit" name="action">
-                                <i class="fas fa-heart"></i> <span class="hide-on-small-only">Remove from Wishlist</span><span class="hide-on-med-and-up">Remove</span>
-                            </button>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        </form>
-                    </div>
+            <div class="col s4">
+                <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+            </div>
+            <div class="col s4 center-align">
+                {% if product.on_sale %}
+                <p class="text-brown"><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
+                {% else %}
+                <p>€{{ product.price }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row valign-wrapper grey-bottom-border">
+            <div class="row">
+                <!--Action Buttons-->
+                <div class="col s12 center-align form-buttons">
+                    <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-eye prefix"></i> Details</a>
+                    <form class="form inline-block" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
+                        {% csrf_token %}
+                        <button class="btn waves-effect waves-light text-light bg-brown inline-block" id="remove-wishlist-btn_{{product.id}}" type="submit" name="action">
+                        <i class="fas fa-heart"></i> <span class="hide-on-small-only">Remove from Wishlist</span><span class="hide-on-med-and-up">Remove</span>
+                        </button>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 </div>
             </div>
+        </div>
         {% endfor %}
         <div class="col s12 center-align">
             <!--Navigation Buttons-->
             <a href="{% url 'profile' %}" class="waves-effect waves-light btn text-light bg-brown margin-t1"><i class="fas fa-user"></i> To User Profile</a>
             <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown margin-t1"><i class="fas fa-store-alt prefix"></i> Continue Shopping</a>
             <span class="waves-effect waves-light btn text-light bg-brown margin-t1 delete-wishlist">
-                <i class="fas fa-trash-alt"></i> Delete Wishlist
+            <i class="fas fa-trash-alt"></i> Delete Wishlist
             </span>
         </div>
         <!--Delete wishlist confirmation modal-->
@@ -65,32 +62,30 @@
                     </div>
                     <div class="col s2 right-align message-close">
                         <button type="button" class="modal-close-btn" data-dismiss="message" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                 </div>
                 <form class="form" method="POST" action="{% url 'delete_wishlist' %}">
-                {% csrf_token %}
+                    {% csrf_token %}
                     <p>Are you sure you would like to delete this wishlist? This action is irreversible.</p>
                     <button class="btn waves-effect waves-light text-light bg-brown qty-submit block" id="delete-wishlist-btn" type="submit" name="action">
-                        <i class="fas fa-trash-alt"></i> Delete Wishlist
+                    <i class="fas fa-trash-alt"></i> Delete Wishlist
                     </button>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>
         </div>
-    {% else %}
+        {% else %}
         <div class="col s12 center-align">
             <p>Your wishlist is currently empty.</p>
             <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}
-
 {% block postloadjs %}
-    {{ block.super }}
-
-    <script src="{% static 'wishlists/js/script.js' %}"></script>
+{{ block.super }}
+<script src="{% static 'wishlists/js/script.js' %}"></script>
 {% endblock %}

@@ -1,111 +1,108 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block extra_title %}Customer Profile{% endblock %}
-
 {% block content %}
-    <div class="container bg-sheer-white text-brown">
-        <h1 class="bold small-caps">My Profile</h1>
-        <div class="row">
-            <div class="col s12 l6 column-large">
-                <!--User Details-->
-                <h2 class="bold small-caps">User Details</h2>
-                <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
-                <p class="small">Please fill out the form with your information</p>
-                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
-                    {% csrf_token%}
-                    {{ form|crispy }}
-                    <div class="center-align">
-                        <button class="btn waves-effect waves-light text-light bg-brown" id="add-cart-btn" type="submit" name="action">
-                            <i class="fas fa-user-edit"></i> Update Information
-                        </button>
-                    </div>
-                </form>
+<div class="container bg-sheer-white text-brown">
+    <h1 class="bold small-caps">My Profile</h1>
+    <div class="row">
+        <div class="col s12 l6 column-large">
+            <!--User Details-->
+            <h2 class="bold small-caps">User Details</h2>
+            <p>Loyalty Points Available: {{ profile.loyalty_points }}</p>
+            <p class="small">Please fill out the form with your information</p>
+            <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token%}
+                {{ form|crispy }}
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light text-light bg-brown" id="add-cart-btn" type="submit" name="action">
+                    <i class="fas fa-user-edit"></i> Update Information
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col s12 l6 column-large">
+            <!--User Wishlist-->
+            <h2 class="bold small-caps">My Wishlist</h2>
+            {% if wishlisted_products %}
+            {% for product in wishlisted_products %}
+            <div class="row valign-wrapper grey-bottom-border">
+                <div class="col s4">
+                    {% if product.boxart %}
+                    <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
+                    {% else %}
+                    <a href="{% url 'product_detail' product.id %}"><img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img"></a>
+                    {% endif %}
+                </div>
+                <div class="col s4">
+                    <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                </div>
+                <div class="col s4 center-align">
+                    {% if product.on_sale %}
+                    <p class="text-brown"><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
+                    {% else %}
+                    <p>€{{ product.price }}</p>
+                    {% endif %}
+                </div>
             </div>
-            <div class="col s12 l6 column-large">
-                <!--User Wishlist-->
-                <h2 class="bold small-caps">My Wishlist</h2>
-                {% if wishlisted_products %}
-                    {% for product in wishlisted_products %}
-                    <div class="row valign-wrapper grey-bottom-border">
-                        <div class="col s4">
-                            {% if product.boxart %}
-                                <a href="{% url 'product_detail' product.id %}"><img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img"></a>
-                            {% else %}
-                                <a href="{% url 'product_detail' product.id %}"><img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img"></a>
-                            {% endif %}
-                        </div>
-                        <div class="col s4">
-                            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            {% if product.on_sale %}
-                                <p class="text-brown"><s class="sale-strikethrough">(€{{ product.price }})</s> €{{ product.sale_price }}</p>
-                            {% else %}
-                                <p>€{{ product.price }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <div class="col s12 center-align grey-bottom-border">
-                        <a href="{% url 'wishlist' %}" class="waves-effect waves-light btn text-light bg-brown last-btn"><i class="fas fa-clipboard-list"></i> Manage Wishlist</a>
-                    </div>
-                {% else %}
-                    <div class="col s12 center-align">
-                        <p>You haven't added any products to your wishlist yet!</p>
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown last-btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
-                    </div>
-                {% endif %}
+            {% endfor %}
+            <div class="col s12 center-align grey-bottom-border">
+                <a href="{% url 'wishlist' %}" class="waves-effect waves-light btn text-light bg-brown last-btn"><i class="fas fa-clipboard-list"></i> Manage Wishlist</a>
             </div>
-            <div class="col s12 l6 column-large">
-                <!--User Order History-->
-                <h2 class="bold small-caps">Order History</h2>
-                {% if orders %}
-                <p class="small">Click an order number for more information</p>
-                <div class="col s4 m4">
-                    <p class="bold">Order Number</p>
-                </div>
-                <div class="col s4 m4">
-                    <p class="bold">Date</p>
-                </div>
-                <div class="col s4 m4">
-                    <p class="bold">Total</p>
-                </div>
-                <div class="col s12">
+            {% else %}
+            <div class="col s12 center-align">
+                <p>You haven't added any products to your wishlist yet!</p>
+                <a href="{% url 'products' %}" class="waves-effect waves-light btn text-light bg-brown last-btn"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col s12 l6 column-large">
+            <!--User Order History-->
+            <h2 class="bold small-caps">Order History</h2>
+            {% if orders %}
+            <p class="small">Click an order number for more information</p>
+            <div class="col s4 m4">
+                <p class="bold">Order Number</p>
+            </div>
+            <div class="col s4 m4">
+                <p class="bold">Date</p>
+            </div>
+            <div class="col s4 m4">
+                <p class="bold">Total</p>
+            </div>
+            <div class="col s12">
                 {% for order in orders %}
-                    <div class="row grey-bottom-border">
-                        <div class="col s4 m4">
-                            <a href="{% url 'order_history' order.order_number %}"><p>{{ order.order_number|truncatechars:5 }}</p></a>
-                        </div>
-                        <div class="col s4 m4">
-                            <p>{{ order.order_date }}</p>
-                        </div>
-                        <div class="col s3 m3">
-                            <p>€{{ order.grand_total }}</p>
-                        </div>
+                <div class="row grey-bottom-border">
+                    <div class="col s4 m4">
+                        <a href="{% url 'order_history' order.order_number %}">
+                            <p>{{ order.order_number|truncatechars:5 }}</p>
+                        </a>
                     </div>
-                {% endfor %}
+                    <div class="col s4 m4">
+                        <p>{{ order.order_date }}</p>
+                    </div>
+                    <div class="col s3 m3">
+                        <p>€{{ order.grand_total }}</p>
+                    </div>
                 </div>
-                {% else %}
-                    <div class="col s12 center-align">
-                        <p>There are currently no orders to display.</p>
-                        <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
-                    </div>
-                {% endif %}
+                {% endfor %}
             </div>
+            {% else %}
+            <div class="col s12 center-align">
+                <p>There are currently no orders to display.</p>
+                <a href="{% url 'products' %}" class="waves-effect waves-light btn last-btn text-light bg-brown"><i class="fas fa-store-alt prefix"></i> Browse all products</a>
+            </div>
+            {% endif %}
         </div>
     </div>
+</div>
 {% endblock %}
-
 {% block postloadjs %}
-    {{ block.super }}
-
-    <!--Initialise Materialize select dropdown-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, {});
+{{ block.super }}
+<!--Initialise Materialize select dropdown-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    let elems = document.querySelectorAll('select');
+    let instances = M.FormSelect.init(elems, {});
     });
-    </script>
+</script>
 {% endblock %}

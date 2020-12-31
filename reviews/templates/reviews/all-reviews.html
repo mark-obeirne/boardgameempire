@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block extra_title %}Reviews for {{ product.name }}{% endblock %}
-
 {% block content %}
 <div class="container bg-sheer-white text-brown">
     <div class="row">
@@ -11,26 +8,26 @@
             <h1 class="small-caps bold">Reviews for <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h1>
             <!--All published reviews-->
             {% if all_reviews %}
-                {% for review in all_reviews %}
-                    <div class="row review-row grey-bottom-border">
-                        <div class="col s12">
-                            {% include 'reviews/includes/review-content.html' %}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div class="row">
-                    <div class="col s12">
-                        <p>This product is not yet rated.</p>
-                    </div>
+            {% for review in all_reviews %}
+            <div class="row review-row grey-bottom-border">
+                <div class="col s12">
+                    {% include 'reviews/includes/review-content.html' %}
                 </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="row">
+                <div class="col s12">
+                    <p>This product is not yet rated.</p>
+                </div>
+            </div>
             {% endif %}
             <div class="center-align">
                 <!--Action Buttons-->
                 {% if user.is_authenticated %}
-                    <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-edit"></i> Write Review</a>
+                <a href="{% url 'write_review' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-edit"></i> Write Review</a>
                 {% else %}
-                    <p><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to submit a review for {{ product.name }}</p>    
+                <p><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to submit a review for {{ product.name }}</p>
                 {% endif %}
                 <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-store-alt"></i> Back to Product</a>
             </div>
