@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block extra_title %}Review {{ product.name }}{% endblock %}
-
 {% block content %}
 <div class="container bg-sheer-white text-brown">
     <div class="row">
@@ -22,14 +19,14 @@
                     <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn last-btn bg-brown margin-t1"><i class="fas fa-store-alt"></i> Back to Product</a>
                 </div>
             </form>
-        </div>
-        <div class="col l6 hide-on-med-and-down show-on-large column-large">
-            {% if product.boxart %}
-                <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
-            {% else %}
-                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img">
-            {% endif %}
-        </div>
     </div>
+    <div class="col l6 hide-on-med-and-down show-on-large column-large">
+        {% if product.boxart %}
+        <img src="{{ product.boxart.url }}" alt="{{ product.name }}" class="responsive-img">
+        {% else %}
+        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name}}" class="responsive-img">
+        {% endif %}
+    </div>
+</div>
 </div>
 {% endblock %}

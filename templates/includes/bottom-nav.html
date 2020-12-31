@@ -1,30 +1,32 @@
 <div class="row bottom-nav-row bg-brown">
     <a href="/" class="brand-logo">
-        <img src="{{ MEDIA_URL }}bgempire-logo64.png" alt="Boardgame Empire Logo" class="bg-logo responsive-img">
+    <img src="{{ MEDIA_URL }}bgempire-logo64.png" alt="Boardgame Empire Logo" class="bg-logo responsive-img">
     </a>
     <a href="#" data-target="sidenav-menu" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
     <ul class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
         <li><a href="{% url 'products' %}">All Boardgames</a></li>
-        <li><a href="#" class="click-dropdown-trigger" data-target="theme-dropdown">Shop by Theme</a>
+        <li>
+            <a href="#" class="click-dropdown-trigger" data-target="theme-dropdown">Shop by Theme</a>
             <ul id="theme-dropdown" class="dropdown-content wide-menu">
                 {% for category in all_categories %}
-                    {% if category.is_active %}
-                        <li class="theme-dropdown dropdown-menu-item">
-                            <a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a>
-                        </li>
-                    {% endif %}
+                {% if category.is_active %}
+                <li class="theme-dropdown dropdown-menu-item">
+                    <a href="{% url 'products' %}?category={{ category.name }}">{{ category.friendly_name }}</a>
+                </li>
+                {% endif %}
                 {% endfor %}
             </ul>
         </li>
-        <li><a href="#" class="click-dropdown-trigger" data-target="mechanics-dropdown">Shop by Mechanic</a>
+        <li>
+            <a href="#" class="click-dropdown-trigger" data-target="mechanics-dropdown">Shop by Mechanic</a>
             <ul id="mechanics-dropdown" class="dropdown-content wide-menu">
                 {% for mechanic in all_mechanics %}
-                    {% if mechanic.is_active %}
-                        <li class="mechanic-dropdown dropdown-menu-item">
-                            <a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a>
-                        </li>
-                    {% endif %}
+                {% if mechanic.is_active %}
+                <li class="mechanic-dropdown dropdown-menu-item">
+                    <a href="{% url 'products' %}?mechanic={{ mechanic.name }}">{{ mechanic.friendly_name }}</a>
+                </li>
+                {% endif %}
                 {% endfor %}
             </ul>
         </li>

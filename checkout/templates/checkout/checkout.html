@@ -1,194 +1,185 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% load cart_tools %}
-
 {% block extracss %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
-
 {% block corejs %}
-    {{ block.super }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{ block.super }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
-
 {% block extra_title %}Checkout{% endblock %}
-
 {% block content %}
-    <div class="container bg-sheer-white text-brown">
-        <h1 class="small-caps bold">Checkout</h1>
-        <div class="row">
-            <div class="col s12 l6">
-                <h2 class="small-caps bold">Customer Information</h2>
-                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
-                    {% csrf_token %}
-                    <!--Customer Details-->
-                    <fieldset>
-                        <legend>Customer Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email | as_crispy_field }}
+<div class="container bg-sheer-white text-brown">
+    <h1 class="small-caps bold">Checkout</h1>
+    <div class="row">
+        <div class="col s12 l6">
+            <h2 class="small-caps bold">Customer Information</h2>
+            <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
+                {% csrf_token %}
+                <!--Customer Details-->
+                <fieldset>
+                    <legend>Customer Details</legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                </fieldset>
+                <fieldset>
+                    <legend>Delivery Details</legend>
+                    {{ order_form.street_address1 | as_crispy_field }}
+                    {{ order_form.street_address2 | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.county_or_state | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
+                </fieldset>
+                <div class="col s12 m6">
+                    <!--Checkboxes-->
+                    <p>
+                        <label>
+                        <input type="checkbox" class="filled-in" checked="checked" name="same-billing-shipping" id="same-billing-shipping"/>
+                        <span>Billing details same as delivery details</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="col s12 m6">
+                    <p>
+                        <label>
+                        <input type="checkbox" class="filled-in gift-purchase" name="gift_purchase" id="gift_purchase"/>
+                        <span>This purchase is a gift</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="col s12">
+                    <fieldset class="billing-details none">
+                        <!--Billing Details-->
+                        <legend>Billing Details</legend>
+                        {{ order_form.billing_full_name | as_crispy_field }}
+                        {{ order_form.billing_street_address1 | as_crispy_field }}
+                        {{ order_form.billing_street_address2 | as_crispy_field }}
+                        {{ order_form.billing_town_or_city | as_crispy_field }}
+                        {{ order_form.billing_county_or_state | as_crispy_field }}
+                        {{ order_form.billing_country | as_crispy_field }}
                     </fieldset>
+                </div>
+                <div class="col s12">
                     <fieldset>
-                        <legend>Delivery Details</legend>
-                        {{ order_form.street_address1 | as_crispy_field }}
-                        {{ order_form.street_address2 | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.county_or_state | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                    </fieldset>
-                    <div class="col s12 m6">
-                        <!--Checkboxes-->
-                        <p>
-                            <label>
-                                <input type="checkbox" class="filled-in" checked="checked" name="same-billing-shipping" id="same-billing-shipping"/>
-                                <span>Billing details same as delivery details</span>
-                            </label>
-                        </p>
-                    </div>
-                    <div class="col s12 m6">
-                        <p>
-                            <label>
-                                <input type="checkbox" class="filled-in gift-purchase" name="gift_purchase" id="gift_purchase"/>
-                                <span>This purchase is a gift</span>
-                            </label>
-                        </p>
-                    </div>
-                    <div class="col s12">
-                        <fieldset class="billing-details none">
-                            <!--Billing Details-->
-                            <legend>Billing Details</legend>
-                            {{ order_form.billing_full_name | as_crispy_field }}
-                            {{ order_form.billing_street_address1 | as_crispy_field }}
-                            {{ order_form.billing_street_address2 | as_crispy_field }}
-                            {{ order_form.billing_town_or_city | as_crispy_field }}
-                            {{ order_form.billing_county_or_state | as_crispy_field }}
-                            {{ order_form.billing_country | as_crispy_field }}
-                        </fieldset>
-                    </div>
-                    <div class="col s12">
-                        <fieldset>
-                            <!--Charges-->
-                            <legend>{% if user.is_authenticated %}Loyalty Points and {% endif %}Charges</legend>
-                            <div class="row">
-                                <div class="col s6">
-                                    <p>Order Total:</p>    
-                                </div>
-                                <div class="col s6 right-align">
-                                    <p>€{{ total | floatformat:2 }}</p>
-                                </div>
-                                {% if user.is_authenticated %}
-                                <div class="col s6">
-                                    <p>Loyalty Points Available:</p>
-                                </div>
-                                <div class="col s6 right-align">
-                                    <p class="user-loyalty-points">{{ profile.loyalty_points }}</p>
-                                </div>
-                                <div class="col s7">
-                                    <p class="user-input-points">Use Points:</p>
-                                    <span class="small">(Must be multiple of 50)</span>
-                                </div>
-                                <div class="col s5">
-                                    {{ order_form.points_used | as_crispy_field }}
-                                </div>
-                                {% endif %}
-                                <div class="col s6">
-                                    <p>Delivery:</p>
-                                </div>
-                                <div class="col s6 right-align">
-                                    <p class="delivery-cost">€{{ delivery | floatformat:2 }}</p>
-                                </div>
-                                <div class="col s6">
-                                    <p>Grand Total:</p>
-                                </div>
-                                <div class="col s6">
-                                    <p class="grand-total right-align">€{{ grand_total | floatformat:2 }}</p>
-                                </div>
+                        <!--Charges-->
+                        <legend>{% if user.is_authenticated %}Loyalty Points and {% endif %}Charges</legend>
+                        <div class="row">
+                            <div class="col s6">
+                                <p>Order Total:</p>
                             </div>
-                        </fieldset>
-                    </div>
-                    <div class="col s12">
-                        <fieldset>
-                            <legend>Payment Details</legend>
-                            <!-- Stripe card element -->
-                            <div id="card-element"></div>
-                            <!-- Display form errors -->
-                            <div id="card-errors" role="alert"></div>
-                            <!-- Pass client secret to the view to get payment intent id -->
-                            <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                        </fieldset>
-                    </div>
-                    <div class="col s12 form-buttons center-align">
-                        <a href="{% url 'view_cart' %}" class="waves-effect waves-light btn bg-brown text-light form-buttons"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
-                        <button class="btn waves-effect waves-light bg-brown text-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
-                        </button>
-                    </div>
-                    <div class="col s12">
-                        <p class="small">Your card will be charged <span class="grand-total">€{{ grand_total | floatformat:2 }}</span></p>
-                        {% if user.is_authenticated %}
-                            <p class="small">You will earn {{ points_earned }} loyalty points on this purchase</p>
-                        {% else %}
-                            <p class="small"><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to earn {{ points_earned }} loyalty points on this purchase</p>
-                        {% endif %}
-                    </div>
-                </form>
+                            <div class="col s6 right-align">
+                                <p>€{{ total | floatformat:2 }}</p>
+                            </div>
+                            {% if user.is_authenticated %}
+                            <div class="col s6">
+                                <p>Loyalty Points Available:</p>
+                            </div>
+                            <div class="col s6 right-align">
+                                <p class="user-loyalty-points">{{ profile.loyalty_points }}</p>
+                            </div>
+                            <div class="col s7">
+                                <p class="user-input-points">Use Points:</p>
+                                <span class="small">(Must be multiple of 50)</span>
+                            </div>
+                            <div class="col s5">
+                                {{ order_form.points_used | as_crispy_field }}
+                            </div>
+                            {% endif %}
+                            <div class="col s6">
+                                <p>Delivery:</p>
+                            </div>
+                            <div class="col s6 right-align">
+                                <p class="delivery-cost">€{{ delivery | floatformat:2 }}</p>
+                            </div>
+                            <div class="col s6">
+                                <p>Grand Total:</p>
+                            </div>
+                            <div class="col s6">
+                                <p class="grand-total right-align">€{{ grand_total | floatformat:2 }}</p>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col s12">
+                    <fieldset>
+                        <legend>Payment Details</legend>
+                        <!-- Stripe card element -->
+                        <div id="card-element"></div>
+                        <!-- Display form errors -->
+                        <div id="card-errors" role="alert"></div>
+                        <!-- Pass client secret to the view to get payment intent id -->
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                    </fieldset>
+                </div>
+                <div class="col s12 form-buttons center-align">
+                    <a href="{% url 'view_cart' %}" class="waves-effect waves-light btn bg-brown text-light form-buttons"><i class="fas fa-chevron-circle-left"></i> Back to Cart</a>
+                    <button class="btn waves-effect waves-light bg-brown text-light" id="checkout-button" type="submit" name="action"><i class="far fa-credit-card"></i> Pay Securely
+                    </button>
+                </div>
+                <div class="col s12">
+                    <p class="small">Your card will be charged <span class="grand-total">€{{ grand_total | floatformat:2 }}</span></p>
+                    {% if user.is_authenticated %}
+                    <p class="small">You will earn {{ points_earned }} loyalty points on this purchase</p>
+                    {% else %}
+                    <p class="small"><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">register</a> to earn {{ points_earned }} loyalty points on this purchase</p>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+        <div class="col s12 l6 order-column">
+            <!--Order Summary-->
+            <h2 class="small-caps bold">Order Summary</h2>
+            <div class="col s3 m3"></div>
+            <div class="col s6 m6">
+                <p class="bold">Item</p>
             </div>
-            <div class="col s12 l6 order-column">
-                <!--Order Summary-->
-                <h2 class="small-caps bold">Order Summary</h2>
-                <div class="col s3 m3"></div>
+            <div class="col s3 m3">
+                <p class="bold">Item Subtotal</p>
+            </div>
+            <!--Products-->
+            {% for item in items_in_cart %}
+            <div class="row valign-wrapper grey-bottom-border">
+                <div class="col s3 m3">
+                    <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
+                </div>
                 <div class="col s6 m6">
-                    <p class="bold">Item</p>
+                    <p>{{ item.product.name }}</p>
+                    {% if item.product.on_sale %}
+                    <p class="small">{{ item.quantity }} @ €{{ item.product.sale_price }}</p>
+                    {% else %}
+                    <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
+                    {% endif %}
                 </div>
                 <div class="col s3 m3">
-                    <p class="bold">Item Subtotal</p>
+                    {% if item.product.on_sale %}
+                    <p>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</p>
+                    {% else %}
+                    <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
+                    {% endif %}
                 </div>
-                <!--Products-->
-                {% for item in items_in_cart %}
-                    <div class="row valign-wrapper grey-bottom-border">
-                        <div class="col s3 m3">
-                            <img src="{{ item.product.boxart.url }}" alt="{{ item.product.name }}" class="responsive-img">
-                        </div>
-                        <div class="col s6 m6">
-                            <p>{{ item.product.name }}</p>
-                            {% if item.product.on_sale %}
-                                <p class="small">{{ item.quantity }} @ €{{ item.product.sale_price }}</p>
-                            {% else %}
-                                <p class="small">{{ item.quantity }} @ €{{ item.product.price }}</p>
-                            {% endif %}
-                        </div>
-                        <div class="col s3 m3">
-                            {% if item.product.on_sale %}
-                                <p>€{{ item.product.sale_price | calculate_subtotal:item.quantity }}</p>
-                            {% else %}
-                                <p>€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-                <div class="row">
-                    <div class="col s6 offset-s3 m6 offset-m3">
-                        <p class="bold">Cart Total:</p>
-                    </div>
-                    <div class="col s3 m3">
-                        <p class="cart-total bold">€{{ total | floatformat:2 }}</p>
-                    </div>
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col s6 offset-s3 m6 offset-m3">
+                    <p class="bold">Cart Total:</p>
+                </div>
+                <div class="col s3 m3">
+                    <p class="cart-total bold">€{{ total | floatformat:2 }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <div id="spinner-overlay" class="none">
-        <img src="{{ MEDIA_URL }}animated-dice-image-0079.gif" alt="Bouncing dice">
-    </div>
+</div>
+<div id="spinner-overlay" class="none">
+    <img src="{{ MEDIA_URL }}animated-dice-image-0079.gif" alt="Bouncing dice">
+</div>
 {% endblock %}
-
 {% block postloadjs %}
-    {{ block.super }}
-
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
-    <script src="{% static 'checkout/js/checkout.js' %}"></script>
-
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+<script src="{% static 'checkout/js/checkout.js' %}"></script>
 {% endblock %}

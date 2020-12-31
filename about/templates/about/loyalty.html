@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block extra_title %}Loyalty Points Programme{% endblock %}
-
 {% block content %}
 <div class="container bg-sheer-white text-brown">
     <h1 class="small-caps bold">Loyalty Points Programme</h1>
@@ -15,7 +12,6 @@
             <p>While it's always exciting to get a new boardgame in the post and open it for the very first time - that new boardgame smell - we want you to get even more joy from the purchase of a new boardgame right away!</p>
             <h2 class="center-align small-caps bold">Collect Points!</h2>
             <p>For every €1 you spend, we'll give you 10 loyalty points. New loyalty points are added to your account automatically when you make a purchase and can be used to make future purchases a little bit cheaper.</p>
-            
             {% if user.is_authenticated %}
             <p>As you're already logged in, you can start shopping now and earn loyalty points. To view your available points balance to use on purchases today, visit your <a href="{% url 'profile' %}">user profile</a>.</p>
             <div class="col s12 center-align">
@@ -27,7 +23,6 @@
             <div class="col s12 center-align">
                 <a href="{% url 'account_signup' %}" class="waves-effect waves-light btn last-btn bg-brown"><i class="fas fa-user-plus prefix"></i> Register</a>
             </div>
-
             <h3 class="center-align small-caps bold">I already have an account</h3>
             <p>Log into your account to view your available loyalty points and start shopping to earn even more!</p>
             <div class="col s12 center-align">

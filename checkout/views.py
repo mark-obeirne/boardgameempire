@@ -34,7 +34,11 @@ def cache_checkout_data(request):
             stripe.PaymentIntent.modify(pid,
                                         amount=amount,
                                         metadata={
-                                            "cart": json.dumps(request.session.get("cart", {})),
+                                            "cart": json.dumps(
+                                                request.session.get(
+                                                    "cart", {}
+                                                    )
+                                                    ),
                                             "gift_purchase": gift_purchase,
                                             "username": request.user,
                                             "points_used": points_used,
@@ -42,7 +46,11 @@ def cache_checkout_data(request):
         else:
             stripe.PaymentIntent.modify(pid,
                                         metadata={
-                                            "cart": json.dumps(request.session.get("cart", {})),
+                                            "cart": json.dumps(
+                                                request.session.get(
+                                                    "cart", {}
+                                                    )
+                                                    ),
                                             "gift_purchase": gift_purchase,
                                             "username": request.user,
                                         })

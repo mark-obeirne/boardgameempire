@@ -1,35 +1,28 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
     <head>
         {% block meta %}
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {% endblock %}
-
         {% block extrameta %}
         {% endblock %}
-        
         {% block corecss %}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" type="text/css" />
-            <link rel="stylesheet" href="{% static 'css/base.css' %}">
-            <link rel="icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" type="text/css" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico"/>
         {% endblock %}
-        
         {% block extracss %}
         {% endblock %}
-        
         {% block corejs %}
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
         {% endblock %}
-        
         {% block extrajs %}
         {% endblock %}
-
         <title>Boardgame Empire | {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
@@ -50,27 +43,24 @@
         {% if messages %}
         <div class="message-container grey-bottom-border">
             {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/messages/message_errors.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/messages/message_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/messages/message_success.html' %}
-                    {% else %}
-                        {% include 'includes/messages/message_info.html' %}
-                    {% endif %}
-                {% endwith %}
+            {% with message.level as level %}
+            {% if level == 40 %}
+            {% include 'includes/messages/message_errors.html' %}
+            {% elif level == 30 %}
+            {% include 'includes/messages/message_warning.html' %}
+            {% elif level == 25 %}
+            {% include 'includes/messages/message_success.html' %}
+            {% else %}
+            {% include 'includes/messages/message_info.html' %}
+            {% endif %}
+            {% endwith %}
             {% endfor %}
         </div>
         {% endif %}
-
         {% block page_header %}
         {% endblock %}
-
         {% block content %}
         {% endblock %}
-        
         <!--Footer-->
         <footer>
             <div class="row bg-brown valign-wrapper">
@@ -91,9 +81,8 @@
                 </div>
             </div>
         </footer>
-
         {% block postloadjs %}
-            <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
         {% endblock %}    
     </body>
 </html>
