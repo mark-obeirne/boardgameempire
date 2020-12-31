@@ -28,6 +28,14 @@ Issues highlighted were rectified along the way. However, JSHint also highlighte
 
 ### Results of CSS Validation
 One parse error was highlighted, which was subsequently rectified. There were warnings that there is the same colour applied for background-color and border colors of checkout-form checkbox, but this was to ensure that Materialize's stylesheet was overwritten.
+
+### Results of Pep8 Validation
+In settings.py, AUTH_PASSWORD_VALIDATORS lines were highlighted as being too long, but it is necessary to keep them on one line.
+
+All other pages were marked "All right"
+
+
+
 ## Manual Testing
 ### Devices Used for Testing
 Please note that this project does not support Internet Explorer due to the use of ES6 features and notation. Esports Dictionary was tested on a variety of devices, including:
