@@ -101,6 +101,9 @@ As reviews are user-generated, they may differ drastically in terms of how helpf
 ### Multiple Wishlists
 For the most part, one wishlist should be sufficient for users. However, there may be cases in which customers would like to organise products into various wishlists. For example, if a customer would like a wishlist for present ideas or unique wishlists for different playgroups, we would like to provide them with this ability.
 
+### 404 Page
+We would like to create a fun and interactive 404 page, in case customers get lost, stumble upon a link that no longer exists, or go hunting in search of easter eggs. This would also help them find their way back to the homepage.
+
 ### Customer Service Chatbot
 Customers are invited to email if they have any queries or issues with their orders. In instances where customers have queries that could be dealt with quickly and in real-time, we would like to investigate the practicality of a chatbot. This, we believe, could improve the user experience and save them time as they would not have to partake in a back-and-forth email chain. 
 
@@ -113,7 +116,7 @@ Looking at the requirements of the project and the site that was planned, it was
 
 The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models that act to support and work in tandem with these included OrderLineItem, Mechanics (and MechanicOfProduct to act as a model to connect Products to Mechanics), Categories (and CategoryToProduct to act as a model to connect Products to Categories/Themes), and WishlistLineItem. 
 
-![https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/db-schema.png]
+![Database Schema](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/db-schema.png)
 
 ## Skeleton
 ### Mobile Wireframes
@@ -121,8 +124,6 @@ The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models 
    * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-mobile.png)
    * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-mobile.png) 
    * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-mobile.png)
-   * [All Reviews Page]()
-   * [Full Review Page]()
    * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-mobile.png)
    * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-mobile.png)
    * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-mobile.png)
@@ -138,8 +139,6 @@ The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models 
    * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-tablet.png)
    * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-tablet.png) 
    * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-tablet.png)
-   * [All Reviews Page]()
-   * [Full Review Page]()
    * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-tablet.png)
    * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-tablet.png)
    * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-tablet.png)
@@ -155,8 +154,6 @@ The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models 
    * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-desktop.png)
    * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-desktop.png) 
    * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-desktop.png)
-   * [All Reviews Page]()
-   * [Full Review Page]()
    * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-desktop.png)
    * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-desktop.png)
    * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-desktop.png)
@@ -230,6 +227,12 @@ Materialize was used to create interactive and visual elements such as the home 
 
 [GitHub](https://github.com/) was used to host the project’s repository.
 
+[Heroku](https://heroku.com/) was used to ultimately deploy the live website.
+
+[Stripe](http://stripe.com/) was used to accept payments via the checkout app.
+
+[Amazon Web Services](https://aws.amazon.com/) was used to host images and static files for the deployed website. 
+
 [Trello](https://trello.com/) was used to track work that needed to be done from the outset, which enabled a plan of action to be put in place and helped keep on top of any issues or bugs that occurred.
 
 [DB Designer](https://www.dbdesigner.net/) was used to design the schema that this site would utilise for its database.
@@ -261,10 +264,221 @@ The testing process, issues encountered, and any known issues can be found in th
 
 ## Meeting User Expectations
 
-## Deployment
+> As a newcomer to boardgames, I would like to be able to have easy access to relevant information about a product so that I can easily determine if it is something that would be of interest to me.
 
+In order to give users as much information as possible, in an interesting way, each product page features a details tab that includes information such as how many players it is suitable for, how long a game typically takes, and what age group it is suitable for. We have also included YouTube videos so that customers get to see the game being played and enjoyed, which may help them gauge how it will go down in their group.
+
+> As someone with a growing collection of boardgames, I would like to be able to discover new boardgames without having to do research across a number of websites, so that I can grow my collection further.
+
+For customers who know what they are looking for, we offer a search feature. For those who are more open to suggestion, we offer a random game button, cast a spotlight on a game of the month, and typically feature publishers, designers, or interesting products in the homepage slider.
+
+> As a boardgame enthusiast, I would like to be able to add boardgames to a wishlist, so that I can plan my purchases and keep an eye out for bargains.
+
+A wishlist was a fundamental offering as part of the site. This is something that we have not seen very frequently, but always appreciate when it is offered. Our wishlist shows the product's current price, so bargin hunters can keep an eye out for a deal, and it is very convenient to add or remove products. 
+
+#### Site Owners
+> As a business,  we would like to offer a loyalty scheme so that people are more likely to return to make a purchase in the future.
+
+We felt it was important to offer customers an added incentive to return as some online retailers (such as Amazon) can be difficult to compete with on price alone. Our loyalty points program is mentioned across the site, whether a user is logged in or not, and offers customers a discount on future purchases. 
+
+> As the site owner, we would like to make it easy for customers to find a product that interests them, regardless of their familiarity.
+
+As mentioned previously, we offer a number of ways for customers to find products, whether that's by searching, browsing, or taking a journey of discovery.
+
+> As a business, we would like to showcase boardgames in their best light - being played - so that we can share the joy of tabletop gaming with customers. 
+
+One of the ways that we got friends into some newer boardgames was through the use of YouTube videos. Not only can this showcase how fun a game is, but it gives people an introduction to rules, mechanics, and strategies at their own pace rather than having to take everything in on the night. There is now a wealth of content on YouTube dedicated to the playing of games, so we tapped into this on each product detail card to show our products in action. 
+
+
+## Deployment
+### Local Deployment
+If you would like to explore or further develop this project locally, you can clone it and deploy it locally:
+* Navigate to the [Boardgame Empire project repository](https://github.com/mark-obeirne/boardgameempire)
+* Click on the button marked "Code"
+* Copy the link provided (https://github.com/mark-obeirne/boardgameempire.git)
+* As this project uses Python, it is best to operate within a virtual environment. The instructions on setting up and activating a virtual environment may be different, depending on your operating system. The official Python Documentation would be the best place to consult in order to set this up correctly.
+* To install the required modules used by this project, use the command "pip -r requirements.txt"
+* Add environment variables for:
+    * SECRET_KEY
+    * STRIPE_PUBLIC_KEY
+    * STRIPE_SECRET_KEY
+    * STRIPE_WH_SECRET
+    * DATABASE_URL
+* These variables can be added to Gitpod's settings, if using Gitpod, or to an env.py file. If using an env.py file, make sure it is added to .gitignore to ensure that all secret keys are kept secret.
+* To set up the SQLite3 database for the first time, use the following commands in your terminal
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+* Create a superuser with the command
+
+```
+python3 manage.py createsuperuser
+```
+
+* You can run the cloned application to ensure that all is working correctly
+
+```
+python3 manage.py runserver
+```
+
+To load product, category, and mechanics data, type the following command into the terminal, specifying which fixture you would like to load. Be sure to load categories and mechanics before products.
+
+```
+python3 manage.py loaddata fixture_name
+```
+
+### Heroku Deployment
+* Navigate to https://dashboard.heroku.com/ and sign in / register for an account
+* Click on "New" in the top right corner and select "Create new app"
+* Select a unique app name and choose a region that is local
+* On the resources tab, search for Heroku Postgres and add as an add-on
+* Navigate to the app's settings page and and click on the 'Reveal Config Variables' button
+* Add environment variables for:
+    * SECRET_KEY
+    * STRIPE_PUBLIC_KEY
+    * STRIPE_SECRET_KEY
+    * STRIPE_WH_SECRET
+    * DATABASE_URL
+* Freeze the app's required modules in the terminal
+```
+pip3 freeze > requirements.txt
+```
+* Create a Procfile
+```
+echo web: gunicorn boardgame_empire.wsgi:application > Procfile
+```
+* Set up the database to work with Postgres. To start, we have to comment out the current DATABASE settings (in our project's settings.py file) and add
+
+```
+DATABASES = {
+        'default': dj_database_url.parse(database_url_from_heroku_config_vars)
+        }
+```
+* Run all migrations 
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+* Create a superuser
+```
+python3 manage.py createsuperuser
+```
+* Navigate back to settings.py once this is complete and restore the original database settings.
+* Add an if statement to the database settings to check if 'DATABASE_URL' in os.environ and to use the Postgres database if so (remembering to get the URL from your environment settings rather than pasting in the URL directly) 
+```
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+```
+* Log in to Heroku from your terminal and temporarily disable collect static
+```
+heroku login -i
+heroku config:set DISABLE_COLLECTSTATIC=1 --app APP_NAME
+```
+* In settings.py, add the Heroku app to the list of ALLOWED_HOSTS. Having localhost in this list ensures that GitPod can still get access.
+* It is possible to set up Heroku to deploy automatically from Github by navigating to the Deploy section on the app's dashboard and scrolling down to Deployment method. 
+* Select GitHub and connect to the relevant repository
+* Once connected, you can enable Automatic Deploys so that each push to the master branch (or other chosen branch) will result in Heroku deploying a new version of the app.
+
+### Utilising Amazon Web Services
+* Navigate to [Amazon Web Services]() and crete or sign into an account
+* Search for S3 or find it through the services menu
+* Create a new bucket and give it the same name as Heroku app (this is to make it easier to organise more than anything)
+* Uncheck block all public access and conclude creating bucket
+* In the bucket's properties tab, edit static web hosting and set default values for index and error document.
+* Open the permissions tab and edit Cross-origin resource sharing (CORS)
+* Paste in the following
+```
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+```
+* Select "Policy Generator" to create a new security policy
+* Select S3 Bucket Policy as the policy type and add * to Principal in order to allow all principals
+* Set Action to GETobject and paste in the Amazon Resource Name from the Edit Bucket Policy tab. It will be in the format
+```
+arn:aws:s3:::bucket
+```
+* Click add statement
+* Click Generate Policy
+* Copy policy and paste into bucket policy editor
+* Before clicking save, add a /* to the end of the "Resource" value as we want to allow access to all resources in this bucket
+* In the Access Control List (ACL), set list objects permission for everyone
+
+* Next we need to create a user to access this bucket. We can do this through the Identity and Access Management (IAM) service.
+* Create a group and give it a new name. The steps of attaching policy can be skipped for the moment.
+* Create a policy by navigating to the policies tab and selecting create policy
+* From the JSON tab, select Import Managed Policy
+* Search for S3 and then import S3 Full Access Policy
+* On S3 itself, select your bucket and copy the ARN. Paste this into the Resource item as follows:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucket",
+                "arn:aws:s3:::bucket/*"
+            ]
+        }
+    ]
+}
+
+```
+
+* Click Review Policy
+* Give it a name and description, and create policy
+* Attach this policy to your group by clicking on groups, the name of your created group, permissions, attach policy
+* Search for the created policy, select it, and click Attach Policy
+* Now create a user by navigating to Users tab and selecting Add User
+* Give it a name and give programmatic access
+* Add user to group and click through to the end to create the user
+* Download the .csv file, which contains the user's access key and secret access key
+
+* To connect Django to S3, we need two packages, boto3 and django-storages
+* Add storages to installed apps in settings.py
+* Add AWS keys to Heroku's config vars
+* Add if statement to settings.py to check for USE_AWS environment variable
+```
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'boardgame-empire'
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
 
 ## Credits
+### Code
+To reduce the unusual behaviour of Materialize on iOS devices when using a select dropdown, [cwar082 recommended](https://stackoverflow.com/questions/61985187/materialize-css-side-nav-dropdown-wrong-links-on-ios-safari) setting closeOnClick to false
+
+A few different approaches were trialled when trying to sort products by price (and ensuring that sale prices and regular prices behaved as expected). In the end, [PatrikAkerstrand's suggestion](https://stackoverflow.com/questions/8120953/order-by-with-columns-that-are-sometimes-empty) helped steer me in the right direction.
+
+Code Institue's Boutique Ado related videos were very helpful over the course of this project.
+
 ### Media
 [Spinner - Dice](https://www.animatedimages.org/data/media/710/animated-dice-image-0079.gif)
 
@@ -383,7 +597,7 @@ I would like to thank my mentor, Antonio Rodriguez for their support and advice 
 
 I would also like to thank my fellow Code Institute students who provided support, advice, and a second opinion on Slack. I would like to thank Igor of Code Institute for their help with one issue faced during deployment.
 
-Finally, I would like to thank all those who took the time to test this website and provide feedback and suggestions.
+Finally, I would like to thank all those who took the time to test this website, particularly Ruth, Mike, and Dermot.
 
 ## Disclaimer
 This project is for educational purposes only. 

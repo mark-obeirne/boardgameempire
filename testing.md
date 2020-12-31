@@ -18,13 +18,13 @@ This document includes details of the manual testing process, sites used for cod
 
 [JSHint](https://jshint.com/)
 
-[ESPrima (JS)](https://esprima.org/demo/validate.html) 
-
 [Pep8 Online](http://pep8online.com/checkresult) 
 
-[Web Accessibility by Level access](https://www.webaccessibility.com/)
+### Results of W3C Validation
+Each page of the site was checked, using a logged in and logged out account on pages such as product detail and checkout to ensure that restricted features were valid. Any issues highlighted were rectified.
 
-[WAVE](https://wave.webaim.org/report#/http://boardgameempire.herokuapp.com/)
+### Results of JSHint
+Issues highlighted were rectified along the way. However, JSHint also highlighted unused variable errors in relation to the initialisation of Materialise components. 
 
 ## Manual Testing
 ### Devices Used for Testing
