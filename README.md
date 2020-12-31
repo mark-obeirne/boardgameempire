@@ -268,6 +268,44 @@ The testing process, issues encountered, and any known issues can be found in th
 ## Meeting User Expectations
 
 ## Deployment
+### Local Deployment
+If you would like to explore or further develop this project locally, you can clone it and deploy it locally:
+* Navigate to the [Boardgame Empire project repository](https://github.com/mark-obeirne/boardgameempire)
+* Click on the button marked "Code"
+* Copy the link provided (https://github.com/mark-obeirne/boardgameempire.git)
+* As this project uses Python, it is best to operate within a virtual environment. The instructions on setting up and activating a virtual environment may be different, depending on your operating system. The official Python Documentation would be the best place to consult in order to set this up correctly.
+* To install the required modules used by this project, use the command "pip -r requirements.txt"
+* Add environment variables for:
+    * SECRET_KEY
+    * STRIPE_PUBLIC_KEY
+    * STRIPE_SECRET_KEY
+    * STRIPE_WH_SECRET
+    * DATABASE_URL
+* These variables can be added to Gitpod's settings, if using Gitpod, or to an env.py file. If using an env.py file, make sure it is added to .gitignore to ensure that all secret keys are kept secret.
+* To set up the SQLite3 database for the first time, use the following commands in your terminal
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+* Create a superuser with the command
+
+```
+python3 manage.py createsuperuser
+```
+
+* You can run the cloned application to ensure that all is working correctly
+
+```
+python3 manage.py runserver
+```
+
+To load product, category, and mechanics data, type the following command into the terminal, specifying which fixture you would like to load. Be sure to load categories and mechanics before products.
+
+```
+python3 manage.py loaddata fixture_name
+```
+
 
 
 ## Credits
