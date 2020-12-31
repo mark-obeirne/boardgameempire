@@ -221,6 +221,8 @@ The loyalty points functionality also had to be updated to handle manual user in
 ### Mobile sidenav menu
 The 'Shop by Theme' and 'Shop by Mechanic' menus show and hide by tapping the menu header. However, it requires a slightly longer press to close rather than a simple tap as you would to open. Holding the menu option for too long results in a user menu opening to ask if the user would like to open in a new tab. This is something that we would like to explore further, as the slightly longer press isn't the most intuitive.
 
+As a workaround, a Close Menu button has been added to both dropdown menus, which will close the menu when pressed. It's not ideal, and it is something that we would like to revisit in the future.
+
 ### Crispy forms
 On some pages (listed below), Crispy Forms has not rendered the form correctly and ommitted a closing div for a row. This resulted in the footer being displayed inside the container. A closing div has been manually added to the affected pages and noted in a comment. These pages have passed validation, but the extra div has been highlighted by Gitpod. 
 

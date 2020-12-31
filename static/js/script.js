@@ -64,6 +64,10 @@ const updateItemBtns = document.querySelectorAll(".update-qty");
 // Select all remove item buttons on user's cart page
 const removeItemBtns = document.querySelectorAll(".remove-item");
 
+// Close theme/mechanic submenus on close button click
+const closeThemeButton = document.querySelector(".close-theme-trigger")
+const closeMechanicButton = document.querySelector(".close-mechanic-trigger")
+
 // Functions
 
 // Increase quantity input value when "+" button is clicked on Product Detail page
@@ -195,6 +199,26 @@ function removeItem(e) {
 }
 
 
+//
+
+function closeThemeMenu(e) {
+    e.preventDefault();
+    const themeTrigger = document.querySelector(".theme-trigger")
+    const instance = M.Dropdown.getInstance(themeTrigger)
+    if (instance.isOpen) {
+        instance.close()
+    }
+}
+
+function closeMechanicMenu(e) {
+    e.preventDefault();
+    const mechanicTrigger = document.querySelector(".mechanic-trigger")
+    const instance = M.Dropdown.getInstance(mechanicTrigger)
+    if (instance.isOpen) {
+        instance.close()
+    }
+}
+
 // Event Listeners
 
 // Increase quantity input value when "+" button is clicked on Product Detail page
@@ -246,4 +270,13 @@ if (updateItemBtns) {
 // Remove selected product from cart
 if (removeItemBtns) {
     removeItemBtns.forEach(removeBtn => removeBtn.addEventListener("click", removeItem));
+}
+
+// Close theme/mechanic menus on button click
+if (closeThemeButton) {
+    closeThemeButton.addEventListener("click", closeThemeMenu)
+}
+
+if (closeMechanicButton) {
+    closeMechanicButton.addEventListener("click", closeMechanicMenu)
 }
