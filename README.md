@@ -306,7 +306,147 @@ To load product, category, and mechanics data, type the following command into t
 python3 manage.py loaddata fixture_name
 ```
 
+### Heroku Deployment
+* Navigate to https://dashboard.heroku.com/ and sign in / register for an account
+* Click on "New" in the top right corner and select "Create new app"
+* Select a unique app name and choose a region that is local
+* On the resources tab, search for Heroku Postgres and add as an add-on
+* Navigate to the app's settings page and and click on the 'Reveal Config Variables' button
+* Add environment variables for:
+    * SECRET_KEY
+    * STRIPE_PUBLIC_KEY
+    * STRIPE_SECRET_KEY
+    * STRIPE_WH_SECRET
+    * DATABASE_URL
+* Freeze the app's required modules in the terminal
+```
+pip3 freeze > requirements.txt
+```
+* Create a Procfile
+```
+echo web: gunicorn boardgame_empire.wsgi:application > Procfile
+```
+* Set up the database to work with Postgres. To start, we have to comment out the current DATABASE settings (in our project's settings.py file) and add
 
+```
+DATABASES = {
+        'default': dj_database_url.parse(database_url_from_heroku_config_vars)
+        }
+```
+* Run all migrations 
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+* Create a superuser
+```
+python3 manage.py createsuperuser
+```
+* Navigate back to settings.py once this is complete and restore the original database settings.
+* Add an if statement to the database settings to check if 'DATABASE_URL' in os.environ and to use the Postgres database if so (remembering to get the URL from your environment settings rather than pasting in the URL directly) 
+```
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+```
+* Log in to Heroku from your terminal and temporarily disable collect static
+```
+heroku login -i
+heroku config:set DISABLE_COLLECTSTATIC=1 --app APP_NAME
+```
+* In settings.py, add the Heroku app to the list of ALLOWED_HOSTS. Having localhost in this list ensures that GitPod can still get access.
+* It is possible to set up Heroku to deploy automatically from Github by navigating to the Deploy section on the app's dashboard and scrolling down to Deployment method. 
+* Select GitHub and connect to the relevant repository
+* Once connected, you can enable Automatic Deploys so that each push to the master branch (or other chosen branch) will result in Heroku deploying a new version of the app.
+
+### Utilising Amazon Web Services
+* Navigate to [Amazon Web Services]() and crete or sign into an account
+* Search for S3 or find it through the services menu
+* Create a new bucket and give it the same name as Heroku app (this is to make it easier to organise more than anything)
+* Uncheck block all public access and conclude creating bucket
+* In the bucket's properties tab, edit static web hosting and set default values for index and error document.
+* Open the permissions tab and edit Cross-origin resource sharing (CORS)
+* Paste in the following
+```
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+```
+* Select "Policy Generator" to create a new security policy
+* Select S3 Bucket Policy as the policy type and add * to Principal in order to allow all principals
+* Set Action to GETobject and paste in the Amazon Resource Name from the Edit Bucket Policy tab. It will be in the format
+```
+arn:aws:s3:::bucket
+```
+* Click add statement
+* Click Generate Policy
+* Copy policy and paste into bucket policy editor
+* Before clicking save, add a /* to the end of the "Resource" value as we want to allow access to all resources in this bucket
+* In the Access Control List (ACL), set list objects permission for everyone
+
+* Next we need to create a user to access this bucket. We can do this through the Identity and Access Management (IAM) service.
+* Create a group and give it a new name. The steps of attaching policy can be skipped for the moment.
+* Create a policy by navigating to the policies tab and selecting create policy
+* From the JSON tab, select Import Managed Policy
+* Search for S3 and then import S3 Full Access Policy
+* On S3 itself, select your bucket and copy the ARN. Paste this into the Resource item as follows:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucket",
+                "arn:aws:s3:::bucket/*"
+            ]
+        }
+    ]
+}
+
+```
+
+* Click Review Policy
+* Give it a name and description, and create policy
+* Attach this policy to your group by clicking on groups, the name of your created group, permissions, attach policy
+* Search for the created policy, select it, and click Attach Policy
+* Now create a user by navigating to Users tab and selecting Add User
+* Give it a name and give programmatic access
+* Add user to group and click through to the end to create the user
+* Download the .csv file, which contains the user's access key and secret access key
+
+* To connect Django to S3, we need two packages, boto3 and django-storages
+* Add storages to installed apps in settings.py
+* Add AWS keys to Heroku's config vars
+* Add if statement to settings.py to check for USE_AWS environment variable
+```
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'boardgame-empire'
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
 
 ## Credits
 ### Media
@@ -427,7 +567,7 @@ I would like to thank my mentor, Antonio Rodriguez for their support and advice 
 
 I would also like to thank my fellow Code Institute students who provided support, advice, and a second opinion on Slack. I would like to thank Igor of Code Institute for their help with one issue faced during deployment.
 
-Finally, I would like to thank all those who took the time to test this website and provide feedback and suggestions.
+Finally, I would like to thank all those who took the time to test this website, particularly Ruth, Mike, and Dermot.
 
 ## Disclaimer
 This project is for educational purposes only. 
