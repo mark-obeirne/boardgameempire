@@ -268,6 +268,12 @@ nav .bottom-nav-row ul a {
   max-height: 55px;
 }
 
+.close-nav-dropdown {
+    position: absolute;
+    right: 1rem;
+    font-size: 1.2rem;
+}
+
 
 /* Search */
 
