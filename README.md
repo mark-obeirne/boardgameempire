@@ -121,8 +121,6 @@ The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models 
    * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-mobile.png)
    * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-mobile.png) 
    * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-mobile.png)
-   * [All Reviews Page]()
-   * [Full Review Page]()
    * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-mobile.png)
    * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-mobile.png)
    * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-mobile.png)
@@ -138,8 +136,6 @@ The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models 
    * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-tablet.png)
    * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-tablet.png) 
    * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-tablet.png)
-   * [All Reviews Page]()
-   * [Full Review Page]()
    * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-tablet.png)
    * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-tablet.png)
    * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-tablet.png)
@@ -155,8 +151,6 @@ The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models 
    * [Homepage](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/homepage-desktop.png)
    * [All Products Page / Deals](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/products-desktop.png) 
    * [Product Details Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/product-detail-desktop.png)
-   * [All Reviews Page]()
-   * [Full Review Page]()
    * [Write Review Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/write-review-desktop.png)
    * [Wishlist Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/wishlist-desktop.png)
    * [User Profile Page](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/wireframes/profile-page-desktop.png)
@@ -449,6 +443,13 @@ if 'USE_AWS' in os.environ:
 ```
 
 ## Credits
+### Code
+To reduce the unusual behaviour of Materialize on iOS devices when using a select dropdown, [cwar082 recommended](https://stackoverflow.com/questions/61985187/materialize-css-side-nav-dropdown-wrong-links-on-ios-safari) setting closeOnClick to false
+
+A few different approaches were trialled when trying to sort products by price (and ensuring that sale prices and regular prices behaved as expected). In the end, [PatrikAkerstrand's suggestion](https://stackoverflow.com/questions/8120953/order-by-with-columns-that-are-sometimes-empty) helped steer me in the right direction.
+
+Code Institue's Boutique Ado related videos were very helpful over the course of this project.
+
 ### Media
 [Spinner - Dice](https://www.animatedimages.org/data/media/710/animated-dice-image-0079.gif)
 
