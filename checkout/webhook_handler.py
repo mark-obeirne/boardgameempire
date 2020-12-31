@@ -54,9 +54,15 @@ class StripeWH_Handler:
                     billing_full_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
                     billing_town_or_city__iexact=billing_details.address.city,
-                    billing_street_address1__iexact=billing_details.address.line1,
-                    billing_street_address2__iexact=billing_details.address.line2,
-                    billing_county_or_state__iexact=billing_details.address.state,
+                    billing_street_address1__iexact=(
+                        billing_details.address.line1
+                        ),
+                    billing_street_address2__iexact=(
+                        billing_details.address.line2
+                        ),
+                    billing_county_or_state__iexact=(
+                        billing_details.address.state
+                        ),
                     billing_country__iexact=billing_details.address.country,
                     grand_total=grand_total,
                     original_cart=cart,
