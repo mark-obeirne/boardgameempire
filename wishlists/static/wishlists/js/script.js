@@ -6,7 +6,7 @@ function showDeleteWishlistModal() {
     const modal = document.querySelector("#delete-wishlist-modal");
     modal.classList.remove("none");
     const modalCloseBtn = document.querySelector(".modal-close-btn");
-    modalCloseBtn.addEventListener("click", function() {
+    modalCloseBtn.addEventListener("click", function () {
         modal.classList.add("none");
     });
 }

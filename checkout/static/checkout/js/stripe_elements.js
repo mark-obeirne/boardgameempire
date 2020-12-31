@@ -19,18 +19,20 @@ const style = {
             color: '#AAB7C4',
         },
     },
-        invalid: {
-            iconColor: '#DC3545',
-            color: '#DC3545',
+    invalid: {
+        iconColor: '#DC3545',
+        color: '#DC3545',
     },
 };
 
 // Create and mount card element
-const card = elements.create("card", {style: style});
+const card = elements.create("card", {
+    style: style
+});
 card.mount("#card-element");
 
 // Display errors after user enters card details if necessary 
-card.addEventListener("change", function(e) {
+card.addEventListener("change", function (e) {
     const errorDiv = document.querySelector("#card-errors");
     if (e.error) {
         const errorHtml = `
@@ -40,7 +42,8 @@ card.addEventListener("change", function(e) {
         <span>${e.error.message}</span>
         `;
         errorDiv.innerHTML = errorHtml;
-    } else {
+    }
+    else {
         errorDiv.textContent = "";
     }
 });
@@ -48,19 +51,21 @@ card.addEventListener("change", function(e) {
 // Handle form submission
 const form = document.querySelector("#checkout-form");
 
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", function (e) {
     e.preventDefault();
     let postData;
     const submitBtn = document.querySelector("#checkout-button");
     const spinnerOverlay = document.querySelector("#spinner-overlay");
-    card.update({"disabled": true});
+    card.update({
+        "disabled": true
+    });
     submitBtn.setAttribute("disabled", true);
     spinnerOverlay.classList.remove("none");
-    
+
     const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
     const giftPurchase = document.querySelector("#gift_purchase").checked;
     const pointsId = document.querySelector("#id_points_used");
-    
+
     if (pointsId) {
         const pointsUsed = pointsId.value;
         postData = {
@@ -69,7 +74,8 @@ form.addEventListener("submit", function(e) {
             "gift_purchase": giftPurchase,
             "points_used": pointsUsed
         };
-    } else {
+    }
+    else {
         postData = {
             "csrfmiddlewaretoken": csrfToken,
             "client_secret": clientSecret,
@@ -103,9 +109,9 @@ form.addEventListener("submit", function(e) {
                     state: form.county_or_state.value.trim(),
                     postal_code: form.postcode.value.trim(),
                     country: form.country.value.trim(),
-                    }
-                },
-        }).then(function(result) {
+                }
+            },
+        }).then(function (result) {
             if (result.error) {
                 let errorDiv = document.getElementById('card-errors');
                 let html = `
@@ -115,9 +121,12 @@ form.addEventListener("submit", function(e) {
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 spinnerOverlay.classList.add("none");
-                card.update({ 'disabled': false});
+                card.update({
+                    'disabled': false
+                });
                 $('#submit-button').attr('disabled', false);
-            } else {
+            }
+            else {
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
                 }
