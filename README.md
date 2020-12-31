@@ -113,7 +113,7 @@ Looking at the requirements of the project and the site that was planned, it was
 
 The main models are: Products, Profiles, Reviews, Orders, and Wishlists. Models that act to support and work in tandem with these included OrderLineItem, Mechanics (and MechanicOfProduct to act as a model to connect Products to Mechanics), Categories (and CategoryToProduct to act as a model to connect Products to Categories/Themes), and WishlistLineItem. 
 
-![https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/db-schema.png]
+![Database Schema](https://raw.githubusercontent.com/mark-obeirne/boardgameempire/master/static/readme_images/db-schema.png)
 
 ## Skeleton
 ### Mobile Wireframes
@@ -229,6 +229,12 @@ Materialize was used to create interactive and visual elements such as the home 
 [Git](https://git-scm.com/) was used to track changes in code during development.
 
 [GitHub](https://github.com/) was used to host the project’s repository.
+
+[Heroku](https://heroku.com/) was used to ultimately deploy the live website.
+
+[Stripe](http://stripe.com/) was used to accept payments via the checkout app.
+
+[Amazon Web Services](https://aws.amazon.com/) was used to host images and static files for the deployed website. 
 
 [Trello](https://trello.com/) was used to track work that needed to be done from the outset, which enabled a plan of action to be put in place and helped keep on top of any issues or bugs that occurred.
 
