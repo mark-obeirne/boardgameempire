@@ -18,7 +18,7 @@ This document includes details of the manual testing process, sites used for cod
 
 [JSHint](https://jshint.com/)
 
-[Pep8 Online](http://pep8online.com/checkresult) 
+[Pep8 Online](http://pep8online.com/) 
 
 ### Results of W3C Validation
 Each page of the site was checked, using a logged in and logged out account on pages such as product detail and checkout to ensure that restricted features were valid. Any issues highlighted were rectified.
@@ -26,6 +26,8 @@ Each page of the site was checked, using a logged in and logged out account on p
 ### Results of JSHint
 Issues highlighted were rectified along the way. However, JSHint also highlighted unused variable errors in relation to the initialisation of Materialise components. 
 
+### Results of CSS Validation
+One parse error was highlighted, which was subsequently rectified. There were warnings that there is the same colour applied for background-color and border colors of checkout-form checkbox, but this was to ensure that Materialize's stylesheet was overwritten.
 ## Manual Testing
 ### Devices Used for Testing
 Please note that this project does not support Internet Explorer due to the use of ES6 features and notation. Esports Dictionary was tested on a variety of devices, including:
