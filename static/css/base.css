@@ -368,7 +368,7 @@ a.bg-brown:focus {
   border-bottom: 1px solid #d3d3d3;
 }
 
-input[type="submit" i] {
+input[type="submit"] {
   color: #d5d5d5;
 }
 
