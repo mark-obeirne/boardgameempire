@@ -273,5 +273,10 @@ if (removeItemBtns) {
 }
 
 // Close theme/mechanic menus on button click
-closeThemeButton.addEventListener("click", closeThemeMenu)
-closeMechanicButton.addEventListener("click", closeMechanicMenu)
+if (closeThemeButton) {
+    closeThemeButton.addEventListener("click", closeThemeMenu)
+}
+
+if (closeMechanicButton) {
+    closeMechanicButton.addEventListener("click", closeMechanicMenu)
+}
